@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import bookCover from "@assets/book-cover_1767436940677.jpg";
+import bookCover from "@assets/book-cover_1767440366702.png";
 
 export default function Book() {
   return (
