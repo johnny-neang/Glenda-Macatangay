@@ -1,7 +1,7 @@
 import type { Express, Request, Response, NextFunction } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { insertContactSchema, insertTourDateSchema } from "@shared/schema";
+import { insertContactSchema, insertTourDateSchema, insertTestimonialSchema } from "@shared/schema";
 import Mailjet from "node-mailjet";
 import session from "express-session";
 
@@ -174,6 +174,55 @@ export async function registerRoutes(
       res.json(updated);
     } catch (error) {
       res.status(400).json({ error: "Failed to update content" });
+    }
+  });
+
+  // Testimonial routes
+  app.get("/api/testimonials", async (req, res) => {
+    try {
+      const testimonials = await storage.getTestimonials();
+      res.json(testimonials);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch testimonials" });
+    }
+  });
+
+  app.get("/api/testimonials/placement/:placement", async (req, res) => {
+    try {
+      const testimonials = await storage.getTestimonialsByPlacement(req.params.placement);
+      res.json(testimonials);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch testimonials" });
+    }
+  });
+
+  app.post("/api/testimonials", requireAdmin, async (req, res) => {
+    try {
+      const testimonialData = insertTestimonialSchema.parse(req.body);
+      const testimonial = await storage.createTestimonial(testimonialData);
+      res.json(testimonial);
+    } catch (error) {
+      res.status(400).json({ error: "Invalid testimonial data" });
+    }
+  });
+
+  app.put("/api/testimonials/:id", requireAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      const testimonial = await storage.updateTestimonial(id, req.body);
+      res.json(testimonial);
+    } catch (error) {
+      res.status(400).json({ error: "Failed to update testimonial" });
+    }
+  });
+
+  app.delete("/api/testimonials/:id", requireAdmin, async (req, res) => {
+    try {
+      const id = parseInt(req.params.id);
+      await storage.deleteTestimonial(id);
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ error: "Failed to delete testimonial" });
     }
   });
 

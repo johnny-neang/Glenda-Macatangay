@@ -1,6 +1,6 @@
 import { db } from "./db";
-import { contacts, tourDates, pageContent, type InsertContact, type Contact, type InsertTourDate, type TourDate, type InsertPageContent, type PageContent } from "@shared/schema";
-import { desc, eq } from "drizzle-orm";
+import { contacts, tourDates, pageContent, testimonials, type InsertContact, type Contact, type InsertTourDate, type TourDate, type InsertPageContent, type PageContent, type InsertTestimonial, type Testimonial } from "@shared/schema";
+import { desc, eq, arrayContains, asc } from "drizzle-orm";
 
 export interface IStorage {
   createContact(contact: InsertContact): Promise<Contact>;
@@ -14,6 +14,12 @@ export interface IStorage {
   getPageContent(pageKey: string): Promise<PageContent | undefined>;
   getAllPageContent(): Promise<PageContent[]>;
   upsertPageContent(pageKey: string, content: string): Promise<PageContent>;
+
+  createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial>;
+  getTestimonials(): Promise<Testimonial[]>;
+  getTestimonialsByPlacement(placement: string): Promise<Testimonial[]>;
+  updateTestimonial(id: number, testimonial: Partial<InsertTestimonial>): Promise<Testimonial>;
+  deleteTestimonial(id: number): Promise<void>;
 }
 
 export class Storage implements IStorage {
@@ -67,6 +73,30 @@ export class Storage implements IStorage {
         .returning();
       return created;
     }
+  }
+
+  async createTestimonial(testimonial: InsertTestimonial): Promise<Testimonial> {
+    const [newTestimonial] = await db.insert(testimonials).values(testimonial).returning();
+    return newTestimonial;
+  }
+
+  async getTestimonials(): Promise<Testimonial[]> {
+    return await db.select().from(testimonials).orderBy(asc(testimonials.sortOrder));
+  }
+
+  async getTestimonialsByPlacement(placement: string): Promise<Testimonial[]> {
+    return await db.select().from(testimonials)
+      .where(arrayContains(testimonials.placement, [placement]))
+      .orderBy(asc(testimonials.sortOrder));
+  }
+
+  async updateTestimonial(id: number, testimonial: Partial<InsertTestimonial>): Promise<Testimonial> {
+    const [updated] = await db.update(testimonials).set(testimonial).where(eq(testimonials.id, id)).returning();
+    return updated;
+  }
+
+  async deleteTestimonial(id: number): Promise<void> {
+    await db.delete(testimonials).where(eq(testimonials.id, id));
   }
 }
 

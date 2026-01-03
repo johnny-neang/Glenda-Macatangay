@@ -1,5 +1,5 @@
 import { sql } from "drizzle-orm";
-import { pgTable, text, varchar, timestamp, serial } from "drizzle-orm/pg-core";
+import { pgTable, text, varchar, timestamp, serial, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -52,3 +52,19 @@ export const insertPageContentSchema = createInsertSchema(pageContent).omit({
 
 export type InsertPageContent = z.infer<typeof insertPageContentSchema>;
 export type PageContent = typeof pageContent.$inferSelect;
+
+export const testimonials = pgTable("testimonials", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  title: text("title"),
+  quote: text("quote").notNull(),
+  placement: text("placement").array().notNull(),
+  sortOrder: integer("sort_order").default(0),
+});
+
+export const insertTestimonialSchema = createInsertSchema(testimonials).omit({
+  id: true,
+});
+
+export type InsertTestimonial = z.infer<typeof insertTestimonialSchema>;
+export type Testimonial = typeof testimonials.$inferSelect;
