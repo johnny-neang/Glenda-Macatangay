@@ -21,15 +21,24 @@ export default function Tour() {
       <main className="flex-grow pt-32 px-6 md:px-12">
         <div className="max-w-4xl mx-auto space-y-12 mb-24">
           <ScrollReveal>
-            <h1 className="text-4xl md:text-6xl font-serif mb-6">SALTY Tour & Events</h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
-              Join us for an immersive experience of book readings, art, and collective healing.
-            </p>
+            <h1 className="text-4xl md:text-6xl font-serif mb-6">The SALTY Tour (2026)</h1>
+            <p className="text-xl font-bold text-primary mb-4">Book, Art, Healing, Community</p>
+            <div className="space-y-6 text-muted-foreground leading-relaxed">
+              <p>
+                The SALTY Tour is a multi-city gathering series accompanying the release of Salt in Her Lungs. Each stop blends reading, visual art, music, and facilitated dialogue, partnering with community organizations and universities to create spaces rooted in culture, consent, and care.
+              </p>
+              <p>
+                Tour elements may include author readings and conversation, visual art installations by Filipina and AAPI artists, survivor-centered healing circles, and university talks and keynotes.
+              </p>
+              <p>
+                Planned cities include Hawai‘i, Sacramento, the Bay Area, Los Angeles, Colorado, New York, Vancouver, Montreal, and beyond.
+              </p>
+            </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
             <div className="border-t border-b border-border py-12 space-y-8">
-              <h2 className="text-2xl font-serif">2026 Tour Dates</h2>
+              <h2 className="text-2xl font-serif uppercase tracking-widest">Events</h2>
               {isLoading ? (
                 <p className="text-muted-foreground">Loading tour dates...</p>
               ) : tourDates && tourDates.length > 0 ? (
