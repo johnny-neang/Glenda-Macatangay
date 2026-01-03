@@ -3,6 +3,7 @@ import { ScrollReveal, StaggerContainer, revealVariant } from "@/components/ui/s
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, Instagram, Linkedin, Twitter, Mail } from "lucide-react";
 import { useRef } from "react";
+import { Footer } from "@/components/layout/Footer";
 
 // Corrected import path
 import heroImage from "@assets/generated_images/asian_woman_creative_director_portrait_blue_background.png";
@@ -17,7 +18,7 @@ export default function Home() {
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
 
   return (
-    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-white overflow-x-hidden">
+    <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-white overflow-x-hidden flex flex-col">
       <Navbar />
 
       {/* Hero Section */}
@@ -148,21 +149,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-background py-12 px-6 md:px-12 border-t border-muted">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
-          <div className="flex flex-col items-center md:items-start">
-            <img src="/attached_assets/logo.webp" alt="MTH" className="h-8 w-auto mb-4 opacity-50 grayscale" />
-            <p className="text-xs text-muted-foreground">© 2024 Michaela Ternasky-Holland. All rights reserved.</p>
-          </div>
-
-          <div className="flex space-x-6">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Instagram className="w-5 h-5" /></a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Linkedin className="w-5 h-5" /></a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Twitter className="w-5 h-5" /></a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors"><Mail className="w-5 h-5" /></a>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
