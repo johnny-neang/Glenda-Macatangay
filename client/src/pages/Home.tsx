@@ -85,9 +85,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <ScrollReveal width="100%">
             <p className="text-lg md:text-2xl font-serif leading-relaxed text-foreground">
-              Glenda is a storyteller, cultural practitioner, and movement guide. 
-              Bridging the gap between <span className="bg-primary/20 text-primary-foreground px-1">somatic wisdom</span> and collective healing, 
-              she invites us to reclaim our narratives and find home in our bodies.
+              I'm Glenda Macatangay, a Filipina author, healing arts educator, and community practitioner working at the intersection of story, culture, and collective care. My work centers survivors, spirit, and the practices that help us move from silence to safety.
             </p>
           </ScrollReveal>
         </div>
