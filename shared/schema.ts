@@ -37,3 +37,18 @@ export const insertTourDateSchema = createInsertSchema(tourDates).omit({
 
 export type InsertTourDate = z.infer<typeof insertTourDateSchema>;
 export type TourDate = typeof tourDates.$inferSelect;
+
+export const pageContent = pgTable("page_content", {
+  id: serial("id").primaryKey(),
+  pageKey: text("page_key").notNull().unique(),
+  content: text("content").notNull(),
+  updatedAt: timestamp("updated_at").defaultNow().notNull(),
+});
+
+export const insertPageContentSchema = createInsertSchema(pageContent).omit({
+  id: true,
+  updatedAt: true,
+});
+
+export type InsertPageContent = z.infer<typeof insertPageContentSchema>;
+export type PageContent = typeof pageContent.$inferSelect;
