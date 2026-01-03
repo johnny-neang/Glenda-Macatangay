@@ -57,7 +57,7 @@ export function Navbar() {
             href="#contact"
             className="bg-black text-white px-6 py-2 text-xs font-bold tracking-widest uppercase hover:bg-primary hover:text-black transition-colors"
           >
-            Book
+            Pre-Order Now
           </a>
         </div>
 
@@ -88,7 +88,7 @@ export function Navbar() {
             className="bg-black text-white text-center py-3 text-sm font-bold tracking-widest uppercase"
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Book
+            Pre-Order Now
           </a>
         </div>
       )}
