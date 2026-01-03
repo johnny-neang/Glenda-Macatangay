@@ -8,10 +8,10 @@ import { Link } from "wouter";
 
 // New book cover image
 import heroImage from "@assets/book-cover_1767438560120.png";
-import bookCardBg from "@assets/Book_1767437668843.jpg";
-import tourCardBg from "@assets/Tour_1767437797386.jpg";
-import speakingCardBg from "@assets/Speaking_1767437797386.jpg";
-import consultingCardBg from "@assets/Consulting_1767437797386.jpg";
+import bookCardBg from "@assets/Book_1767439512805.jpg";
+import tourCardBg from "@assets/Tour_1767439512806.jpg";
+import speakingCardBg from "@assets/Speaking_1767439512806.jpg";
+import consultingCardBg from "@assets/Consulting_1767439512805.jpg";
 
 export default function Home() {
   const targetRef = useRef<HTMLDivElement>(null);
