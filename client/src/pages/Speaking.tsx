@@ -67,9 +67,7 @@ export default function Speaking() {
                 onClick={() => openCalendlyPopup()}
                 className="inline-block bg-primary text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-colors cursor-pointer"
                 data-testid="button-request-availability"
-              >
-                Request Availability
-              </button>
+              >Request Discovery Session</button>
             </div>
           </ScrollReveal>
 
