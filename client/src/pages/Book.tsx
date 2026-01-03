@@ -74,27 +74,20 @@ export default function Book() {
           </ScrollReveal>
 
           <ScrollReveal className="border-t border-border pt-12">
-            <h2 className="text-2xl font-serif mb-8">Early Praise</h2>
+            <h2 className="text-2xl font-serif mb-8">What people are saying</h2>
             <div className="space-y-8">
               <blockquote className="border-l-4 border-primary pl-6">
                 <p className="text-lg italic text-foreground mb-4">
-                  "A powerful voice for our times. Glenda's work reminds us that healing is not just personal, but political and planetary."
+                  "Written with passion and honesty, Salt in Her Lungs, is part memoir, part poetry, and substantially a story about personal transformation. Combining stories of family, trauma, culture, love and transcendence, Macatangay's voice is sweet, yet hard hitting. She shares her stories of personal growth, triumph and healing without resentment or regret, but with the hope that others can benefit and learn from her journey."
                 </p>
-                <cite className="text-sm font-bold text-muted-foreground not-italic">— Early Reviewer</cite>
+                <cite className="text-sm font-bold text-muted-foreground not-italic">— Pedro Noguera, Dean, Rossier School of Education, USC Distinguished Professor of Education</cite>
               </blockquote>
               
               <blockquote className="border-l-4 border-primary pl-6">
                 <p className="text-lg italic text-foreground mb-4">
-                  "Salt in Her Lungs is a testament to the body's capacity for remembrance and renewal. Glenda writes with the rhythm of waves—gentle yet powerful."
+                  "Illuminating & Courageous! 'Salt in Her Lungs' is a portal to healing after complex trauma—a luminous invitation to believe in Spirit, intuition, and the possibility of transformation."
                 </p>
-                <cite className="text-sm font-bold text-muted-foreground not-italic">— Author Name, Title of Book</cite>
-              </blockquote>
-              
-              <blockquote className="border-l-4 border-primary pl-6">
-                <p className="text-lg italic text-foreground mb-4">
-                  "This is the kind of book that changes how you breathe. Glenda invites us into the deep waters of healing with grace and fierce honesty."
-                </p>
-                <cite className="text-sm font-bold text-muted-foreground not-italic">— Wellness Practitioner Name</cite>
+                <cite className="text-sm font-bold text-muted-foreground not-italic">— Jeannie E. Celestial, Ph.D., M.S.W., Licensed Psychologist & Co-Author/Co-Editor of "Clinical Interventions for Internalized Oppression"</cite>
               </blockquote>
             </div>
           </ScrollReveal>
