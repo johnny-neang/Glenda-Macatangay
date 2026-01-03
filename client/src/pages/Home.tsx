@@ -17,7 +17,7 @@ import tourCardBg from "@assets/Tour_1767439512806.jpg";
 import speakingCardBg from "@assets/Speaking_1767439512806.jpg";
 import consultingCardBg from "@assets/Consulting_1767439512805.jpg";
 
-const DEFAULT_HOME_HERO = "A journey of movement, healing, and returning to the ocean within.";
+const DEFAULT_HOME_HERO = "Discover Salt In Her Lungs and themes of self-love, relational well-being, survival, and ancestral healing";
 const DEFAULT_HOME_INTRO = "I'm Glenda Macatangay, a Filipina author, healing arts educator, and community practitioner working at the intersection of story, culture, and collective care. My work centers survivors, spirit, and the practices that help us move from silence to safety.";
 
 export default function Home() {
