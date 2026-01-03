@@ -2,7 +2,7 @@ import { Link } from "wouter";
 import { Instagram, Linkedin, Twitter, Mail, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 // Import the logo directly so Vite processes it correctly
-import logo from "@assets/glenda-logo_1767436360222.png";
+import logo from "@assets/glenda-logo-light_1767438063235.png";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
