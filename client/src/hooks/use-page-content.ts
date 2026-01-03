@@ -11,7 +11,7 @@ export function usePageContent(pageKey: string) {
       const data = await res.json();
       return data;
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 30,
   });
 }
 
@@ -33,6 +33,6 @@ export function useMultiplePageContent(pageKeys: string[]) {
         return acc;
       }, {} as Record<string, string>);
     },
-    staleTime: 1000 * 60 * 5,
+    staleTime: 1000 * 30,
   });
 }

@@ -358,7 +358,8 @@ function ContentManager() {
       return res.json();
     },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["page-content", selectedPage] });
+      queryClient.invalidateQueries({ queryKey: ["page-content"] });
+      queryClient.invalidateQueries({ queryKey: ["page-content-multiple"] });
       alert("Content saved successfully!");
     },
   });
