@@ -10,7 +10,7 @@ export function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 mb-12">
           <div className="space-y-6">
-            <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Newsletter Signup</h3>
+            <h3 className="text-sm font-bold uppercase tracking-widest text-[#ffffff]">Stay Connected</h3>
             <form className="space-y-4">
               <div className="grid grid-cols-2 gap-4">
                 <input 
