@@ -4,6 +4,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { useState } from "react";
 import { Check } from "lucide-react";
 import { useMutation } from "@tanstack/react-query";
+import contactPhoto from "@assets/IMG_3814_1767440945237.JPG";
 
 export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -38,16 +39,17 @@ export default function Contact() {
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
       <main className="flex-grow pt-32 px-6 md:px-12">
-        <div className="max-w-3xl mx-auto space-y-12 mb-24">
+        <div className="max-w-6xl mx-auto mb-24">
           <ScrollReveal>
             <h1 className="text-4xl md:text-6xl font-serif mb-6">Contact</h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-xl text-muted-foreground leading-relaxed mb-12">
               For speaking inquiries, tour hosting, or consulting proposals, please reach out below.
             </p>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.2}>
-            {isSubmitted ? (
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            <ScrollReveal delay={0.2}>
+              {isSubmitted ? (
               <div className="bg-muted/30 border border-primary/20 p-12 text-center space-y-6 animate-in fade-in zoom-in duration-500">
                 <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto text-primary">
                   <Check className="w-8 h-8" />
@@ -121,7 +123,18 @@ export default function Contact() {
                 )}
               </form>
             )}
-          </ScrollReveal>
+            </ScrollReveal>
+
+            <ScrollReveal delay={0.3} className="hidden md:block">
+              <div className="aspect-[4/5] overflow-hidden">
+                <img 
+                  src={contactPhoto} 
+                  alt="Glenda Macatangay" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </ScrollReveal>
+          </div>
         </div>
       </main>
       <Footer />
