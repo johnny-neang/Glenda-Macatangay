@@ -18,25 +18,6 @@ export default function Speaking() {
             </p>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.15}>
-            <div className="grid grid-cols-2 gap-4">
-              <div className="aspect-[4/5] overflow-hidden">
-                <img 
-                  src={speakingPhoto1} 
-                  alt="Glenda Macatangay speaking" 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-              <div className="aspect-[4/5] overflow-hidden">
-                <img 
-                  src={speakingPhoto2} 
-                  alt="Glenda Macatangay presenting" 
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                />
-              </div>
-            </div>
-          </ScrollReveal>
-
           <ScrollReveal delay={0.2} className="border-t border-border pt-12">
             <h2 className="text-2xl font-serif mb-6">Signature Talks</h2>
             <div className="space-y-6">
@@ -82,6 +63,25 @@ export default function Speaking() {
                   Request Availability
                 </a>
               </Link>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.5}>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="aspect-[4/5] overflow-hidden">
+                <img 
+                  src={speakingPhoto1} 
+                  alt="Glenda Macatangay speaking" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="aspect-[4/5] overflow-hidden">
+                <img 
+                  src={speakingPhoto2} 
+                  alt="Glenda Macatangay presenting" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
             </div>
           </ScrollReveal>
         </div>
