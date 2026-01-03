@@ -62,6 +62,24 @@ export default function Book() {
             </p>
           </ScrollReveal>
 
+          {testimonials.length > 0 && (
+            <ScrollReveal>
+              <h2 className="text-2xl font-serif mb-8">What people are saying</h2>
+              <div className="space-y-8">
+                {testimonials.map((testimonial) => (
+                  <blockquote key={testimonial.id} className="border-l-4 border-primary pl-6" data-testid={`testimonial-book-${testimonial.id}`}>
+                    <p className="text-lg italic text-foreground mb-4">
+                      "{testimonial.quote}"
+                    </p>
+                    <cite className="text-sm font-bold text-muted-foreground not-italic">
+                      — {testimonial.name}{testimonial.title && `, ${testimonial.title}`}
+                    </cite>
+                  </blockquote>
+                ))}
+              </div>
+            </ScrollReveal>
+          )}
+
           <div className="grid md:grid-cols-2 gap-12">
             <ScrollReveal delay={0.2} className="relative aspect-[3/4] overflow-hidden shadow-2xl">
               <img 
@@ -99,24 +117,6 @@ export default function Book() {
               </ScrollReveal>
             </div>
           </div>
-
-          {testimonials.length > 0 && (
-            <ScrollReveal className="border-t border-border pt-12">
-              <h2 className="text-2xl font-serif mb-8">What people are saying</h2>
-              <div className="space-y-8">
-                {testimonials.map((testimonial) => (
-                  <blockquote key={testimonial.id} className="border-l-4 border-primary pl-6" data-testid={`testimonial-book-${testimonial.id}`}>
-                    <p className="text-lg italic text-foreground mb-4">
-                      "{testimonial.quote}"
-                    </p>
-                    <cite className="text-sm font-bold text-muted-foreground not-italic">
-                      — {testimonial.name}{testimonial.title && `, ${testimonial.title}`}
-                    </cite>
-                  </blockquote>
-                ))}
-              </div>
-            </ScrollReveal>
-          )}
 
           <ScrollReveal className="border-t border-border pt-12" width="100%">
             <div className="bg-secondary text-secondary-foreground p-8 md:p-12">
