@@ -109,7 +109,7 @@ export default function Home() {
             <Link href="/book" className="group block space-y-4 p-8 border border-black transition-all h-full relative overflow-hidden">
                 {/* Background Image */}
                 <div 
-                  className="absolute inset-0 transition-transform duration-700 group-hover:scale-105 origin-center"
+                  className="absolute -inset-2 transition-transform duration-700 group-hover:scale-110 origin-center"
                   style={{
                     backgroundImage: `url(${bookCardBg})`,
                     backgroundSize: 'cover',
@@ -117,7 +117,7 @@ export default function Home() {
                   }}
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
+                <div className="absolute -inset-2 bg-black/40 group-hover:bg-black/50 transition-colors" />
 
                 <BookOpen className="w-8 h-8 text-white group-hover:scale-110 transition-transform relative z-10" />
                 <h3 className="text-xl font-serif text-white relative z-10">The Book</h3>
@@ -132,7 +132,7 @@ export default function Home() {
             <Link href="/tour" className="group block space-y-4 p-8 border border-black transition-all h-full relative overflow-hidden">
                 {/* Background Image */}
                 <div 
-                  className="absolute inset-0 transition-transform duration-700 group-hover:scale-105 origin-center"
+                  className="absolute -inset-2 transition-transform duration-700 group-hover:scale-110 origin-center"
                   style={{
                     backgroundImage: `url(${tourCardBg})`,
                     backgroundSize: 'cover',
@@ -140,7 +140,7 @@ export default function Home() {
                   }}
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
+                <div className="absolute -inset-2 bg-black/40 group-hover:bg-black/50 transition-colors" />
 
                 <MapPin className="w-8 h-8 text-white group-hover:scale-110 transition-transform relative z-10" />
                 <h3 className="text-xl font-serif text-white relative z-10">SALTY Tour</h3>
@@ -155,7 +155,7 @@ export default function Home() {
             <Link href="/speaking" className="group block space-y-4 p-8 border border-black transition-all h-full relative overflow-hidden">
                 {/* Background Image */}
                 <div 
-                  className="absolute inset-0 transition-transform duration-700 group-hover:scale-105 origin-center"
+                  className="absolute -inset-2 transition-transform duration-700 group-hover:scale-110 origin-center"
                   style={{
                     backgroundImage: `url(${speakingCardBg})`,
                     backgroundSize: 'cover',
@@ -163,7 +163,7 @@ export default function Home() {
                   }}
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
+                <div className="absolute -inset-2 bg-black/40 group-hover:bg-black/50 transition-colors" />
 
                 <Mic className="w-8 h-8 text-white group-hover:scale-110 transition-transform relative z-10" />
                 <h3 className="text-xl font-serif text-white relative z-10">Speaking</h3>
@@ -178,7 +178,7 @@ export default function Home() {
             <Link href="/consulting" className="group block space-y-4 p-8 border border-black transition-all h-full relative overflow-hidden">
                 {/* Background Image */}
                 <div 
-                  className="absolute inset-0 transition-transform duration-700 group-hover:scale-105 origin-center"
+                  className="absolute -inset-2 transition-transform duration-700 group-hover:scale-110 origin-center"
                   style={{
                     backgroundImage: `url(${consultingCardBg})`,
                     backgroundSize: 'cover',
@@ -186,7 +186,7 @@ export default function Home() {
                   }}
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
+                <div className="absolute -inset-2 bg-black/40 group-hover:bg-black/50 transition-colors" />
 
                 <Briefcase className="w-8 h-8 text-white group-hover:scale-110 transition-transform relative z-10" />
                 <h3 className="text-xl font-serif text-white relative z-10">Consulting</h3>
