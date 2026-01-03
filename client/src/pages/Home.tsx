@@ -120,34 +120,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Roles Section */}
-      <section className="py-24 bg-secondary text-secondary-foreground px-6 md:px-12">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-12 text-center md:text-left">
-            <StaggerContainer stagger={0.3} className="contents">
-              <motion.div variants={revealVariant} className="space-y-6 p-8 border border-secondary-foreground/10 hover:border-primary/50 transition-colors duration-300">
-                <h3 className="text-3xl font-serif text-primary">Director</h3>
-                <p className="text-secondary-foreground/80 leading-relaxed">
-                  Specializing in XR, VR, and traditional documentary filmmaking. Telling stories that challenge perspectives and create empathy.
-                </p>
-              </motion.div>
-              <motion.div variants={revealVariant} className="space-y-6 p-8 border border-secondary-foreground/10 hover:border-primary/50 transition-colors duration-300">
-                <h3 className="text-3xl font-serif text-primary">Consultant</h3>
-                <p className="text-secondary-foreground/80 leading-relaxed">
-                  Advising brands and organizations on inclusive storytelling, emerging technology, and creative strategy.
-                </p>
-              </motion.div>
-              <motion.div variants={revealVariant} className="space-y-6 p-8 border border-secondary-foreground/10 hover:border-primary/50 transition-colors duration-300">
-                <h3 className="text-3xl font-serif text-primary">Speaker</h3>
-                <p className="text-secondary-foreground/80 leading-relaxed">
-                  Keynotes and panels on the future of storytelling, diversity in tech, and the power of immersive media.
-                </p>
-              </motion.div>
-            </StaggerContainer>
-          </div>
-        </div>
-      </section>
-
       {/* Footer */}
       <Footer />
     </div>
