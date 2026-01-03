@@ -8,6 +8,7 @@ import { Link } from "wouter";
 
 // New book cover image
 import heroImage from "@assets/book-cover_1767436940677.jpg";
+import bookCardBg from "@assets/Book_1767437668843.jpg";
 
 export default function Home() {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -111,13 +112,25 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             <Link href="/book">
-              <a className="group block space-y-4 p-8 border border-border hover:border-primary transition-colors h-full">
-                <BookOpen className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-serif">The Book</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+              <a className="group block space-y-4 p-8 border border-border hover:border-primary transition-all h-full relative overflow-hidden isolate">
+                {/* Background Image */}
+                <div 
+                  className="absolute inset-0 -z-10 transition-transform duration-700 group-hover:scale-105"
+                  style={{
+                    backgroundImage: `url(${bookCardBg})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors -z-10" />
+
+                <BookOpen className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-serif text-white">The Book</h3>
+                <p className="text-sm text-gray-200 leading-relaxed">
                   Discover "Salt in Her Lungs" and the themes of resilience and ocean healing.
                 </p>
-                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-primary pt-2">
+                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white pt-2">
                   Learn More <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
               </a>
