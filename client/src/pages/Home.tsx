@@ -114,10 +114,10 @@ export default function Home() {
           </ScrollReveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Link href="/book" className="group block space-y-4 p-8 border-none hover:border-primary transition-all h-full relative overflow-hidden isolate">
+            <Link href="/book" className="group block space-y-4 p-8 border border-black transition-all h-full relative overflow-hidden">
                 {/* Background Image */}
                 <div 
-                  className="absolute inset-0 -z-10 transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 transition-transform duration-700 group-hover:scale-105 origin-center"
                   style={{
                     backgroundImage: `url(${bookCardBg})`,
                     backgroundSize: 'cover',
@@ -125,22 +125,22 @@ export default function Home() {
                   }}
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors -z-10" />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
 
-                <BookOpen className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-serif text-white">The Book</h3>
-                <p className="text-sm text-gray-200 leading-relaxed">
+                <BookOpen className="w-8 h-8 text-white group-hover:scale-110 transition-transform relative z-10" />
+                <h3 className="text-xl font-serif text-white relative z-10">The Book</h3>
+                <p className="text-sm text-gray-200 leading-relaxed relative z-10">
                   Discover "Salt in Her Lungs" and the themes of resilience and ocean healing.
                 </p>
-                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white pt-2">
+                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white pt-2 relative z-10">
                   Learn More <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
             </Link>
 
-            <Link href="/tour" className="group block space-y-4 p-8 border-none hover:border-primary transition-all h-full relative overflow-hidden isolate">
+            <Link href="/tour" className="group block space-y-4 p-8 border border-black transition-all h-full relative overflow-hidden">
                 {/* Background Image */}
                 <div 
-                  className="absolute inset-0 -z-10 transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 transition-transform duration-700 group-hover:scale-105 origin-center"
                   style={{
                     backgroundImage: `url(${tourCardBg})`,
                     backgroundSize: 'cover',
@@ -148,22 +148,22 @@ export default function Home() {
                   }}
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors -z-10" />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
 
-                <MapPin className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-serif text-white">SALTY Tour</h3>
-                <p className="text-sm text-gray-200 leading-relaxed">
+                <MapPin className="w-8 h-8 text-white group-hover:scale-110 transition-transform relative z-10" />
+                <h3 className="text-xl font-serif text-white relative z-10">SALTY Tour</h3>
+                <p className="text-sm text-gray-200 leading-relaxed relative z-10">
                   Join us for book readings, art installations, and community healing events in 2026.
                 </p>
-                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white pt-2">
+                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white pt-2 relative z-10">
                   View Dates <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
             </Link>
 
-            <Link href="/speaking" className="group block space-y-4 p-8 border-none hover:border-primary transition-all h-full relative overflow-hidden isolate">
+            <Link href="/speaking" className="group block space-y-4 p-8 border border-black transition-all h-full relative overflow-hidden">
                 {/* Background Image */}
                 <div 
-                  className="absolute inset-0 -z-10 transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 transition-transform duration-700 group-hover:scale-105 origin-center"
                   style={{
                     backgroundImage: `url(${speakingCardBg})`,
                     backgroundSize: 'cover',
@@ -171,22 +171,22 @@ export default function Home() {
                   }}
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors -z-10" />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
 
-                <Mic className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-serif text-white">Speaking</h3>
-                <p className="text-sm text-gray-200 leading-relaxed">
+                <Mic className="w-8 h-8 text-white group-hover:scale-110 transition-transform relative z-10" />
+                <h3 className="text-xl font-serif text-white relative z-10">Speaking</h3>
+                <p className="text-sm text-gray-200 leading-relaxed relative z-10">
                   Signature talks on embodied storytelling, grief, and collective resilience.
                 </p>
-                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white pt-2">
+                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white pt-2 relative z-10">
                   Topics <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
             </Link>
 
-            <Link href="/consulting" className="group block space-y-4 p-8 border-none hover:border-primary transition-all h-full relative overflow-hidden isolate">
+            <Link href="/consulting" className="group block space-y-4 p-8 border border-black transition-all h-full relative overflow-hidden">
                 {/* Background Image */}
                 <div 
-                  className="absolute inset-0 -z-10 transition-transform duration-700 group-hover:scale-105"
+                  className="absolute inset-0 transition-transform duration-700 group-hover:scale-105 origin-center"
                   style={{
                     backgroundImage: `url(${consultingCardBg})`,
                     backgroundSize: 'cover',
@@ -194,14 +194,14 @@ export default function Home() {
                   }}
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors -z-10" />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors" />
 
-                <Briefcase className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-serif text-white">Consulting</h3>
-                <p className="text-sm text-gray-200 leading-relaxed">
+                <Briefcase className="w-8 h-8 text-white group-hover:scale-110 transition-transform relative z-10" />
+                <h3 className="text-xl font-serif text-white relative z-10">Consulting</h3>
+                <p className="text-sm text-gray-200 leading-relaxed relative z-10">
                   Organizational wellness facilitation and "My Healing Language" strategy.
                 </p>
-                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white pt-2">
+                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white pt-2 relative z-10">
                   Work With Me <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
             </Link>
