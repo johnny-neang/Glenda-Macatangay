@@ -14,7 +14,7 @@ export function Footer() {
           <div className="space-y-8">
             <h2 className="text-4xl md:text-6xl font-serif font-medium leading-tight">
               Let's create something <br />
-              <span className="text-primary italic">impactful</span> together.
+              <span className="italic text-[#ffffff]">impactful</span> together.
             </h2>
             <a 
               href="mailto:contact@michaela.com" 
