@@ -4,7 +4,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { useMultiplePageContent } from "@/hooks/use-page-content";
 import aboutPhoto from "@assets/DFFBAAD2-5A7E-4C0A-9FC5-04C05FB1146B_1767440891536.JPG";
 
-const DEFAULT_ABOUT_BIO = `Glenda Macatangay, MSW, is a healing arts educator, cultural strategist, and community organizer dedicated to advancing mental health, ancestral healing, and collective well-being through the power of arts, culture, and care. As the founder of My Healing Language, she creates transformative programs that bring ancestral wisdom and holistic healing practices into schools, community spaces, and family systems.
+const DEFAULT_ABOUT_BIO = `Glenda Macatangay, MSW, Hilot Binabaylan is a healing arts educator, cultural strategist, and community organizer dedicated to advancing mental health, ancestral healing, and collective well-being through the power of arts, culture, and care. As the founder of My Healing Language, she creates transformative programs that bring ancestral wisdom and holistic healing practices into schools, community spaces, and family systems.
 
 Her work includes the Heart Warrior Training Program, The Ego Check Podcast, LIFEFORCE Embodiment Collective, Memory Palace Survivor Movement, and Comes In Waves Grief Circles. These offerings center those most impacted by trauma, disconnection, and generational silence. Glenda's approach is relational, intuitive, and deeply rooted in her identity as a first-generation Filipina American and daughter of immigrants from Batangas, Philippines.
 
