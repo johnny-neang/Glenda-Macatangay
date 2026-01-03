@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { Link } from "wouter";
 
 export default function Speaking() {
   return (
@@ -28,9 +29,11 @@ export default function Speaking() {
             <ScrollReveal delay={0.4} className="bg-secondary p-8 text-secondary-foreground">
                <h3 className="text-2xl font-serif mb-4">Invite Glenda</h3>
                <p className="mb-6 opacity-80">Interested in having Glenda speak at your conference, university, or organization?</p>
-               <button className="bg-primary text-white px-6 py-3 text-sm font-bold tracking-widest uppercase w-full hover:bg-white hover:text-black transition-colors">
-                 Request Availability
-               </button>
+               <Link href="/contact">
+                 <a className="block text-center bg-primary text-white px-6 py-3 text-sm font-bold tracking-widest uppercase w-full hover:bg-white hover:text-black transition-colors">
+                   Request Availability
+                 </a>
+               </Link>
             </ScrollReveal>
           </div>
         </div>

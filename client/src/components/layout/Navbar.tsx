@@ -48,11 +48,14 @@ export function Navbar() {
               </a>
             </Link>
           ))}
-          <Link href="/book">
-            <a className="bg-black text-white px-6 py-2 text-xs font-bold tracking-widest uppercase hover:bg-primary hover:text-black transition-colors">
-              Pre-Order Now
-            </a>
-          </Link>
+          <a 
+            href="https://squarespace.com/placeholder" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="bg-black text-white px-6 py-2 text-xs font-bold tracking-widest uppercase hover:bg-primary hover:text-black transition-colors"
+          >
+            Pre-Order Now
+          </a>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -77,14 +80,15 @@ export function Navbar() {
               </a>
             </Link>
           ))}
-          <Link href="/book">
-            <a
-              className="bg-black text-white text-center py-3 text-sm font-bold tracking-widest uppercase"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Pre-Order Now
-            </a>
-          </Link>
+          <a 
+            href="https://squarespace.com/placeholder" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="bg-black text-white text-center py-3 text-sm font-bold tracking-widest uppercase"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Pre-Order Now
+          </a>
         </div>
       )}
     </nav>

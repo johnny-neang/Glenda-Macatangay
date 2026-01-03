@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { Link } from "wouter";
 
 export default function Consulting() {
   return (
@@ -28,9 +29,11 @@ export default function Consulting() {
               </div>
             </div>
             
-             <button className="bg-black text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-primary transition-colors">
-               Request a Proposal
-             </button>
+             <Link href="/contact">
+               <a className="inline-block bg-black text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-primary transition-colors">
+                 Request a Proposal
+               </a>
+             </Link>
           </ScrollReveal>
         </div>
       </main>

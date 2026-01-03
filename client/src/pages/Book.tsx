@@ -28,9 +28,14 @@ export default function Book() {
               </ScrollReveal>
               
               <ScrollReveal delay={0.6}>
-                <button className="bg-primary text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-black transition-colors w-full md:w-auto">
+                <a 
+                  href="https://squarespace.com/placeholder" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-block bg-primary text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-black transition-colors w-full md:w-auto text-center"
+                >
                   Pre-Order Now
-                </button>
+                </a>
               </ScrollReveal>
             </div>
           </div>

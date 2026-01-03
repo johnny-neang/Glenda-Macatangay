@@ -43,12 +43,15 @@ export default function Home() {
               </motion.div>
 
               <motion.div variants={revealVariant} className="flex flex-col sm:flex-row gap-4 pt-4">
-                <Link href="/book">
-                  <a className="bg-primary text-white px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-black transition-colors">
-                    Pre-Order the Book
-                  </a>
-                </Link>
-                <Link href="/speaking">
+                <a 
+                  href="https://squarespace.com/placeholder" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-primary text-white px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-black transition-colors"
+                >
+                  Pre-Order the Book
+                </a>
+                <Link href="/contact">
                   <a className="border border-foreground px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-foreground hover:text-white transition-colors">
                     Invite Glenda to Speak
                   </a>
