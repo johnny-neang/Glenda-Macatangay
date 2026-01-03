@@ -48,32 +48,6 @@ export default function Book() {
           </div>
 
           <ScrollReveal className="border-t border-border pt-12">
-            <h2 className="text-2xl font-serif mb-6">Themes + Who It's For</h2>
-            <div className="grid md:grid-cols-2 gap-8">
-              <div className="space-y-4">
-                <h3 className="text-lg font-bold">Core Themes</h3>
-                <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex gap-3"><span className="text-primary">•</span> Intergenerational trauma and ancestral healing</li>
-                  <li className="flex gap-3"><span className="text-primary">•</span> The ocean as metaphor for grief and renewal</li>
-                  <li className="flex gap-3"><span className="text-primary">•</span> Embodiment and somatic practices</li>
-                  <li className="flex gap-3"><span className="text-primary">•</span> Cultural identity and diaspora</li>
-                  <li className="flex gap-3"><span className="text-primary">•</span> Collective resilience and community care</li>
-                </ul>
-              </div>
-              <div className="space-y-4">
-                <h3 className="text-lg font-bold">This Book Is For</h3>
-                <ul className="space-y-3 text-muted-foreground">
-                  <li className="flex gap-3"><span className="text-primary">•</span> Those navigating personal or collective grief</li>
-                  <li className="flex gap-3"><span className="text-primary">•</span> Healers, therapists, and wellness practitioners</li>
-                  <li className="flex gap-3"><span className="text-primary">•</span> Readers exploring cultural identity and belonging</li>
-                  <li className="flex gap-3"><span className="text-primary">•</span> Anyone seeking to reconnect with their body's wisdom</li>
-                  <li className="flex gap-3"><span className="text-primary">•</span> Lovers of lyrical memoir and creative nonfiction</li>
-                </ul>
-              </div>
-            </div>
-          </ScrollReveal>
-
-          <ScrollReveal className="border-t border-border pt-12">
             <h2 className="text-2xl font-serif mb-8">What people are saying</h2>
             <div className="space-y-8">
               <blockquote className="border-l-4 border-primary pl-6">
