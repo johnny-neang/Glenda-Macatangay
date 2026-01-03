@@ -2,6 +2,8 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Link } from "wouter";
+import speakingPhoto1 from "@assets/IMG_3397_1767441104174.jpg";
+import speakingPhoto2 from "@assets/IMG_4321_1767441104176.JPG";
 
 export default function Speaking() {
   return (
@@ -14,6 +16,25 @@ export default function Speaking() {
             <p className="text-xl text-muted-foreground leading-relaxed">
               Glenda Macatangay brings a rare blend of survivor truth, ancestral wisdom, and practical frameworks to keynotes that help communities transform silence into safety. Her work offers a grounded, culturally rooted approach to trauma, healing, leadership, and relational wellbeing.
             </p>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.15}>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="aspect-[4/5] overflow-hidden">
+                <img 
+                  src={speakingPhoto1} 
+                  alt="Glenda Macatangay speaking" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="aspect-[4/5] overflow-hidden">
+                <img 
+                  src={speakingPhoto2} 
+                  alt="Glenda Macatangay presenting" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            </div>
           </ScrollReveal>
 
           <ScrollReveal delay={0.2} className="border-t border-border pt-12">
