@@ -6,6 +6,7 @@ import { ArrowRight, BookOpen, Mic, MapPin, Briefcase } from "lucide-react";
 import { useRef } from "react";
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
+import { openCalendlyPopup } from "@/hooks/use-calendly";
 import type { Testimonial } from "@shared/schema";
 
 // New book cover image
@@ -62,11 +63,13 @@ export default function Home() {
                 >
                   Pre-Order the Book
                 </a>
-                <Link href="/contact" className="w-full">
-                  <a className="block border border-foreground px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-foreground hover:text-white transition-colors w-full">
-                    Invite Glenda to Speak
-                  </a>
-                </Link>
+                <button 
+                  onClick={() => openCalendlyPopup()}
+                  className="block border border-foreground px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-foreground hover:text-white transition-colors w-full"
+                  data-testid="button-invite-speak"
+                >
+                  Invite Glenda to Speak
+                </button>
               </motion.div>
             </StaggerContainer>
           </div>

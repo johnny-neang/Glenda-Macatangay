@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { Link } from "wouter";
+import { openCalendlyPopup } from "@/hooks/use-calendly";
 import speakingPhoto1 from "@assets/IMG_3397_1767441104174.jpg";
 import speakingPhoto2 from "@assets/IMG_4321_1767441104176.JPG";
 
@@ -58,11 +58,13 @@ export default function Speaking() {
             <div className="bg-secondary p-8 md:p-12 text-secondary-foreground">
               <h2 className="text-2xl font-serif mb-4">Invite Glenda to Speak</h2>
               <p className="mb-6 opacity-80">Interested in having Glenda speak at your conference, university, or organization?</p>
-              <Link href="/contact">
-                <a className="inline-block bg-primary text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-colors">
-                  Request Availability
-                </a>
-              </Link>
+              <button 
+                onClick={() => openCalendlyPopup()}
+                className="inline-block bg-primary text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-colors cursor-pointer"
+                data-testid="button-request-availability"
+              >
+                Request Availability
+              </button>
             </div>
           </ScrollReveal>
 

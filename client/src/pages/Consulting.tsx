@@ -1,8 +1,8 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
+import { openCalendlyPopup } from "@/hooks/use-calendly";
 import type { Testimonial } from "@shared/schema";
 import consultingPhoto1 from "@assets/IMG_0464_1767441391421.JPG";
 import consultingPhoto2 from "@assets/IMG_1942_1767441391422.JPG";
@@ -43,11 +43,13 @@ export default function Consulting() {
               <span className="bg-muted px-4 py-2 text-xs uppercase tracking-widest">Retreat Design</span>
               <span className="bg-muted px-4 py-2 text-xs uppercase tracking-widest">Strategy</span>
             </div>
-            <Link href="/contact">
-              <a className="inline-block bg-black text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-primary transition-colors">
-                Request a Proposal
-              </a>
-            </Link>
+            <button 
+              onClick={() => openCalendlyPopup()}
+              className="inline-block bg-black text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-primary transition-colors cursor-pointer"
+              data-testid="button-request-proposal"
+            >
+              Request a Proposal
+            </button>
           </ScrollReveal>
 
           {testimonials.length > 0 && (
