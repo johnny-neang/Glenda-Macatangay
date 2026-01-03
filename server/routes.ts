@@ -154,6 +154,10 @@ export async function registerRoutes(
         return res.status(400).json({ error: "This email is already subscribed" });
       }
 
+      if (mailchimpError.response?.body?.title === "Forgotten Email Not Subscribed") {
+        return res.status(400).json({ error: "This email was previously removed from the list. Please contact us directly to re-subscribe." });
+      }
+
       if (mailchimpError.status === 400) {
         return res.status(400).json({ error: "Invalid email address" });
       }
