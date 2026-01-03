@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import bookCover from "@assets/book-cover_1767436940677.jpg";
 
 export default function Book() {
   return (
@@ -16,8 +17,12 @@ export default function Book() {
           </ScrollReveal>
 
           <div className="grid md:grid-cols-2 gap-12">
-            <ScrollReveal delay={0.2} className="bg-muted aspect-[3/4] flex items-center justify-center">
-              <span className="text-muted-foreground">Book Cover Placeholder</span>
+            <ScrollReveal delay={0.2} className="relative aspect-[3/4] overflow-hidden shadow-2xl">
+              <img 
+                src={bookCover} 
+                alt="Salt in Her Lungs Book Cover"
+                className="w-full h-full object-cover"
+              />
             </ScrollReveal>
             <div className="space-y-8">
               <ScrollReveal delay={0.4}>

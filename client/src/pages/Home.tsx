@@ -6,8 +6,8 @@ import { ArrowRight, BookOpen, Mic, MapPin, Briefcase } from "lucide-react";
 import { useRef } from "react";
 import { Link } from "wouter";
 
-// Generated book cover/hero image
-import heroImage from "@assets/generated_images/abstract_book_cover_art_salt_in_her_lungs_ocean_waves_minimalist.png";
+// New book cover image
+import heroImage from "@assets/book-cover_1767436940677.jpg";
 
 export default function Home() {
   const targetRef = useRef<HTMLDivElement>(null);
