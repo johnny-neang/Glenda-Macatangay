@@ -1,8 +1,20 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { useQuery } from "@tanstack/react-query";
+import type { TourDate } from "@shared/schema";
+import { Link } from "wouter";
 
 export default function Tour() {
+  const { data: tourDates, isLoading } = useQuery<TourDate[]>({
+    queryKey: ["tourDates"],
+    queryFn: async () => {
+      const response = await fetch("/api/tour-dates");
+      if (!response.ok) throw new Error("Failed to fetch tour dates");
+      return response.json();
+    },
+  });
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
@@ -18,30 +30,39 @@ export default function Tour() {
           <ScrollReveal delay={0.2}>
             <div className="border-t border-b border-border py-12 space-y-8">
               <h2 className="text-2xl font-serif">2026 Tour Dates</h2>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center py-4 border-b border-border/50">
-                  <span className="font-bold">San Francisco, CA</span>
-                  <span className="text-muted-foreground">March 2026</span>
+              {isLoading ? (
+                <p className="text-muted-foreground">Loading tour dates...</p>
+              ) : tourDates && tourDates.length > 0 ? (
+                <div className="space-y-4">
+                  {tourDates.map((date) => (
+                    <div key={date.id} className="flex justify-between items-center py-4 border-b border-border/50">
+                      <div>
+                        <span className="font-bold">{date.city}</span>
+                        {date.description && (
+                          <p className="text-sm text-muted-foreground mt-1">{date.description}</p>
+                        )}
+                      </div>
+                      <span className="text-muted-foreground">{date.date}</span>
+                    </div>
+                  ))}
                 </div>
-                <div className="flex justify-between items-center py-4 border-b border-border/50">
-                  <span className="font-bold">New York, NY</span>
-                  <span className="text-muted-foreground">April 2026</span>
-                </div>
-                <div className="flex justify-between items-center py-4 border-b border-border/50">
-                  <span className="font-bold">London, UK</span>
-                  <span className="text-muted-foreground">June 2026</span>
-                </div>
-              </div>
+              ) : (
+                <p className="text-muted-foreground">
+                  Tour dates coming soon! Check back for updates.
+                </p>
+              )}
             </div>
           </ScrollReveal>
           
           <div className="flex gap-4">
-             <button className="bg-black text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-primary transition-colors">
-               Host a Tour Stop
-             </button>
-             <button className="border border-black px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-primary hover:border-primary hover:text-white transition-colors">
-               Attend an Event
-             </button>
+            <Link href="/contact">
+              <button className="bg-black text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-primary transition-colors">
+                Host a Tour Stop
+              </button>
+            </Link>
+            <button className="border border-black px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-primary hover:border-primary hover:text-white transition-colors">
+              Attend an Event
+            </button>
           </div>
         </div>
       </main>

@@ -3,14 +3,35 @@ import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { useState } from "react";
 import { Check } from "lucide-react";
+import { useMutation } from "@tanstack/react-query";
 
 export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const contactMutation = useMutation({
+    mutationFn: async (data: { name: string; email: string; inquiryType: string; message: string }) => {
+      const response = await fetch("/api/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      if (!response.ok) throw new Error("Failed to submit");
+      return response.json();
+    },
+    onSuccess: () => {
+      setIsSubmitted(true);
+    },
+  });
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Simulate form submission
-    setIsSubmitted(true);
+    const formData = new FormData(e.currentTarget);
+    contactMutation.mutate({
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      inquiryType: formData.get("inquiryType") as string,
+      message: formData.get("message") as string,
+    });
   };
 
   return (
@@ -47,17 +68,30 @@ export default function Contact() {
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-2">
                     <label className="text-sm font-bold uppercase tracking-widest">Name</label>
-                    <input required type="text" className="w-full bg-transparent border-b border-border py-2 focus:border-primary outline-none transition-colors" />
+                    <input 
+                      name="name"
+                      required 
+                      type="text" 
+                      className="w-full bg-transparent border-b border-border py-2 focus:border-primary outline-none transition-colors" 
+                    />
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-bold uppercase tracking-widest">Email</label>
-                    <input required type="email" className="w-full bg-transparent border-b border-border py-2 focus:border-primary outline-none transition-colors" />
+                    <input 
+                      name="email"
+                      required 
+                      type="email" 
+                      className="w-full bg-transparent border-b border-border py-2 focus:border-primary outline-none transition-colors" 
+                    />
                   </div>
                 </div>
                 
                 <div className="space-y-2">
                   <label className="text-sm font-bold uppercase tracking-widest">Inquiry Type</label>
-                  <select className="w-full bg-transparent border-b border-border py-2 focus:border-primary outline-none transition-colors">
+                  <select 
+                    name="inquiryType"
+                    className="w-full bg-transparent border-b border-border py-2 focus:border-primary outline-none transition-colors"
+                  >
                     <option>Speaking Engagement</option>
                     <option>Host a Tour Stop</option>
                     <option>Consulting</option>
@@ -67,12 +101,24 @@ export default function Contact() {
                 
                 <div className="space-y-2">
                   <label className="text-sm font-bold uppercase tracking-widest">Message</label>
-                  <textarea required rows={4} className="w-full bg-transparent border-b border-border py-2 focus:border-primary outline-none transition-colors"></textarea>
+                  <textarea 
+                    name="message"
+                    required 
+                    rows={4} 
+                    className="w-full bg-transparent border-b border-border py-2 focus:border-primary outline-none transition-colors"
+                  />
                 </div>
                 
-                <button type="submit" className="bg-primary text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-black transition-colors">
-                  Send Message
+                <button 
+                  type="submit" 
+                  disabled={contactMutation.isPending}
+                  className="bg-primary text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-black transition-colors disabled:opacity-50"
+                >
+                  {contactMutation.isPending ? "Sending..." : "Send Message"}
                 </button>
+                {contactMutation.isError && (
+                  <p className="text-red-600 text-sm">Failed to send message. Please try again.</p>
+                )}
               </form>
             )}
           </ScrollReveal>

@@ -1,38 +1,42 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import { db } from "./db";
+import { contacts, tourDates, type InsertContact, type Contact, type InsertTourDate, type TourDate } from "@shared/schema";
+import { desc } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  // Contact methods
+  createContact(contact: InsertContact): Promise<Contact>;
+  getContacts(): Promise<Contact[]>;
+  
+  // Tour date methods
+  createTourDate(tourDate: InsertTourDate): Promise<TourDate>;
+  getTourDates(): Promise<TourDate[]>;
+  deleteTourDate(id: number): Promise<void>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
+export class Storage implements IStorage {
+  // Contact methods
+  async createContact(contact: InsertContact): Promise<Contact> {
+    const [newContact] = await db.insert(contacts).values(contact).returning();
+    return newContact;
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async getContacts(): Promise<Contact[]> {
+    return await db.select().from(contacts).orderBy(desc(contacts.createdAt));
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+  // Tour date methods
+  async createTourDate(tourDate: InsertTourDate): Promise<TourDate> {
+    const [newTourDate] = await db.insert(tourDates).values(tourDate).returning();
+    return newTourDate;
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async getTourDates(): Promise<TourDate[]> {
+    return await db.select().from(tourDates);
+  }
+
+  async deleteTourDate(id: number): Promise<void> {
+    await db.delete(tourDates).where(db.$with(tourDates).id.equals(id));
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new Storage();
