@@ -43,17 +43,17 @@ export default function Home() {
                 <p className="text-sm uppercase tracking-widest font-bold text-foreground/80">By Glenda Macatangay</p>
               </motion.div>
 
-              <motion.div variants={revealVariant} className="flex flex-col gap-4 pt-4">
+              <motion.div variants={revealVariant} className="flex flex-col gap-4 pt-4 max-w-xs">
                 <a 
                   href="https://squarespace.com/placeholder" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-primary text-white px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-black transition-colors"
+                  className="bg-primary text-white px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-black transition-colors w-full"
                 >
                   Pre-Order the Book
                 </a>
-                <Link href="/contact">
-                  <a className="border border-foreground px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-foreground hover:text-white transition-colors">
+                <Link href="/contact" className="w-full">
+                  <a className="block border border-foreground px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-foreground hover:text-white transition-colors w-full">
                     Invite Glenda to Speak
                   </a>
                 </Link>
