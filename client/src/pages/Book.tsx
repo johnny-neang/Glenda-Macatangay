@@ -2,10 +2,19 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { useQuery } from "@tanstack/react-query";
+import { useMultiplePageContent } from "@/hooks/use-page-content";
 import type { Testimonial } from "@shared/schema";
 import bookCover from "@assets/book-cover_1767440366702.png";
 
+const DEFAULT_BOOK_TAGLINE = "A journey of healing, movement, and returning to the self. \"Salt in Her Lungs\" explores the depths of our resilience and the ocean within.";
+const DEFAULT_BOOK_ABOUT = `A lyrical and unflinching memoir about childhood silence, intergenerational trauma, and the long walk back to truth.
+
+Rooted in Filipina lineage and survivor wisdom, Salt in Her Lungs traces a journey through harm, shame, embodiment, motherhood, and healing. The book offers readers language for what was carried and practices for what comes next.
+
+This book is for survivors and advocates, mothers and daughters navigating complexity, educators, healers, and cultural workers, and anyone seeking a more honest and embodied practice of healing.`;
+
 export default function Book() {
+  const { data: content = {} } = useMultiplePageContent(["book_tagline", "book_about"]);
   const { data: testimonials = [] } = useQuery<Testimonial[]>({
     queryKey: ["testimonials", "book"],
     queryFn: async () => {
@@ -13,6 +22,8 @@ export default function Book() {
       return res.json();
     },
   });
+
+  const bookAbout = content.book_about || DEFAULT_BOOK_ABOUT;
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -22,7 +33,7 @@ export default function Book() {
           <ScrollReveal>
             <h1 className="text-4xl md:text-6xl font-serif mb-6">Salt in Her Lungs</h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              A journey of healing, movement, and returning to the self. "Salt in Her Lungs" explores the depths of our resilience and the ocean within.
+              {content.book_tagline || DEFAULT_BOOK_TAGLINE}
             </p>
           </ScrollReveal>
 
@@ -38,9 +49,9 @@ export default function Book() {
               <ScrollReveal delay={0.4}>
                 <h2 className="text-2xl font-serif mb-4">About the Book</h2>
                 <div className="text-muted-foreground space-y-4">
-                  <p>A lyrical and unflinching memoir about childhood silence, intergenerational trauma, and the long walk back to truth.</p>
-                  <p>Rooted in Filipina lineage and survivor wisdom, Salt in Her Lungs traces a journey through harm, shame, embodiment, motherhood, and healing. The book offers readers language for what was carried and practices for what comes next.</p>
-                  <p>This book is for survivors and advocates, mothers and daughters navigating complexity, educators, healers, and cultural workers, and anyone seeking a more honest and embodied practice of healing.</p>
+                  {bookAbout.split('\n\n').map((paragraph, i) => (
+                    <p key={i}>{paragraph}</p>
+                  ))}
                 </div>
               </ScrollReveal>
               

@@ -305,18 +305,14 @@ function ContentManager() {
   const [content, setContent] = useState("");
 
   const pages = [
-    { key: "home_hero", label: "Home - Hero Section" },
+    { key: "home_hero", label: "Home - Hero Tagline" },
     { key: "home_intro", label: "Home - Introduction" },
-    { key: "book_description", label: "Book - Description" },
-    { key: "book_endorsements", label: "Book - Endorsements" },
+    { key: "book_tagline", label: "Book - Tagline" },
+    { key: "book_about", label: "Book - About Section" },
     { key: "tour_intro", label: "Tour - Introduction" },
     { key: "speaking_intro", label: "Speaking - Introduction" },
-    { key: "speaking_talks", label: "Speaking - Signature Talks" },
     { key: "consulting_intro", label: "Consulting - Introduction" },
-    { key: "consulting_testimonials", label: "Consulting - Testimonials" },
     { key: "about_bio", label: "About - Biography" },
-    { key: "privacy_policy", label: "Privacy Policy" },
-    { key: "acknowledgement", label: "Acknowledgement / Land & Lineage" },
   ];
 
   const { data: pageContent } = useQuery({

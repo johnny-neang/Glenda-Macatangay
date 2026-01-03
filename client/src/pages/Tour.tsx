@@ -2,13 +2,21 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { useQuery } from "@tanstack/react-query";
+import { useMultiplePageContent } from "@/hooks/use-page-content";
 import type { TourDate } from "@shared/schema";
 import { Link } from "wouter";
 import tourPhoto1 from "@assets/IMG_7787_1767440597169.JPG";
 import tourPhoto2 from "@assets/IMG_7793_1767440597170.JPG";
 import tourPhoto3 from "@assets/IMG_7796_1767440597170.JPG";
 
+const DEFAULT_TOUR_INTRO = `The SALTY Tour is a multi-city gathering series accompanying the release of Salt in Her Lungs. Each stop blends reading, visual art, music, and facilitated dialogue, partnering with community organizations and universities to create spaces rooted in culture, consent, and care.
+
+Tour elements may include author readings and conversation, visual art installations by Filipina and AAPI artists, survivor-centered healing circles, and university talks and keynotes.
+
+Planned cities include Hawai'i, Sacramento, the Bay Area, Los Angeles, Colorado, New York, Vancouver, Montreal, and beyond.`;
+
 export default function Tour() {
+  const { data: content = {} } = useMultiplePageContent(["tour_intro"]);
   const { data: tourDates, isLoading } = useQuery<TourDate[]>({
     queryKey: ["tourDates"],
     queryFn: async () => {
@@ -17,6 +25,8 @@ export default function Tour() {
       return response.json();
     },
   });
+
+  const tourIntro = content.tour_intro || DEFAULT_TOUR_INTRO;
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -27,15 +37,9 @@ export default function Tour() {
             <h1 className="text-4xl md:text-6xl font-serif mb-6">The SALTY Tour (2026)</h1>
             <p className="text-xl font-bold text-primary mb-4">Book, Art, Healing, Community</p>
             <div className="space-y-6 text-muted-foreground leading-relaxed">
-              <p>
-                The SALTY Tour is a multi-city gathering series accompanying the release of Salt in Her Lungs. Each stop blends reading, visual art, music, and facilitated dialogue, partnering with community organizations and universities to create spaces rooted in culture, consent, and care.
-              </p>
-              <p>
-                Tour elements may include author readings and conversation, visual art installations by Filipina and AAPI artists, survivor-centered healing circles, and university talks and keynotes.
-              </p>
-              <p>
-                Planned cities include Hawai‘i, Sacramento, the Bay Area, Los Angeles, Colorado, New York, Vancouver, Montreal, and beyond.
-              </p>
+              {tourIntro.split('\n\n').map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
             </div>
           </ScrollReveal>
 
