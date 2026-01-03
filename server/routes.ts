@@ -4,10 +4,21 @@ import { storage } from "./storage";
 import { insertContactSchema, insertTourDateSchema, insertTestimonialSchema } from "@shared/schema";
 import Mailjet from "node-mailjet";
 import session from "express-session";
+import mailchimp from "@mailchimp/mailchimp_marketing";
 
 const mailjet = new Mailjet({
   apiKey: process.env.MAILJET_API_KEY || "",
   apiSecret: process.env.MAILJET_SECRET_KEY || ""
+});
+
+// Mailchimp configuration
+// API key format: apikey-dc (e.g., xxxx-us14)
+const mailchimpApiKey = process.env.MAILCHIMP_API_KEY || "";
+const mailchimpServer = mailchimpApiKey.split("-")[1] || "us14";
+
+mailchimp.setConfig({
+  apiKey: mailchimpApiKey,
+  server: mailchimpServer,
 });
 
 declare module "express-session" {
@@ -105,6 +116,57 @@ export async function registerRoutes(
       res.json(contacts);
     } catch (error) {
       res.status(500).json({ error: "Failed to fetch contacts" });
+    }
+  });
+
+  // Newsletter subscription route (Mailchimp)
+  app.post("/api/newsletter/subscribe", async (req, res) => {
+    try {
+      const { email, firstName, lastName, birthday } = req.body;
+
+      if (!email) {
+        return res.status(400).json({ error: "Email is required" });
+      }
+
+      // Get the audience/list ID from env or use default
+      const listId = process.env.MAILCHIMP_LIST_ID;
+
+      if (!listId) {
+        console.error("MAILCHIMP_LIST_ID is not set");
+        return res.status(500).json({ error: "Newsletter configuration error" });
+      }
+
+      // Prepare merge fields for Mailchimp
+      const mergeFields: Record<string, string> = {};
+      if (firstName) mergeFields.FNAME = firstName;
+      if (lastName) mergeFields.LNAME = lastName;
+      if (birthday) {
+        // Mailchimp expects birthday in MM/DD format
+        mergeFields.BIRTHDAY = birthday;
+      }
+
+      // Add subscriber to Mailchimp list
+      await mailchimp.lists.addListMember(listId, {
+        email_address: email,
+        status: "subscribed",
+        merge_fields: mergeFields,
+      });
+
+      res.json({ success: true, message: "Successfully subscribed to newsletter" });
+    } catch (error: unknown) {
+      console.error("Mailchimp subscription error:", error);
+
+      // Handle Mailchimp-specific errors
+      const mailchimpError = error as { response?: { body?: { title?: string; detail?: string } }; status?: number };
+      if (mailchimpError.response?.body?.title === "Member Exists") {
+        return res.status(400).json({ error: "This email is already subscribed" });
+      }
+
+      if (mailchimpError.status === 400) {
+        return res.status(400).json({ error: "Invalid email address" });
+      }
+
+      res.status(500).json({ error: "Failed to subscribe. Please try again later." });
     }
   });
 
