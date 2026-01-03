@@ -32,6 +32,17 @@ Preferred communication style: Simple, everyday language.
 - **Tables**: 
   - `contacts` - stores contact form submissions
   - `tourDates` - stores tour event information
+  - `pageContent` - stores editable page content by key
+  - `testimonials` - stores testimonials with placement options (home, book, consulting)
+
+### Admin Backend
+- **Access**: `/admin/login` with session-based authentication
+- **Credentials**: Stored in environment variables (ADMIN_USERNAME, ADMIN_PASSWORD)
+- **Dashboard Sections**:
+  - Tour Dates: CRUD management for tour events
+  - Page Content: Edit text content across pages
+  - Testimonials: Manage testimonials with placement options (Home, Book, Consulting)
+  - Contact Submissions: View contact form submissions
 
 ### Project Structure
 - `client/` - React frontend application
