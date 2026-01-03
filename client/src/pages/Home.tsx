@@ -56,7 +56,7 @@ export default function Home() {
                   Pre-Order the Book
                 </a>
                 <Link href="/contact">
-                  <a className="border border-foreground px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-foreground hover:text-white transition-colors">
+                  <a className="border border-foreground px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-foreground hover:text-white transition-colors whitespace-nowrap">
                     Invite Glenda to Speak
                   </a>
                 </Link>
