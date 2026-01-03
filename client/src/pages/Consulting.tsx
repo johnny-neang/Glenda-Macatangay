@@ -2,6 +2,9 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { Link } from "wouter";
+import consultingPhoto1 from "@assets/IMG_0464_1767441391421.JPG";
+import consultingPhoto2 from "@assets/IMG_1942_1767441391422.JPG";
+import consultingPhoto3 from "@assets/IMG_1944_1767441391423.JPG";
 
 export default function Consulting() {
   return (
@@ -60,6 +63,32 @@ export default function Consulting() {
                 </p>
                 <cite className="text-sm font-bold text-muted-foreground not-italic">— Adam Gelb, Menlo Schools</cite>
               </blockquote>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.4}>
+            <div className="grid grid-cols-3 gap-4">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src={consultingPhoto1} 
+                  alt="Glenda Macatangay consulting" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src={consultingPhoto2} 
+                  alt="Glenda Macatangay in discussion" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="aspect-[4/3] overflow-hidden">
+                <img 
+                  src={consultingPhoto3} 
+                  alt="Glenda Macatangay facilitating" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
             </div>
           </ScrollReveal>
         </div>
