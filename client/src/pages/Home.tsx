@@ -43,12 +43,12 @@ export default function Home() {
                 <p className="text-sm uppercase tracking-widest font-bold text-foreground/80">By Glenda Macatangay</p>
               </motion.div>
 
-              <motion.div variants={revealVariant} className="flex flex-col sm:flex-row gap-4 pt-4">
+              <motion.div variants={revealVariant} className="flex flex-col sm:flex-row sm:items-center gap-4 pt-4">
                 <a 
                   href="https://squarespace.com/placeholder" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="bg-primary text-white px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-black transition-colors"
+                  className="bg-primary text-white px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-black transition-colors whitespace-nowrap"
                 >
                   Pre-Order the Book
                 </a>
