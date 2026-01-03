@@ -72,10 +72,10 @@ export default function Home() {
               
               {/* Image */}
               <motion.div
-                initial={{ y: 50, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 1, delay: 0.4 }}
-                className="relative z-10 h-full w-full overflow-hidden shadow-2xl"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 1 }}
+                className="relative z-10 h-full w-full overflow-hidden"
               >
                  <img 
                   src={heroImage} 
