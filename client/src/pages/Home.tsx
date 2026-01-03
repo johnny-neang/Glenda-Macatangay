@@ -9,6 +9,9 @@ import { Link } from "wouter";
 // New book cover image
 import heroImage from "@assets/book-cover_1767436940677.jpg";
 import bookCardBg from "@assets/Book_1767437668843.jpg";
+import tourCardBg from "@assets/Tour_1767437797386.jpg";
+import speakingCardBg from "@assets/Speaking_1767437797386.jpg";
+import consultingCardBg from "@assets/Consulting_1767437797386.jpg";
 
 export default function Home() {
   const targetRef = useRef<HTMLDivElement>(null);
@@ -134,43 +137,73 @@ export default function Home() {
                 </div>
             </Link>
 
-            <Link href="/tour">
-              <a className="group block space-y-4 p-8 border border-border hover:border-primary transition-colors h-full">
-                <MapPin className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-serif">SALTY Tour</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+            <Link href="/tour" className="group block space-y-4 p-8 border-none hover:border-primary transition-all h-full relative overflow-hidden isolate">
+                {/* Background Image */}
+                <div 
+                  className="absolute inset-0 -z-10 transition-transform duration-700 group-hover:scale-105"
+                  style={{
+                    backgroundImage: `url(${tourCardBg})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors -z-10" />
+
+                <MapPin className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-serif text-white">SALTY Tour</h3>
+                <p className="text-sm text-gray-200 leading-relaxed">
                   Join us for book readings, art installations, and community healing events in 2026.
                 </p>
-                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-primary pt-2">
+                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white pt-2">
                   View Dates <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </a>
             </Link>
 
-            <Link href="/speaking">
-              <a className="group block space-y-4 p-8 border border-border hover:border-primary transition-colors h-full">
-                <Mic className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-serif">Speaking</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+            <Link href="/speaking" className="group block space-y-4 p-8 border-none hover:border-primary transition-all h-full relative overflow-hidden isolate">
+                {/* Background Image */}
+                <div 
+                  className="absolute inset-0 -z-10 transition-transform duration-700 group-hover:scale-105"
+                  style={{
+                    backgroundImage: `url(${speakingCardBg})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors -z-10" />
+
+                <Mic className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-serif text-white">Speaking</h3>
+                <p className="text-sm text-gray-200 leading-relaxed">
                   Signature talks on embodied storytelling, grief, and collective resilience.
                 </p>
-                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-primary pt-2">
+                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white pt-2">
                   Topics <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </a>
             </Link>
 
-            <Link href="/consulting">
-              <a className="group block space-y-4 p-8 border border-border hover:border-primary transition-colors h-full">
-                <Briefcase className="w-8 h-8 text-primary group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl font-serif">Consulting</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+            <Link href="/consulting" className="group block space-y-4 p-8 border-none hover:border-primary transition-all h-full relative overflow-hidden isolate">
+                {/* Background Image */}
+                <div 
+                  className="absolute inset-0 -z-10 transition-transform duration-700 group-hover:scale-105"
+                  style={{
+                    backgroundImage: `url(${consultingCardBg})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-colors -z-10" />
+
+                <Briefcase className="w-8 h-8 text-white group-hover:scale-110 transition-transform" />
+                <h3 className="text-xl font-serif text-white">Consulting</h3>
+                <p className="text-sm text-gray-200 leading-relaxed">
                   Organizational wellness facilitation and "My Healing Language" strategy.
                 </p>
-                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-primary pt-2">
+                <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white pt-2">
                   Work With Me <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </a>
             </Link>
           </div>
         </div>
