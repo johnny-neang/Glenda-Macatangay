@@ -6,7 +6,7 @@ declare global {
   }
 }
 
-const CALENDLY_URL = "https://calendly.com/healinglanguage/1-1-15-min-consultation";
+const CALENDLY_URL = "https://calendly.com/healinglanguage/30-minute-discovery-call";
 
 export function openCalendlyPopup() {
   if (window.Calendly) {
