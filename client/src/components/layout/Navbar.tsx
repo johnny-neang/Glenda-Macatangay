@@ -16,12 +16,12 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About", href: "/#about" },
-    { name: "Press", href: "/#press" },
-    { name: "Director", href: "/#director" },
-    { name: "Consultant", href: "/#consultant" },
-    { name: "Speaker", href: "/#speaker" },
+    { name: "The Book", href: "/book" },
+    { name: "SALTY Tour", href: "/tour" },
+    { name: "Speaking", href: "/speaking" },
+    { name: "Consulting", href: "/consulting" },
+    { name: "About", href: "/about" },
+    { name: "Contact", href: "/contact" },
   ];
 
   return (
@@ -34,31 +34,25 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/">
           <a className="block group">
-            <img 
-              src="/attached_assets/logo.webp" 
-              alt="MTH Logo" 
-              className="h-12 w-auto transition-transform group-hover:scale-105"
-            />
+            {/* Using text logo for now as the name changed */}
+            <span className="text-xl font-serif font-bold tracking-tighter">GLENDA</span>
           </a>
         </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
-            <a
-              key={link.name}
-              href={link.href}
-              className="text-xs font-bold tracking-widest uppercase hover:text-primary transition-colors"
-            >
-              {link.name}
-            </a>
+            <Link key={link.name} href={link.href}>
+              <a className="text-xs font-bold tracking-widest uppercase hover:text-primary transition-colors">
+                {link.name}
+              </a>
+            </Link>
           ))}
-          <a
-            href="#contact"
-            className="bg-black text-white px-6 py-2 text-xs font-bold tracking-widest uppercase hover:bg-primary hover:text-black transition-colors"
-          >
-            Pre-Order Now
-          </a>
+          <Link href="/book">
+            <a className="bg-black text-white px-6 py-2 text-xs font-bold tracking-widest uppercase hover:bg-primary hover:text-black transition-colors">
+              Pre-Order Now
+            </a>
+          </Link>
         </div>
 
         {/* Mobile Menu Toggle */}
@@ -74,22 +68,23 @@ export function Navbar() {
       {isMobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-background border-b border-border p-6 md:hidden flex flex-col space-y-4 animate-in slide-in-from-top-5">
           {navLinks.map((link) => (
+            <Link key={link.name} href={link.href}>
+              <a
+                className="text-sm font-bold tracking-widest uppercase hover:text-primary"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {link.name}
+              </a>
+            </Link>
+          ))}
+          <Link href="/book">
             <a
-              key={link.name}
-              href={link.href}
-              className="text-sm font-bold tracking-widest uppercase hover:text-primary"
+              className="bg-black text-white text-center py-3 text-sm font-bold tracking-widest uppercase"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              {link.name}
+              Pre-Order Now
             </a>
-          ))}
-          <a
-            href="#contact"
-            className="bg-black text-white text-center py-3 text-sm font-bold tracking-widest uppercase"
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            Pre-Order Now
-          </a>
+          </Link>
         </div>
       )}
     </nav>
