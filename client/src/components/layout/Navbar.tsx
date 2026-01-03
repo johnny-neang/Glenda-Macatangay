@@ -1,13 +1,16 @@
 import { Link } from "wouter";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
-// Import the logo directly so Vite processes it correctly
+import { Menu, X, ShoppingBag } from "lucide-react";
+import { useCart } from "@/hooks/use-shopify-cart";
 import logo from "@assets/glenda-logo_1767436360222.png";
+
+const BOOK_VARIANT_ID = "gid://shopify/ProductVariant/51523523772698";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { cart, openCart, addToCart, isLoading } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +19,14 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleAddToCart = async () => {
+    try {
+      await addToCart(BOOK_VARIANT_ID, 1);
+    } catch (error) {
+      console.error("Failed to add to cart:", error);
+    }
+  };
 
   const navLinks = [
     { name: "The Book", href: "/book" },
@@ -42,33 +53,56 @@ export function Navbar() {
           />
         </Link>
 
-        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
             <Link key={link.name} href={link.href} className="text-xs font-bold tracking-widest uppercase hover:text-primary transition-colors">
               {link.name}
             </Link>
           ))}
-          <a 
-            href="https://squarespace.com/placeholder" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="bg-black text-white px-6 py-2 text-xs font-bold tracking-widest uppercase hover:bg-primary hover:text-black transition-colors"
+          <button
+            onClick={handleAddToCart}
+            disabled={isLoading}
+            className="bg-black text-white px-6 py-2 text-xs font-bold tracking-widest uppercase hover:bg-primary hover:text-black transition-colors disabled:opacity-50"
+            data-testid="button-navbar-add-to-cart"
           >
-            Pre-Order Now
-          </a>
+            {isLoading ? "Adding..." : "Pre-Order Now"}
+          </button>
+          {cart && cart.totalQuantity > 0 && (
+            <button
+              onClick={openCart}
+              className="relative p-2 hover:bg-muted transition-colors"
+              data-testid="button-open-cart"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              <span className="absolute -top-1 -right-1 bg-primary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                {cart.totalQuantity}
+              </span>
+            </button>
+          )}
         </div>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden p-2"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X /> : <Menu />}
-        </button>
+        <div className="md:hidden flex items-center gap-2">
+          {cart && cart.totalQuantity > 0 && (
+            <button
+              onClick={openCart}
+              className="relative p-2"
+              data-testid="button-open-cart-mobile"
+            >
+              <ShoppingBag className="w-5 h-5" />
+              <span className="absolute -top-1 -right-1 bg-primary text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                {cart.totalQuantity}
+              </span>
+            </button>
+          )}
+          <button
+            className="p-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
 
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-background border-b border-border p-6 md:hidden flex flex-col space-y-4 animate-in slide-in-from-top-5">
           {navLinks.map((link) => (
@@ -81,15 +115,16 @@ export function Navbar() {
               {link.name}
             </Link>
           ))}
-          <a 
-            href="https://squarespace.com/placeholder" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="bg-black text-white text-center py-3 text-sm font-bold tracking-widest uppercase"
-            onClick={() => setIsMobileMenuOpen(false)}
+          <button
+            onClick={() => {
+              handleAddToCart();
+              setIsMobileMenuOpen(false);
+            }}
+            disabled={isLoading}
+            className="bg-black text-white text-center py-3 text-sm font-bold tracking-widest uppercase disabled:opacity-50"
           >
-            Pre-Order Now
-          </a>
+            {isLoading ? "Adding..." : "Pre-Order Now"}
+          </button>
         </div>
       )}
     </nav>

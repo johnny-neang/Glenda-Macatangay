@@ -3,8 +3,10 @@ import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { useQuery } from "@tanstack/react-query";
 import { useMultiplePageContent } from "@/hooks/use-page-content";
+import { useCart } from "@/hooks/use-shopify-cart";
 import type { Testimonial } from "@shared/schema";
 import bookCover from "@assets/book-cover_1767440366702.png";
+import { Loader2 } from "lucide-react";
 
 const DEFAULT_BOOK_TAGLINE = "A journey of healing, movement, and returning to the self. \"Salt in Her Lungs\" explores the depths of our resilience and the ocean within.";
 const DEFAULT_BOOK_ABOUT = `A lyrical and unflinching memoir about childhood silence, intergenerational trauma, and the long walk back to truth.
@@ -24,6 +26,8 @@ Each pre-order includes:
 
 Quantities are limited and available while supplies last. Pre-orders will end on February 14.`;
 
+const BOOK_VARIANT_ID = "gid://shopify/ProductVariant/51523523772698";
+
 export default function Book() {
   const { data: content = {} } = useMultiplePageContent(["book_tagline", "book_about", "book_preorder"]);
   const { data: testimonials = [] } = useQuery<Testimonial[]>({
@@ -33,9 +37,18 @@ export default function Book() {
       return res.json();
     },
   });
+  const { addToCart, isLoading } = useCart();
 
   const bookAbout = content.book_about || DEFAULT_BOOK_ABOUT;
   const bookPreorder = content.book_preorder || DEFAULT_BOOK_PREORDER;
+
+  const handleAddToCart = async () => {
+    try {
+      await addToCart(BOOK_VARIANT_ID, 1);
+    } catch (error) {
+      console.error("Failed to add to cart:", error);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -61,21 +74,28 @@ export default function Book() {
               <ScrollReveal delay={0.4}>
                 <h2 className="text-2xl font-serif mb-4">About the Book</h2>
                 <div className="text-muted-foreground space-y-4">
-                  {bookAbout.split('\n\n').map((paragraph, i) => (
+                  {bookAbout.split('\n\n').map((paragraph: string, i: number) => (
                     <p key={i}>{paragraph}</p>
                   ))}
                 </div>
               </ScrollReveal>
               
               <ScrollReveal delay={0.6}>
-                <a 
-                  href="https://my-healing-language.myshopify.com/products/salt-in-her-lungs?variant=51523523772698" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-block bg-primary text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-black transition-colors w-full md:w-auto text-center"
+                <button
+                  onClick={handleAddToCart}
+                  disabled={isLoading}
+                  className="inline-flex items-center justify-center gap-2 bg-primary text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-black transition-colors w-full md:w-auto disabled:opacity-50"
+                  data-testid="button-add-to-cart-main"
                 >
-                  Pre-Order Now
-                </a>
+                  {isLoading ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Adding...
+                    </>
+                  ) : (
+                    "Add to Cart"
+                  )}
+                </button>
               </ScrollReveal>
             </div>
           </div>
@@ -102,12 +122,12 @@ export default function Book() {
             <div className="bg-secondary text-secondary-foreground p-8 md:p-12">
               <h2 className="text-2xl font-serif mb-4">Pre-Order: Limited Signed Edition</h2>
               <div className="space-y-4 mb-6">
-                {bookPreorder.split('\n\n').map((paragraph, i) => {
+                {bookPreorder.split('\n\n').map((paragraph: string, i: number) => {
                   if (paragraph.startsWith('•') || paragraph.includes('\n•')) {
                     const lines = paragraph.split('\n');
                     return (
                       <ul key={i} className="space-y-2 opacity-80">
-                        {lines.map((line, j) => (
+                        {lines.map((line: string, j: number) => (
                           <li key={j} className="flex gap-3">
                             <span className="text-primary">•</span> {line.replace(/^•\s*/, '')}
                           </li>
@@ -119,14 +139,21 @@ export default function Book() {
                 })}
               </div>
               
-              <a 
-                href="https://my-healing-language.myshopify.com/products/salt-in-her-lungs?variant=51523523772698" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="inline-block bg-primary text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-colors w-full md:w-auto text-center mb-12"
+              <button
+                onClick={handleAddToCart}
+                disabled={isLoading}
+                className="inline-flex items-center justify-center gap-2 bg-primary text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-colors w-full md:w-auto mb-12 disabled:opacity-50"
+                data-testid="button-add-to-cart-preorder"
               >
-                Pre-Order Now
-              </a>
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Adding...
+                  </>
+                ) : (
+                  "Add to Cart"
+                )}
+              </button>
               
               <div className="border-t border-secondary-foreground/20 pt-8">
                 <h3 className="text-xl font-serif mb-4">Bulk Orders for Classrooms & Learning Spaces</h3>

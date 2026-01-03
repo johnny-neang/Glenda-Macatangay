@@ -16,6 +16,8 @@ import Privacy from "@/pages/Privacy";
 import Acknowledgement from "@/pages/Acknowledgement";
 import AdminLogin from "@/pages/admin/Login";
 import AdminDashboard from "@/pages/admin/Dashboard";
+import { CartProvider } from "@/hooks/use-shopify-cart";
+import { CartSidebar } from "@/components/cart/CartSidebar";
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -53,8 +55,11 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
-        <Router />
+        <CartProvider>
+          <Toaster />
+          <Router />
+          <CartSidebar />
+        </CartProvider>
       </TooltipProvider>
     </QueryClientProvider>
   );

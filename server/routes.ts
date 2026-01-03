@@ -5,6 +5,7 @@ import { insertContactSchema, insertTourDateSchema, insertTestimonialSchema } fr
 import Mailjet from "node-mailjet";
 import session from "express-session";
 import mailchimp from "@mailchimp/mailchimp_marketing";
+import { createStorefrontApiClient } from "@shopify/storefront-api-client";
 
 const mailjet = new Mailjet({
   apiKey: process.env.MAILJET_API_KEY || "",
@@ -18,6 +19,13 @@ const mailchimpServer = mailchimpApiKey.split("-")[1] || "us14";
 mailchimp.setConfig({
   apiKey: mailchimpApiKey,
   server: mailchimpServer,
+});
+
+// Shopify Storefront API client
+const shopifyClient = createStorefrontApiClient({
+  storeDomain: process.env.SHOPIFY_STORE_DOMAIN || "my-healing-language.myshopify.com",
+  apiVersion: "2025-04",
+  publicAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN || "",
 });
 
 declare module "express-session" {
@@ -277,6 +285,373 @@ export async function registerRoutes(
       res.json({ success: true });
     } catch (error) {
       res.status(500).json({ error: "Failed to delete testimonial" });
+    }
+  });
+
+  // Shopify Storefront API routes
+  app.post("/api/shopify/cart/create", async (req, res) => {
+    try {
+      const { variantId, quantity = 1 } = req.body;
+      
+      if (!variantId) {
+        return res.status(400).json({ error: "Variant ID is required" });
+      }
+
+      const mutation = `
+        mutation cartCreate($input: CartInput!) {
+          cartCreate(input: $input) {
+            cart {
+              id
+              checkoutUrl
+              totalQuantity
+              cost {
+                totalAmount {
+                  amount
+                  currencyCode
+                }
+              }
+              lines(first: 10) {
+                edges {
+                  node {
+                    id
+                    quantity
+                    merchandise {
+                      ... on ProductVariant {
+                        id
+                        title
+                        priceV2 {
+                          amount
+                          currencyCode
+                        }
+                        product {
+                          title
+                          featuredImage {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            userErrors {
+              field
+              message
+            }
+          }
+        }
+      `;
+
+      const { data, errors } = await shopifyClient.request(mutation, {
+        variables: {
+          input: {
+            lines: [{ merchandiseId: variantId, quantity }]
+          }
+        }
+      });
+
+      if (errors) {
+        console.error("Shopify cart creation errors:", errors);
+        return res.status(500).json({ error: "Failed to create cart" });
+      }
+
+      if (data?.cartCreate?.userErrors?.length > 0) {
+        return res.status(400).json({ errors: data.cartCreate.userErrors });
+      }
+
+      res.json(data?.cartCreate?.cart);
+    } catch (error) {
+      console.error("Shopify cart error:", error);
+      res.status(500).json({ error: "Failed to create cart" });
+    }
+  });
+
+  app.post("/api/shopify/cart/add", async (req, res) => {
+    try {
+      const { cartId, variantId, quantity = 1 } = req.body;
+
+      if (!cartId || !variantId) {
+        return res.status(400).json({ error: "Cart ID and Variant ID are required" });
+      }
+
+      const mutation = `
+        mutation cartLinesAdd($cartId: ID!, $lines: [CartLineInput!]!) {
+          cartLinesAdd(cartId: $cartId, lines: $lines) {
+            cart {
+              id
+              checkoutUrl
+              totalQuantity
+              cost {
+                totalAmount {
+                  amount
+                  currencyCode
+                }
+              }
+              lines(first: 10) {
+                edges {
+                  node {
+                    id
+                    quantity
+                    merchandise {
+                      ... on ProductVariant {
+                        id
+                        title
+                        priceV2 {
+                          amount
+                          currencyCode
+                        }
+                        product {
+                          title
+                          featuredImage {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            userErrors {
+              field
+              message
+            }
+          }
+        }
+      `;
+
+      const { data, errors } = await shopifyClient.request(mutation, {
+        variables: {
+          cartId,
+          lines: [{ merchandiseId: variantId, quantity }]
+        }
+      });
+
+      if (errors) {
+        console.error("Shopify add to cart errors:", errors);
+        return res.status(500).json({ error: "Failed to add to cart" });
+      }
+
+      if (data?.cartLinesAdd?.userErrors?.length > 0) {
+        return res.status(400).json({ errors: data.cartLinesAdd.userErrors });
+      }
+
+      res.json(data?.cartLinesAdd?.cart);
+    } catch (error) {
+      console.error("Shopify add to cart error:", error);
+      res.status(500).json({ error: "Failed to add to cart" });
+    }
+  });
+
+  app.get("/api/shopify/cart/:cartId", async (req, res) => {
+    try {
+      const { cartId } = req.params;
+
+      const query = `
+        query getCart($cartId: ID!) {
+          cart(id: $cartId) {
+            id
+            checkoutUrl
+            totalQuantity
+            cost {
+              totalAmount {
+                amount
+                currencyCode
+              }
+            }
+            lines(first: 10) {
+              edges {
+                node {
+                  id
+                  quantity
+                  merchandise {
+                    ... on ProductVariant {
+                      id
+                      title
+                      priceV2 {
+                        amount
+                        currencyCode
+                      }
+                      product {
+                        title
+                        featuredImage {
+                          url
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      `;
+
+      const { data, errors } = await shopifyClient.request(query, {
+        variables: { cartId }
+      });
+
+      if (errors) {
+        console.error("Shopify get cart errors:", errors);
+        return res.status(500).json({ error: "Failed to get cart" });
+      }
+
+      res.json(data?.cart);
+    } catch (error) {
+      console.error("Shopify get cart error:", error);
+      res.status(500).json({ error: "Failed to get cart" });
+    }
+  });
+
+  app.post("/api/shopify/cart/update", async (req, res) => {
+    try {
+      const { cartId, lineId, quantity } = req.body;
+
+      if (!cartId || !lineId) {
+        return res.status(400).json({ error: "Cart ID and Line ID are required" });
+      }
+
+      const mutation = `
+        mutation cartLinesUpdate($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
+          cartLinesUpdate(cartId: $cartId, lines: $lines) {
+            cart {
+              id
+              checkoutUrl
+              totalQuantity
+              cost {
+                totalAmount {
+                  amount
+                  currencyCode
+                }
+              }
+              lines(first: 10) {
+                edges {
+                  node {
+                    id
+                    quantity
+                    merchandise {
+                      ... on ProductVariant {
+                        id
+                        title
+                        priceV2 {
+                          amount
+                          currencyCode
+                        }
+                        product {
+                          title
+                          featuredImage {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            userErrors {
+              field
+              message
+            }
+          }
+        }
+      `;
+
+      const { data, errors } = await shopifyClient.request(mutation, {
+        variables: {
+          cartId,
+          lines: [{ id: lineId, quantity }]
+        }
+      });
+
+      if (errors) {
+        console.error("Shopify update cart errors:", errors);
+        return res.status(500).json({ error: "Failed to update cart" });
+      }
+
+      if (data?.cartLinesUpdate?.userErrors?.length > 0) {
+        return res.status(400).json({ errors: data.cartLinesUpdate.userErrors });
+      }
+
+      res.json(data?.cartLinesUpdate?.cart);
+    } catch (error) {
+      console.error("Shopify update cart error:", error);
+      res.status(500).json({ error: "Failed to update cart" });
+    }
+  });
+
+  app.post("/api/shopify/cart/remove", async (req, res) => {
+    try {
+      const { cartId, lineIds } = req.body;
+
+      if (!cartId || !lineIds || lineIds.length === 0) {
+        return res.status(400).json({ error: "Cart ID and Line IDs are required" });
+      }
+
+      const mutation = `
+        mutation cartLinesRemove($cartId: ID!, $lineIds: [ID!]!) {
+          cartLinesRemove(cartId: $cartId, lineIds: $lineIds) {
+            cart {
+              id
+              checkoutUrl
+              totalQuantity
+              cost {
+                totalAmount {
+                  amount
+                  currencyCode
+                }
+              }
+              lines(first: 10) {
+                edges {
+                  node {
+                    id
+                    quantity
+                    merchandise {
+                      ... on ProductVariant {
+                        id
+                        title
+                        priceV2 {
+                          amount
+                          currencyCode
+                        }
+                        product {
+                          title
+                          featuredImage {
+                            url
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+            userErrors {
+              field
+              message
+            }
+          }
+        }
+      `;
+
+      const { data, errors } = await shopifyClient.request(mutation, {
+        variables: { cartId, lineIds }
+      });
+
+      if (errors) {
+        console.error("Shopify remove from cart errors:", errors);
+        return res.status(500).json({ error: "Failed to remove from cart" });
+      }
+
+      if (data?.cartLinesRemove?.userErrors?.length > 0) {
+        return res.status(400).json({ errors: data.cartLinesRemove.userErrors });
+      }
+
+      res.json(data?.cartLinesRemove?.cart);
+    } catch (error) {
+      console.error("Shopify remove from cart error:", error);
+      res.status(500).json({ error: "Failed to remove from cart" });
     }
   });
 
