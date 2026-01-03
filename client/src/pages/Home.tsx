@@ -111,8 +111,7 @@ export default function Home() {
           </ScrollReveal>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Link href="/book">
-              <a className="group block space-y-4 p-8 border border-border hover:border-primary transition-all h-full relative overflow-hidden isolate">
+            <Link href="/book" className="group block space-y-4 p-8 border-none hover:border-primary transition-all h-full relative overflow-hidden isolate">
                 {/* Background Image */}
                 <div 
                   className="absolute inset-0 -z-10 transition-transform duration-700 group-hover:scale-105"
@@ -133,7 +132,6 @@ export default function Home() {
                 <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white pt-2">
                   Learn More <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
-              </a>
             </Link>
 
             <Link href="/tour">
