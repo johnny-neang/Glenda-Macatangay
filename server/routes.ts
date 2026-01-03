@@ -4,10 +4,20 @@ import { storage } from "./storage";
 import { insertContactSchema, insertTourDateSchema, insertTestimonialSchema } from "@shared/schema";
 import Mailjet from "node-mailjet";
 import session from "express-session";
+import mailchimp from "@mailchimp/mailchimp_marketing";
 
 const mailjet = new Mailjet({
   apiKey: process.env.MAILJET_API_KEY || "",
   apiSecret: process.env.MAILJET_SECRET_KEY || ""
+});
+
+// Mailchimp configuration
+const mailchimpApiKey = process.env.MAILCHIMP_API_KEY || "";
+const mailchimpServer = mailchimpApiKey.split("-")[1] || "us14";
+
+mailchimp.setConfig({
+  apiKey: mailchimpApiKey,
+  server: mailchimpServer,
 });
 
 declare module "express-session" {
@@ -108,7 +118,7 @@ export async function registerRoutes(
     }
   });
 
-  // Newsletter subscription route
+  // Newsletter subscription route (Mailchimp)
   app.post("/api/newsletter/subscribe", async (req, res) => {
     try {
       const { email, firstName, lastName, birthday } = req.body;
@@ -117,20 +127,37 @@ export async function registerRoutes(
         return res.status(400).json({ error: "Email is required" });
       }
 
-      await storage.createNewsletterSubscriber({
-        email,
-        firstName: firstName || null,
-        lastName: lastName || null,
-        birthday: birthday || null,
+      const listId = process.env.MAILCHIMP_LIST_ID;
+
+      if (!listId) {
+        console.error("MAILCHIMP_LIST_ID is not set");
+        return res.status(500).json({ error: "Newsletter configuration error" });
+      }
+
+      const mergeFields: Record<string, string> = {};
+      if (firstName) mergeFields.FNAME = firstName;
+      if (lastName) mergeFields.LNAME = lastName;
+      if (birthday) mergeFields.BIRTHDAY = birthday;
+
+      await mailchimp.lists.addListMember(listId, {
+        email_address: email,
+        status: "subscribed",
+        merge_fields: mergeFields,
       });
 
       res.json({ success: true, message: "Successfully subscribed to newsletter" });
     } catch (error: unknown) {
-      console.error("Newsletter subscription error:", error);
-      const dbError = error as { code?: string };
-      if (dbError.code === "23505") {
+      console.error("Mailchimp subscription error:", error);
+
+      const mailchimpError = error as { response?: { body?: { title?: string; detail?: string } }; status?: number };
+      if (mailchimpError.response?.body?.title === "Member Exists") {
         return res.status(400).json({ error: "This email is already subscribed" });
       }
+
+      if (mailchimpError.status === 400) {
+        return res.status(400).json({ error: "Invalid email address" });
+      }
+
       res.status(500).json({ error: "Failed to subscribe. Please try again later." });
     }
   });
