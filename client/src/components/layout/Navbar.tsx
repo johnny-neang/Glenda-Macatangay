@@ -5,7 +5,7 @@ import { Menu, X, ShoppingBag } from "lucide-react";
 import { useCart } from "@/hooks/use-shopify-cart";
 import logo from "@assets/glenda-logo_1767436360222.png";
 
-const BOOK_VARIANT_ID = "gid://shopify/ProductVariant/51523523772698";
+const BOOK_VARIANT_ID = "gid://shopify/ProductVariant/51523523805466";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);

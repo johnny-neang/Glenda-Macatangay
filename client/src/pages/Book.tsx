@@ -26,7 +26,7 @@ Each pre-order includes:
 
 Quantities are limited and available while supplies last. Pre-orders will end on February 14.`;
 
-const BOOK_VARIANT_ID = "gid://shopify/ProductVariant/51523523772698";
+const BOOK_VARIANT_ID = "gid://shopify/ProductVariant/51523523805466";
 
 export default function Book() {
   const { data: content = {} } = useMultiplePageContent(["book_tagline", "book_about", "book_preorder"]);
