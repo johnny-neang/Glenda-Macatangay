@@ -39,7 +39,7 @@ export function Navbar() {
             <img 
               src={logo} 
               alt="Glenda Logo" 
-              className="h-12 w-auto transition-transform group-hover:scale-105"
+              className="h-12 w-auto"
             />
           </a>
         </Link>
