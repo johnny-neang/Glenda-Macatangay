@@ -8,7 +8,7 @@ import type { Testimonial } from "@shared/schema";
 import bookCover from "@assets/book-cover_1767440366702.png";
 import { Loader2 } from "lucide-react";
 
-const DEFAULT_BOOK_TAGLINE = "A journey of healing, movement, and returning to the self. \"Salt in Her Lungs\" explores the depths of our resilience and the ocean within.";
+const DEFAULT_BOOK_TAGLINE = "Salt in Her Lungs is a journey of healing, movement, and return to sacredness—an exploration of love, resilience, memory, and the ocean of wisdom we carry within.";
 const DEFAULT_BOOK_ABOUT = `A lyrical and unflinching memoir about childhood silence, intergenerational trauma, and the long walk back to truth.
 
 Rooted in Filipina lineage and survivor wisdom, Salt in Her Lungs traces a journey through harm, shame, embodiment, motherhood, and healing. The book offers readers language for what was carried and practices for what comes next.
