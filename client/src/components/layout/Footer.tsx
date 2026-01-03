@@ -30,29 +30,42 @@ export function Footer() {
               <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Sitemap</h3>
               <ul className="space-y-3">
                 <li><Link href="/" className="hover:text-primary transition-colors">Home</Link></li>
-                <li><a href="#about" className="hover:text-primary transition-colors">About</a></li>
-                <li><a href="#work" className="hover:text-primary transition-colors">Selected Work</a></li>
-                <li><a href="#press" className="hover:text-primary transition-colors">Press</a></li>
+                <li><Link href="/book" className="hover:text-primary transition-colors">Book</Link></li>
+                <li><Link href="/tour" className="hover:text-primary transition-colors">Tour</Link></li>
+                <li><Link href="/speaking" className="hover:text-primary transition-colors">Speaking</Link></li>
+                <li><Link href="/consulting" className="hover:text-primary transition-colors">Consulting</Link></li>
+                <li><Link href="/about" className="hover:text-primary transition-colors">About</Link></li>
+                <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
               </ul>
             </div>
             
             <div className="space-y-4">
-              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Socials</h3>
+              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Connect</h3>
               <ul className="space-y-3">
                 <li>
                   <a href="#" className="flex items-center hover:text-primary transition-colors group">
-                    Instagram <ArrowUpRight className="ml-1 w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                    Newsletter Signup <ArrowUpRight className="ml-1 w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="flex items-center hover:text-primary transition-colors group">
-                    LinkedIn <ArrowUpRight className="ml-1 w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <a href="https://instagram.com/saltinherlungs" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-primary transition-colors group">
+                    Instagram @Saltinherlungs <ArrowUpRight className="ml-1 w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="flex items-center hover:text-primary transition-colors group">
-                    Twitter <ArrowUpRight className="ml-1 w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <a href="https://substack.com/@myhealinglanguage" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-primary transition-colors group">
+                    Substack <ArrowUpRight className="ml-1 w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
+                </li>
+                <li>
+                  <Link href="/privacy" className="flex items-center hover:text-primary transition-colors">
+                    Privacy Policy
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/acknowledgement" className="flex items-center hover:text-primary transition-colors">
+                    Acknowledgement / Land & Lineage
+                  </Link>
                 </li>
               </ul>
             </div>
