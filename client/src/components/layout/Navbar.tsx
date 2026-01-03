@@ -34,23 +34,19 @@ export function Navbar() {
       )}
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        <Link href="/">
-          <a className="block group">
-            <img 
-              src={logo} 
-              alt="Glenda Logo" 
-              className="h-12 w-auto"
-            />
-          </a>
+        <Link href="/" className="block group">
+          <img 
+            src={logo} 
+            alt="Glenda Logo" 
+            className="h-12 w-auto"
+          />
         </Link>
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
           {navLinks.map((link) => (
-            <Link key={link.name} href={link.href}>
-              <a className="text-xs font-bold tracking-widest uppercase hover:text-primary transition-colors">
-                {link.name}
-              </a>
+            <Link key={link.name} href={link.href} className="text-xs font-bold tracking-widest uppercase hover:text-primary transition-colors">
+              {link.name}
             </Link>
           ))}
           <a 
@@ -76,13 +72,13 @@ export function Navbar() {
       {isMobileMenuOpen && (
         <div className="absolute top-full left-0 right-0 bg-background border-b border-border p-6 md:hidden flex flex-col space-y-4 animate-in slide-in-from-top-5">
           {navLinks.map((link) => (
-            <Link key={link.name} href={link.href}>
-              <a
-                className="text-sm font-bold tracking-widest uppercase hover:text-primary"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                {link.name}
-              </a>
+            <Link 
+              key={link.name} 
+              href={link.href}
+              className="text-sm font-bold tracking-widest uppercase hover:text-primary"
+              onClick={() => setIsMobileMenuOpen(false)}
+            >
+              {link.name}
             </Link>
           ))}
           <a 
