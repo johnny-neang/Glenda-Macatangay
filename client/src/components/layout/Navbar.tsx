@@ -2,6 +2,8 @@ import { Link } from "wouter";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
+// Import the logo directly so Vite processes it correctly
+import logo from "@assets/glenda-logo_1767436360222.png";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -35,7 +37,7 @@ export function Navbar() {
         <Link href="/">
           <a className="block group">
             <img 
-              src="/attached_assets/glenda-logo_1767436360222.png" 
+              src={logo} 
               alt="Glenda Logo" 
               className="h-12 w-auto transition-transform group-hover:scale-105"
             />

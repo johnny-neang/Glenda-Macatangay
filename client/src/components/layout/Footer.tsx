@@ -1,6 +1,8 @@
 import { Link } from "wouter";
 import { Instagram, Linkedin, Twitter, Mail, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+// Import the logo directly so Vite processes it correctly
+import logo from "@assets/glenda-logo_1767436360222.png";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -60,7 +62,7 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-end md:items-center pt-8 border-t border-secondary-foreground/10 gap-4">
           <div className="flex items-center gap-4">
              <img 
-              src="/attached_assets/glenda-logo_1767436360222.png" 
+              src={logo} 
               alt="Glenda Logo" 
               className="h-12 w-auto opacity-80"
             />
