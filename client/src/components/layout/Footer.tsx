@@ -1,74 +1,77 @@
 import { Link } from "wouter";
-import { Instagram, Linkedin, Twitter, Mail, ArrowUpRight } from "lucide-react";
-import { cn } from "@/lib/utils";
-// Import the logo directly so Vite processes it correctly
+import { ArrowUpRight } from "lucide-react";
 import logo from "@assets/glenda-logo-light_1767438063235.png";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-secondary text-secondary-foreground pt-24 pb-12 px-6 md:px-12 border-t border-border mt-auto">
+    <footer className="bg-secondary text-secondary-foreground pt-16 pb-12 px-6 md:px-12 border-t border-border mt-auto">
       <div className="max-w-7xl mx-auto">
-        <div className="grid md:grid-cols-2 gap-16 mb-24">
-          <div className="space-y-8">
-            <h2 className="text-4xl md:text-6xl font-serif font-medium leading-tight">
-              Let's create something <br />
-              <span className="italic text-[#ffffff]">impactful</span> together.
-            </h2>
-            <a 
-              href="mailto:contact@michaela.com" 
-              className="inline-flex items-center text-xl md:text-2xl font-bold uppercase tracking-widest hover:text-primary transition-colors group"
-            >
-              Get in Touch
-              <ArrowUpRight className="ml-2 w-6 h-6 transition-transform group-hover:-translate-y-1 group-hover:translate-x-1" />
-            </a>
+        <div className="grid md:grid-cols-2 gap-12 mb-12">
+          <div className="space-y-6">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Newsletter Signup</h3>
+            <form className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <input 
+                  type="text" 
+                  placeholder="First Name" 
+                  className="bg-transparent border border-secondary-foreground/30 px-4 py-3 text-sm placeholder:text-secondary-foreground/50 focus:outline-none focus:border-primary"
+                  data-testid="input-first-name"
+                />
+                <input 
+                  type="text" 
+                  placeholder="Last Name" 
+                  className="bg-transparent border border-secondary-foreground/30 px-4 py-3 text-sm placeholder:text-secondary-foreground/50 focus:outline-none focus:border-primary"
+                  data-testid="input-last-name"
+                />
+              </div>
+              <input 
+                type="email" 
+                placeholder="Email" 
+                className="w-full bg-transparent border border-secondary-foreground/30 px-4 py-3 text-sm placeholder:text-secondary-foreground/50 focus:outline-none focus:border-primary"
+                data-testid="input-newsletter-email"
+              />
+              <input 
+                type="text" 
+                placeholder="Birthday (MM/DD)" 
+                className="w-full bg-transparent border border-secondary-foreground/30 px-4 py-3 text-sm placeholder:text-secondary-foreground/50 focus:outline-none focus:border-primary"
+                data-testid="input-birthday"
+              />
+              <button 
+                type="submit" 
+                className="bg-primary text-white px-6 py-3 text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-colors"
+                data-testid="button-subscribe"
+              >
+                Subscribe
+              </button>
+            </form>
           </div>
 
-          <div className="grid grid-cols-2 gap-8 md:pl-24">
-            <div className="space-y-4">
-              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Sitemap</h3>
-              <ul className="space-y-3">
-                <li><Link href="/" className="hover:text-primary transition-colors">Home</Link></li>
-                <li><Link href="/book" className="hover:text-primary transition-colors">Book</Link></li>
-                <li><Link href="/tour" className="hover:text-primary transition-colors">Tour</Link></li>
-                <li><Link href="/speaking" className="hover:text-primary transition-colors">Speaking</Link></li>
-                <li><Link href="/consulting" className="hover:text-primary transition-colors">Consulting</Link></li>
-                <li><Link href="/about" className="hover:text-primary transition-colors">About</Link></li>
-                <li><Link href="/contact" className="hover:text-primary transition-colors">Contact</Link></li>
-              </ul>
-            </div>
-            
-            <div className="space-y-4">
-              <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Connect</h3>
-              <ul className="space-y-3">
-                <li>
-                  <a href="#" className="flex items-center hover:text-primary transition-colors group">
-                    Newsletter Signup <ArrowUpRight className="ml-1 w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://instagram.com/saltinherlungs" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-primary transition-colors group">
-                    Instagram @Saltinherlungs <ArrowUpRight className="ml-1 w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </li>
-                <li>
-                  <a href="https://substack.com/@myhealinglanguage" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-primary transition-colors group">
-                    Substack <ArrowUpRight className="ml-1 w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </a>
-                </li>
-                <li>
-                  <Link href="/privacy" className="flex items-center hover:text-primary transition-colors">
-                    Privacy Policy
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/acknowledgement" className="flex items-center hover:text-primary transition-colors">
-                    Acknowledgement / Land & Lineage
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          <div className="space-y-4 md:pl-24">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Connect</h3>
+            <ul className="space-y-3">
+              <li>
+                <a href="https://instagram.com/saltinherlungs" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-primary transition-colors group">
+                  Instagram <ArrowUpRight className="ml-1 w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              </li>
+              <li>
+                <a href="https://substack.com/@myhealinglanguage" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-primary transition-colors group">
+                  Substack <ArrowUpRight className="ml-1 w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </a>
+              </li>
+              <li>
+                <Link href="/privacy" className="flex items-center hover:text-primary transition-colors">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/acknowledgement" className="flex items-center hover:text-primary transition-colors">
+                  Acknowledgement / Land & Lineage
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
@@ -81,9 +84,8 @@ export function Footer() {
             />
           </div>
           
-          <div className="flex flex-col md:flex-row gap-4 md:gap-8 text-sm text-muted-foreground text-right md:text-left">
+          <div className="text-sm text-muted-foreground">
              <p>© {currentYear} Glenda Macatangay</p>
-             <p>Designed & Developed with Care</p>
           </div>
         </div>
       </div>

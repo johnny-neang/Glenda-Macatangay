@@ -11,6 +11,8 @@ import Speaking from "@/pages/Speaking";
 import Consulting from "@/pages/Consulting";
 import About from "@/pages/About";
 import Contact from "@/pages/Contact";
+import Privacy from "@/pages/Privacy";
+import Acknowledgement from "@/pages/Acknowledgement";
 
 function Router() {
   return (
@@ -22,6 +24,8 @@ function Router() {
       <Route path="/consulting" component={Consulting} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
+      <Route path="/privacy" component={Privacy} />
+      <Route path="/acknowledgement" component={Acknowledgement} />
       <Route component={NotFound} />
     </Switch>
   );
