@@ -50,8 +50,8 @@ export default function Tour() {
                 <p className="text-muted-foreground">Loading tour dates...</p>
               ) : tourDates && tourDates.length > 0 ? (
                 <div className="space-y-6">
-                  {tourDates.map((event) => (
-                    <div key={event.id} className="py-6 border-b border-border/50">
+                  {tourDates.map((event, index) => (
+                    <div key={event.id} className={`py-6 ${index !== tourDates.length - 1 ? 'border-b border-border/50' : ''}`}>
                       <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
                         <div className="space-y-2">
                           <div className="flex items-center gap-2">
