@@ -48,8 +48,12 @@ export function Footer() {
             </form>
           </div>
 
-          <div className="space-y-4 md:pl-24">
-            <h3 className="text-sm font-bold uppercase tracking-widest text-muted-foreground">Connect</h3>
+          <div className="space-y-6 md:pl-24">
+            <img 
+              src={logo} 
+              alt="Glenda Logo" 
+              className="h-12 w-auto opacity-80"
+            />
             <ul className="space-y-3">
               <li>
                 <a href="https://instagram.com/saltinherlungs" target="_blank" rel="noopener noreferrer" className="flex items-center hover:text-primary transition-colors group">
@@ -75,18 +79,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-end md:items-center pt-8 border-t border-secondary-foreground/10 gap-4">
-          <div className="flex items-center gap-4">
-             <img 
-              src={logo} 
-              alt="Glenda Logo" 
-              className="h-12 w-auto opacity-80"
-            />
-          </div>
-          
-          <div className="text-sm text-muted-foreground">
-             <p>© {currentYear} Glenda Macatangay</p>
-          </div>
+        <div className="pt-8 border-t border-secondary-foreground/10 text-center">
+          <p className="text-sm text-muted-foreground">© {currentYear} Glenda Macatangay</p>
         </div>
       </div>
     </footer>
