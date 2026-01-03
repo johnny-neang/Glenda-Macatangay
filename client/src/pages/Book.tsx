@@ -13,8 +13,19 @@ Rooted in Filipina lineage and survivor wisdom, Salt in Her Lungs traces a journ
 
 This book is for survivors and advocates, mothers and daughters navigating complexity, educators, healers, and cultural workers, and anyone seeking a more honest and embodied practice of healing.`;
 
+const DEFAULT_BOOK_PREORDER = `A small number of signed copies of Salt in Her Lungs are available for direct pre-order.
+
+This limited edition is an offering—meant to be held, read slowly, and shared with care.
+
+Each pre-order includes:
+• A signed copy of Salt in Her Lungs
+• Memory Palace, a companion zine featuring the voices and reflections of fellow survivors
+• A Lala Paz Candle, created as a ritual companion for reading, remembering, and grounding
+
+Quantities are limited and available while supplies last. Pre-orders will end on February 14.`;
+
 export default function Book() {
-  const { data: content = {} } = useMultiplePageContent(["book_tagline", "book_about"]);
+  const { data: content = {} } = useMultiplePageContent(["book_tagline", "book_about", "book_preorder"]);
   const { data: testimonials = [] } = useQuery<Testimonial[]>({
     queryKey: ["testimonials", "book"],
     queryFn: async () => {
@@ -24,6 +35,7 @@ export default function Book() {
   });
 
   const bookAbout = content.book_about || DEFAULT_BOOK_ABOUT;
+  const bookPreorder = content.book_preorder || DEFAULT_BOOK_PREORDER;
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -90,26 +102,22 @@ export default function Book() {
             <div className="bg-secondary text-secondary-foreground p-8 md:p-12">
               <h2 className="text-2xl font-serif mb-4">Pre-Order: Limited Signed Edition</h2>
               <div className="space-y-4 mb-6">
-                <p className="text-lg opacity-90">
-                  A small number of signed copies of Salt in Her Lungs are available for direct pre-order.
-                </p>
-                <p className="opacity-80">
-                  This limited edition is an offering—meant to be held, read slowly, and shared with care.
-                </p>
+                {bookPreorder.split('\n\n').map((paragraph, i) => {
+                  if (paragraph.startsWith('•') || paragraph.includes('\n•')) {
+                    const lines = paragraph.split('\n');
+                    return (
+                      <ul key={i} className="space-y-2 opacity-80">
+                        {lines.map((line, j) => (
+                          <li key={j} className="flex gap-3">
+                            <span className="text-primary">•</span> {line.replace(/^•\s*/, '')}
+                          </li>
+                        ))}
+                      </ul>
+                    );
+                  }
+                  return <p key={i} className="opacity-80">{paragraph}</p>;
+                })}
               </div>
-              
-              <div className="mb-6">
-                <p className="font-bold mb-3">Each pre-order includes:</p>
-                <ul className="space-y-2 opacity-80">
-                  <li className="flex gap-3"><span className="text-primary">•</span> A signed copy of Salt in Her Lungs</li>
-                  <li className="flex gap-3"><span className="text-primary">•</span> Memory Palace, a companion zine featuring the voices and reflections of fellow survivors</li>
-                  <li className="flex gap-3"><span className="text-primary">•</span> A Lala Paz Candle, created as a ritual companion for reading, remembering, and grounding</li>
-                </ul>
-              </div>
-              
-              <p className="opacity-80 mb-8">
-                Quantities are limited and available while supplies last. Pre-orders will end on February 14.
-              </p>
               
               <a 
                 href="https://squarespace.com/placeholder" 

@@ -309,10 +309,13 @@ function ContentManager() {
     { key: "home_intro", label: "Home - Introduction" },
     { key: "book_tagline", label: "Book - Tagline" },
     { key: "book_about", label: "Book - About Section" },
+    { key: "book_preorder", label: "Book - Pre-Order Info" },
     { key: "tour_intro", label: "Tour - Introduction" },
     { key: "speaking_intro", label: "Speaking - Introduction" },
     { key: "consulting_intro", label: "Consulting - Introduction" },
     { key: "about_bio", label: "About - Biography" },
+    { key: "privacy_policy", label: "Privacy Policy" },
+    { key: "acknowledgement", label: "Acknowledgement - Land & Lineage" },
   ];
 
   const { data: pageContent } = useQuery({

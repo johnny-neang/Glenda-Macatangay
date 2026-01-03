@@ -1,8 +1,24 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { useMultiplePageContent } from "@/hooks/use-page-content";
+
+const DEFAULT_PRIVACY_POLICY = `When you visit our website, we may collect certain information about you, including your name, email address, and any other information you voluntarily provide through our contact forms or newsletter signup.
+
+We use the information we collect to respond to your inquiries, send newsletters and updates about events and offerings, and improve our website and services.
+
+We are committed to protecting your personal information. We implement appropriate security measures to safeguard your data against unauthorized access, alteration, or disclosure.
+
+We may use third-party services such as email marketing platforms to manage our newsletter. These services have their own privacy policies governing the use of your information.
+
+You have the right to access, correct, or delete your personal information at any time. To exercise these rights, please contact us directly.
+
+If you have any questions about this Privacy Policy, please reach out through our contact page.`;
 
 export default function Privacy() {
+  const { data: content = {} } = useMultiplePageContent(["privacy_policy"]);
+  const privacyContent = content.privacy_policy || DEFAULT_PRIVACY_POLICY;
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
@@ -13,36 +29,10 @@ export default function Privacy() {
             <p className="text-sm text-muted-foreground uppercase tracking-widest">Last Updated: January 2026</p>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.1} className="space-y-6 text-muted-foreground">
-            <h2 className="text-2xl font-serif text-foreground">Information We Collect</h2>
-            <p>
-              When you visit our website, we may collect certain information about you, including your name, email address, and any other information you voluntarily provide through our contact forms or newsletter signup.
-            </p>
-
-            <h2 className="text-2xl font-serif text-foreground pt-6">How We Use Your Information</h2>
-            <p>
-              We use the information we collect to respond to your inquiries, send newsletters and updates about events and offerings, and improve our website and services.
-            </p>
-
-            <h2 className="text-2xl font-serif text-foreground pt-6">Data Protection</h2>
-            <p>
-              We are committed to protecting your personal information. We implement appropriate security measures to safeguard your data against unauthorized access, alteration, or disclosure.
-            </p>
-
-            <h2 className="text-2xl font-serif text-foreground pt-6">Third-Party Services</h2>
-            <p>
-              We may use third-party services such as email marketing platforms to manage our newsletter. These services have their own privacy policies governing the use of your information.
-            </p>
-
-            <h2 className="text-2xl font-serif text-foreground pt-6">Your Rights</h2>
-            <p>
-              You have the right to access, correct, or delete your personal information at any time. To exercise these rights, please contact us directly.
-            </p>
-
-            <h2 className="text-2xl font-serif text-foreground pt-6">Contact</h2>
-            <p>
-              If you have any questions about this Privacy Policy, please reach out through our contact page.
-            </p>
+          <ScrollReveal delay={0.1} className="space-y-6 text-muted-foreground leading-relaxed">
+            {privacyContent.split('\n\n').map((paragraph, i) => (
+              <p key={i}>{paragraph}</p>
+            ))}
           </ScrollReveal>
         </div>
       </main>
