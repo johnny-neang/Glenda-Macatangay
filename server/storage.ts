@@ -1,5 +1,5 @@
 import { db } from "./db";
-import { contacts, tourDates, pageContent, testimonials, type InsertContact, type Contact, type InsertTourDate, type TourDate, type InsertPageContent, type PageContent, type InsertTestimonial, type Testimonial } from "@shared/schema";
+import { contacts, tourDates, pageContent, testimonials, newsletterSubscribers, type InsertContact, type Contact, type InsertTourDate, type TourDate, type InsertPageContent, type PageContent, type InsertTestimonial, type Testimonial, type InsertNewsletterSubscriber, type NewsletterSubscriber } from "@shared/schema";
 import { desc, eq, arrayContains, asc } from "drizzle-orm";
 
 export interface IStorage {
@@ -20,6 +20,9 @@ export interface IStorage {
   getTestimonialsByPlacement(placement: string): Promise<Testimonial[]>;
   updateTestimonial(id: number, testimonial: Partial<InsertTestimonial>): Promise<Testimonial>;
   deleteTestimonial(id: number): Promise<void>;
+
+  createNewsletterSubscriber(subscriber: InsertNewsletterSubscriber): Promise<NewsletterSubscriber>;
+  getNewsletterSubscribers(): Promise<NewsletterSubscriber[]>;
 }
 
 export class Storage implements IStorage {
@@ -97,6 +100,15 @@ export class Storage implements IStorage {
 
   async deleteTestimonial(id: number): Promise<void> {
     await db.delete(testimonials).where(eq(testimonials.id, id));
+  }
+
+  async createNewsletterSubscriber(subscriber: InsertNewsletterSubscriber): Promise<NewsletterSubscriber> {
+    const [newSubscriber] = await db.insert(newsletterSubscribers).values(subscriber).returning();
+    return newSubscriber;
+  }
+
+  async getNewsletterSubscribers(): Promise<NewsletterSubscriber[]> {
+    return await db.select().from(newsletterSubscribers).orderBy(desc(newsletterSubscribers.subscribedAt));
   }
 }
 

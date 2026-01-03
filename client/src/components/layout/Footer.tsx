@@ -16,7 +16,7 @@ export function Footer() {
 
   const subscribeMutation = useMutation({
     mutationFn: async (data: { email: string; firstName?: string; lastName?: string; birthday?: string }) => {
-      return apiRequest("/api/newsletter/subscribe", "POST", data);
+      return apiRequest("POST", "/api/newsletter/subscribe", data);
     },
     onSuccess: () => {
       setSubscribed(true);
