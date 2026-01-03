@@ -45,16 +45,40 @@ export default function Tour() {
               {isLoading ? (
                 <p className="text-muted-foreground">Loading tour dates...</p>
               ) : tourDates && tourDates.length > 0 ? (
-                <div className="space-y-4">
-                  {tourDates.map((date) => (
-                    <div key={date.id} className="flex justify-between items-center py-4 border-b border-border/50">
-                      <div>
-                        <span className="font-bold">{date.city}</span>
-                        {date.description && (
-                          <p className="text-sm text-muted-foreground mt-1">{date.description}</p>
-                        )}
+                <div className="space-y-6">
+                  {tourDates.map((event) => (
+                    <div key={event.id} className="py-6 border-b border-border/50">
+                      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-2">
+                            <span className="font-bold text-lg">{event.city}, {event.state}</span>
+                            {event.description && (
+                              <span className="text-sm bg-primary/10 text-primary px-2 py-0.5 rounded">{event.description}</span>
+                            )}
+                          </div>
+                          <div className="text-muted-foreground space-y-1 text-sm">
+                            <p><span className="font-semibold">Date:</span> {event.date}</p>
+                            <p><span className="font-semibold">Time:</span> {event.time || 'TBD'}</p>
+                            <p><span className="font-semibold">Venue:</span> {event.venue || 'TBD'}</p>
+                          </div>
+                        </div>
+                        <div className="flex-shrink-0">
+                          {event.rsvpLink ? (
+                            <a 
+                              href={event.rsvpLink} 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="inline-block bg-primary text-white px-6 py-2 text-xs font-bold tracking-widest uppercase hover:bg-black transition-colors"
+                            >
+                              RSVP
+                            </a>
+                          ) : (
+                            <span className="inline-block border border-muted-foreground/30 text-muted-foreground px-6 py-2 text-xs font-bold tracking-widest uppercase">
+                              RSVP Coming Soon
+                            </span>
+                          )}
+                        </div>
                       </div>
-                      <span className="text-muted-foreground">{date.date}</span>
                     </div>
                   ))}
                 </div>

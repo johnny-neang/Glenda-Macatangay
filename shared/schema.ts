@@ -23,8 +23,11 @@ export type Contact = typeof contacts.$inferSelect;
 export const tourDates = pgTable("tour_dates", {
   id: serial("id").primaryKey(),
   city: text("city").notNull(),
-  location: text("location").notNull(),
+  state: text("state"),
+  venue: text("venue"),
   date: text("date").notNull(),
+  time: text("time"),
+  rsvpLink: text("rsvp_link"),
   description: text("description"),
 });
 
