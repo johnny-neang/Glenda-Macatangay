@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 import { useLocation, Link } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Pencil, Trash2, Plus, LogOut, X, Save } from "lucide-react";
-import type { TourDate, Contact, Testimonial } from "@shared/schema";
+import type { TourDate, Testimonial } from "@shared/schema";
 
 export default function AdminDashboard() {
   const [, setLocation] = useLocation();
-  const [activeTab, setActiveTab] = useState<"tour" | "content" | "testimonials" | "contacts">("tour");
+  const [activeTab, setActiveTab] = useState<"tour" | "content" | "testimonials">("tour");
   const queryClient = useQueryClient();
 
   const { data: authData, isLoading: authLoading } = useQuery({
@@ -87,15 +87,6 @@ export default function AdminDashboard() {
           >
             Testimonials
           </button>
-          <button
-            onClick={() => setActiveTab("contacts")}
-            className={`py-4 text-sm font-bold uppercase tracking-widest border-b-2 transition-colors ${
-              activeTab === "contacts" ? "border-primary text-primary" : "border-transparent hover:text-primary"
-            }`}
-            data-testid="tab-contacts"
-          >
-            Contact Submissions
-          </button>
         </div>
       </nav>
 
@@ -103,7 +94,6 @@ export default function AdminDashboard() {
         {activeTab === "tour" && <TourDatesManager />}
         {activeTab === "content" && <ContentManager />}
         {activeTab === "testimonials" && <TestimonialsManager />}
-        {activeTab === "contacts" && <ContactsViewer />}
       </main>
     </div>
   );
@@ -626,41 +616,3 @@ function TestimonialsManager() {
   );
 }
 
-function ContactsViewer() {
-  const { data: contacts = [], isLoading } = useQuery<Contact[]>({
-    queryKey: ["contacts"],
-    queryFn: async () => {
-      const res = await fetch("/api/contacts", { credentials: "include" });
-      return res.json();
-    },
-  });
-
-  if (isLoading) return <div>Loading...</div>;
-
-  return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-serif">Contact Submissions</h2>
-      
-      <div className="space-y-4">
-        {contacts.map((contact) => (
-          <div key={contact.id} className="p-6 border border-border space-y-3">
-            <div className="flex justify-between items-start">
-              <div>
-                <p className="font-bold">{contact.name}</p>
-                <p className="text-sm text-muted-foreground">{contact.email}</p>
-              </div>
-              <span className="bg-muted px-3 py-1 text-xs uppercase tracking-widest">{contact.inquiryType}</span>
-            </div>
-            <p className="text-sm">{contact.message}</p>
-            <p className="text-xs text-muted-foreground">
-              {new Date(contact.createdAt).toLocaleDateString()} at {new Date(contact.createdAt).toLocaleTimeString()}
-            </p>
-          </div>
-        ))}
-        {contacts.length === 0 && (
-          <p className="text-muted-foreground text-center py-8">No contact submissions yet.</p>
-        )}
-      </div>
-    </div>
-  );
-}

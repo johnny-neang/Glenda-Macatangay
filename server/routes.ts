@@ -66,55 +66,42 @@ export async function registerRoutes(
     res.json({ isAdmin: !!req.session?.isAdmin });
   });
 
-  // Contact routes
+  // Contact routes - forward to email only, no database storage
   app.post("/api/contacts", async (req, res) => {
     try {
       const contactData = insertContactSchema.parse(req.body);
-      const contact = await storage.createContact(contactData);
 
-      try {
-        await mailjet.post("send", { version: "v3.1" }).request({
-          Messages: [
-            {
-              From: {
-                Email: process.env.MAILJET_FROM_EMAIL || "noreply@glendamacatangay.com",
-                Name: "Glenda Macatangay Website",
-              },
-              To: [
-                {
-                  Email: "glenda.macatangay@gmail.com",
-                  Name: "Glenda Macatangay",
-                },
-              ],
-              Subject: `New Inquiry: ${contactData.inquiryType} from ${contactData.name}`,
-              TextPart: `Name: ${contactData.name}\nEmail: ${contactData.email}\nType: ${contactData.inquiryType}\n\nMessage:\n${contactData.message}`,
-              HTMLPart: `
-                <h3>New Website Inquiry</h3>
-                <p><strong>Name:</strong> ${contactData.name}</p>
-                <p><strong>Email:</strong> ${contactData.email}</p>
-                <p><strong>Inquiry Type:</strong> ${contactData.inquiryType}</p>
-                <p><strong>Message:</strong></p>
-                <p>${contactData.message.replace(/\n/g, "<br>")}</p>
-              `,
+      await mailjet.post("send", { version: "v3.1" }).request({
+        Messages: [
+          {
+            From: {
+              Email: process.env.MAILJET_FROM_EMAIL || "noreply@glendamacatangay.com",
+              Name: "Glenda Macatangay Website",
             },
-          ],
-        });
-      } catch (emailError) {
-        console.error("Mailjet error:", emailError);
-      }
+            To: [
+              {
+                Email: "hello@myhealinglanguage.com",
+                Name: "My Healing Language",
+              },
+            ],
+            Subject: `New Inquiry: ${contactData.inquiryType} from ${contactData.name}`,
+            TextPart: `Name: ${contactData.name}\nEmail: ${contactData.email}\nType: ${contactData.inquiryType}\n\nMessage:\n${contactData.message}`,
+            HTMLPart: `
+              <h3>New Website Inquiry</h3>
+              <p><strong>Name:</strong> ${contactData.name}</p>
+              <p><strong>Email:</strong> ${contactData.email}</p>
+              <p><strong>Inquiry Type:</strong> ${contactData.inquiryType}</p>
+              <p><strong>Message:</strong></p>
+              <p>${contactData.message.replace(/\n/g, "<br>")}</p>
+            `,
+          },
+        ],
+      });
 
-      res.json(contact);
+      res.json({ success: true, message: "Your message has been sent successfully!" });
     } catch (error) {
-      res.status(400).json({ error: "Invalid contact data" });
-    }
-  });
-
-  app.get("/api/contacts", requireAdmin, async (req, res) => {
-    try {
-      const contacts = await storage.getContacts();
-      res.json(contacts);
-    } catch (error) {
-      res.status(500).json({ error: "Failed to fetch contacts" });
+      console.error("Contact form error:", error);
+      res.status(500).json({ error: "Failed to send message. Please try again." });
     }
   });
 
