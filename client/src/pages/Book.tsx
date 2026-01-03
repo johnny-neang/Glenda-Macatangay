@@ -66,7 +66,7 @@ export default function Book() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal className="border-t border-border pt-12">
+          <ScrollReveal className="border-t border-border pt-12" width="100%">
             <div className="bg-secondary text-secondary-foreground p-8 md:p-12">
               <h2 className="text-2xl font-serif mb-4">Pre-Order: Limited Signed Edition</h2>
               <div className="space-y-4 mb-6">
