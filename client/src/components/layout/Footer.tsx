@@ -80,7 +80,7 @@ export function Footer() {
         </div>
 
         <div className="pt-8 border-t border-secondary-foreground/10 text-center">
-          <p className="text-sm text-muted-foreground">© {currentYear} Glenda Macatangay</p>
+          <p className="text-sm text-muted-foreground">© 2026. Glenda Macatangay</p>
         </div>
       </div>
     </footer>
