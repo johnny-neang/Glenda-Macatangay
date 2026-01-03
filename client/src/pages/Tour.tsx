@@ -39,7 +39,7 @@ export default function Tour() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.2}>
+          <ScrollReveal delay={0.2} width="100%">
             <div className="border-t border-b border-border py-12 space-y-8">
               <h2 className="text-2xl font-serif uppercase tracking-widest">Events</h2>
               {isLoading ? (
