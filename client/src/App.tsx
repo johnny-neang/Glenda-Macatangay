@@ -1,8 +1,9 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { useEffect } from "react";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import Book from "@/pages/Book";
@@ -14,20 +15,33 @@ import Contact from "@/pages/Contact";
 import Privacy from "@/pages/Privacy";
 import Acknowledgement from "@/pages/Acknowledgement";
 
+function ScrollToTop() {
+  const [location] = useLocation();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location]);
+  
+  return null;
+}
+
 function Router() {
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/book" component={Book} />
-      <Route path="/tour" component={Tour} />
-      <Route path="/speaking" component={Speaking} />
-      <Route path="/consulting" component={Consulting} />
-      <Route path="/about" component={About} />
-      <Route path="/contact" component={Contact} />
-      <Route path="/privacy" component={Privacy} />
-      <Route path="/acknowledgement" component={Acknowledgement} />
-      <Route component={NotFound} />
-    </Switch>
+    <>
+      <ScrollToTop />
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/book" component={Book} />
+        <Route path="/tour" component={Tour} />
+        <Route path="/speaking" component={Speaking} />
+        <Route path="/consulting" component={Consulting} />
+        <Route path="/about" component={About} />
+        <Route path="/contact" component={Contact} />
+        <Route path="/privacy" component={Privacy} />
+        <Route path="/acknowledgement" component={Acknowledgement} />
+        <Route component={NotFound} />
+      </Switch>
+    </>
   );
 }
 
