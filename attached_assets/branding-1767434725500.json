@@ -1,0 +1,94 @@
+{
+  "colorScheme": "light",
+  "fonts": [
+    {
+      "family": "Montserrat",
+      "count": 71
+    },
+    {
+      "family": "moret",
+      "count": 4
+    },
+    {
+      "family": "sans-serif",
+      "count": 2
+    }
+  ],
+  "colors": {
+    "primary": "#000000",
+    "accent": "#000000",
+    "background": "#FFFFFF",
+    "textPrimary": "#303030",
+    "link": "#000000"
+  },
+  "typography": {
+    "fontFamilies": {
+      "primary": "sans-serif",
+      "heading": "moret"
+    },
+    "fontStacks": {
+      "body": [
+        "sans-serif"
+      ],
+      "heading": [
+        "moret"
+      ],
+      "paragraph": [
+        "Montserrat"
+      ]
+    },
+    "fontSizes": {
+      "h1": "40px",
+      "h2": "16.32px",
+      "body": "16px"
+    }
+  },
+  "spacing": {
+    "baseUnit": 4,
+    "borderRadius": "0px"
+  },
+  "components": {
+    "input": {
+      "background": "transparent",
+      "textColor": "#E1DDDD",
+      "borderColor": "#000000",
+      "borderRadius": "7px",
+      "borderRadiusCorners": {
+        "topLeft": "7px",
+        "topRight": "7px",
+        "bottomRight": "7px",
+        "bottomLeft": "7px"
+      },
+      "shadow": "none"
+    }
+  },
+  "images": {
+    "logo": "File saved at: attached_assets/logo.webp",
+    "favicon": "File saved at: attached_assets/favicon.webp",
+    "ogImage": "http://static1.squarespace.com/static/6430aae871ab6e092454a678/t/6430ab4871ab6e092454b103/1662618878187/Michaela-Ternasky-Holland-Logo.png?format=1500w"
+  },
+  "__framework_hints": [],
+  "__llm_logo_reasoning": {
+    "selectedIndex": 1,
+    "reasoning": "Strong indicators: header logo linking to homepage, header location, visible, top-left position, src contains logo, class contains logo, alt exactly matches brand name \"Michaela Ternasky-Holland\", reasonable size. Score: 130 (clear winner by 60 points)",
+    "confidence": 0.9
+  },
+  "__llm_button_reasoning": {
+    "primary": {
+      "index": -1,
+      "text": "N/A",
+      "reasoning": "LLM failed"
+    },
+    "secondary": {
+      "index": -1,
+      "text": "N/A",
+      "reasoning": "LLM failed"
+    },
+    "confidence": 0
+  },
+  "confidence": {
+    "buttons": 0,
+    "colors": 0,
+    "overall": 0
+  }
+}
