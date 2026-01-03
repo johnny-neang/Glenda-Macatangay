@@ -60,14 +60,14 @@ export function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-end md:items-center pt-8 border-t border-secondary-foreground/10 gap-4">
           <div className="flex items-center gap-4">
              <img 
-              src="/attached_assets/logo.webp" 
-              alt="MTH Logo" 
-              className="h-10 w-auto opacity-80"
+              src="/attached_assets/glenda-logo_1767436360222.png" 
+              alt="Glenda Logo" 
+              className="h-12 w-auto opacity-80"
             />
           </div>
           
           <div className="flex flex-col md:flex-row gap-4 md:gap-8 text-sm text-muted-foreground text-right md:text-left">
-             <p>© {currentYear} Michaela Ternasky-Holland</p>
+             <p>© {currentYear} Glenda Macatangay</p>
              <p>Designed & Developed with Care</p>
           </div>
         </div>

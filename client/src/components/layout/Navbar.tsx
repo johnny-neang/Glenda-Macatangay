@@ -34,8 +34,11 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/">
           <a className="block group">
-            {/* Using text logo for now as the name changed */}
-            <span className="text-xl font-serif font-bold tracking-tighter">GLENDA</span>
+            <img 
+              src="/attached_assets/glenda-logo_1767436360222.png" 
+              alt="Glenda Logo" 
+              className="h-12 w-auto transition-transform group-hover:scale-105"
+            />
           </a>
         </Link>
 
