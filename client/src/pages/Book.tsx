@@ -69,7 +69,7 @@ export default function Book() {
               
               <ScrollReveal delay={0.6}>
                 <a 
-                  href="https://squarespace.com/placeholder" 
+                  href="https://my-healing-language.myshopify.com/products/salt-in-her-lungs?variant=51523523772698" 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="inline-block bg-primary text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-black transition-colors w-full md:w-auto text-center"
@@ -120,7 +120,7 @@ export default function Book() {
               </div>
               
               <a 
-                href="https://squarespace.com/placeholder" 
+                href="https://my-healing-language.myshopify.com/products/salt-in-her-lungs?variant=51523523772698" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="inline-block bg-primary text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-colors w-full md:w-auto text-center mb-12"
