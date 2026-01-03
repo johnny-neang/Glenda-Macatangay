@@ -4,6 +4,9 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { useQuery } from "@tanstack/react-query";
 import type { TourDate } from "@shared/schema";
 import { Link } from "wouter";
+import tourPhoto1 from "@assets/IMG_7787_1767440597169.JPG";
+import tourPhoto2 from "@assets/IMG_7793_1767440597170.JPG";
+import tourPhoto3 from "@assets/IMG_7796_1767440597170.JPG";
 
 export default function Tour() {
   const { data: tourDates, isLoading } = useQuery<TourDate[]>({
@@ -63,15 +66,38 @@ export default function Tour() {
             </div>
           </ScrollReveal>
           
+          <ScrollReveal delay={0.3}>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              <div className="aspect-[3/4] overflow-hidden">
+                <img 
+                  src={tourPhoto1} 
+                  alt="Glenda Macatangay" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="aspect-[3/4] overflow-hidden">
+                <img 
+                  src={tourPhoto2} 
+                  alt="Glenda Macatangay" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+              <div className="aspect-[3/4] overflow-hidden col-span-2 md:col-span-1">
+                <img 
+                  src={tourPhoto3} 
+                  alt="Glenda Macatangay" 
+                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            </div>
+          </ScrollReveal>
+          
           <div className="flex gap-4">
             <Link href="/contact">
               <button className="bg-black text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-primary transition-colors">
                 Host a Tour Stop
               </button>
             </Link>
-            <button className="border border-black px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-primary hover:border-primary hover:text-white transition-colors">
-              Attend an Event
-            </button>
           </div>
         </div>
       </main>
