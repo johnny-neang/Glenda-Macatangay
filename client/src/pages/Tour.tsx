@@ -40,6 +40,13 @@ export default function Tour() {
               {tourIntro.split('\n\n').map((paragraph, i) => (
                 <p key={i}>{paragraph}</p>
               ))}
+              <div className="pt-4">
+                <Link href="/contact">
+                  <button className="bg-black text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-primary transition-colors">
+                    Host a Tour Stop
+                  </button>
+                </Link>
+              </div>
             </div>
           </ScrollReveal>
 
@@ -120,13 +127,6 @@ export default function Tour() {
             </div>
           </ScrollReveal>
           
-          <div className="flex gap-4">
-            <Link href="/contact">
-              <button className="bg-black text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-primary transition-colors">
-                Host a Tour Stop
-              </button>
-            </Link>
-          </div>
         </div>
       </main>
       <Footer />
