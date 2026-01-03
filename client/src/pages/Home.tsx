@@ -7,6 +7,7 @@ import { useRef } from "react";
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { openCalendlyPopup } from "@/hooks/use-calendly";
+import { useMultiplePageContent } from "@/hooks/use-page-content";
 import type { Testimonial } from "@shared/schema";
 
 // New book cover image
@@ -16,7 +17,11 @@ import tourCardBg from "@assets/Tour_1767439512806.jpg";
 import speakingCardBg from "@assets/Speaking_1767439512806.jpg";
 import consultingCardBg from "@assets/Consulting_1767439512805.jpg";
 
+const DEFAULT_HOME_HERO = "A journey of movement, healing, and returning to the ocean within.";
+const DEFAULT_HOME_INTRO = "I'm Glenda Macatangay, a Filipina author, healing arts educator, and community practitioner working at the intersection of story, culture, and collective care. My work centers survivors, spirit, and the practices that help us move from silence to safety.";
+
 export default function Home() {
+  const { data: content = {} } = useMultiplePageContent(["home_hero", "home_intro"]);
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -49,7 +54,7 @@ export default function Home() {
               
               <motion.div variants={revealVariant} className="space-y-4">
                 <p className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed">
-                  A journey of movement, healing, and returning to the ocean within.
+                  {content.home_hero || DEFAULT_HOME_HERO}
                 </p>
                 <p className="text-sm uppercase tracking-widest font-bold text-foreground/80">By Glenda Macatangay</p>
               </motion.div>
@@ -98,7 +103,7 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           <ScrollReveal width="100%">
             <p className="text-lg md:text-2xl font-serif leading-relaxed text-foreground">
-              I'm Glenda Macatangay, a Filipina author, healing arts educator, and community practitioner working at the intersection of story, culture, and collective care. My work centers survivors, spirit, and the practices that help us move from silence to safety.
+              {content.home_intro || DEFAULT_HOME_INTRO}
             </p>
           </ScrollReveal>
         </div>

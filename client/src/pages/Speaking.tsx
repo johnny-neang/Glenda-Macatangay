@@ -2,10 +2,15 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { openCalendlyPopup } from "@/hooks/use-calendly";
+import { useMultiplePageContent } from "@/hooks/use-page-content";
 import speakingPhoto1 from "@assets/IMG_3397_1767441104174.jpg";
 import speakingPhoto2 from "@assets/IMG_4321_1767441104176.JPG";
 
+const DEFAULT_SPEAKING_INTRO = "Glenda Macatangay brings a rare blend of survivor truth, ancestral wisdom, and practical frameworks to keynotes that help communities transform silence into safety. Her work offers a grounded, culturally rooted approach to trauma, healing, leadership, and relational wellbeing.";
+
 export default function Speaking() {
+  const { data: content = {} } = useMultiplePageContent(["speaking_intro"]);
+  
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
@@ -14,7 +19,7 @@ export default function Speaking() {
           <ScrollReveal>
             <h1 className="text-4xl md:text-6xl font-serif mb-6">Speaking and Keynotes</h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Glenda Macatangay brings a rare blend of survivor truth, ancestral wisdom, and practical frameworks to keynotes that help communities transform silence into safety. Her work offers a grounded, culturally rooted approach to trauma, healing, leadership, and relational wellbeing.
+              {content.speaking_intro || DEFAULT_SPEAKING_INTRO}
             </p>
           </ScrollReveal>
 

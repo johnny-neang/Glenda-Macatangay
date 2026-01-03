@@ -3,12 +3,16 @@ import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { useQuery } from "@tanstack/react-query";
 import { openCalendlyPopup } from "@/hooks/use-calendly";
+import { useMultiplePageContent } from "@/hooks/use-page-content";
 import type { Testimonial } from "@shared/schema";
 import consultingPhoto1 from "@assets/IMG_0464_1767441391421.JPG";
 import consultingPhoto2 from "@assets/IMG_1942_1767441391422.JPG";
 import consultingPhoto3 from "@assets/IMG_1944_1767441391423.JPG";
 
+const DEFAULT_CONSULTING_INTRO = "Through My Healing Language, Glenda partners with organizations to support relational wellbeing, organizational wellness, and culturally responsive leadership.";
+
 export default function Consulting() {
+  const { data: content = {} } = useMultiplePageContent(["consulting_intro"]);
   const { data: testimonials = [] } = useQuery<Testimonial[]>({
     queryKey: ["testimonials", "consulting"],
     queryFn: async () => {
@@ -25,7 +29,7 @@ export default function Consulting() {
           <ScrollReveal>
             <h1 className="text-4xl md:text-6xl font-serif mb-6">Consulting and Facilitation</h1>
             <p className="text-xl text-muted-foreground leading-relaxed">
-              Through My Healing Language, Glenda partners with organizations to support relational wellbeing, organizational wellness, and culturally responsive leadership.
+              {content.consulting_intro || DEFAULT_CONSULTING_INTRO}
             </p>
           </ScrollReveal>
 
