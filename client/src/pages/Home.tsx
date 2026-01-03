@@ -7,7 +7,7 @@ import { useRef } from "react";
 import { Link } from "wouter";
 
 // New book cover image
-import heroImage from "@assets/book-cover_1767436940677.jpg";
+import heroImage from "@assets/book-cover-new_1767438341854.jpg";
 import bookCardBg from "@assets/Book_1767437668843.jpg";
 import tourCardBg from "@assets/Tour_1767437797386.jpg";
 import speakingCardBg from "@assets/Speaking_1767437797386.jpg";
