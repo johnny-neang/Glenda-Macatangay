@@ -27,9 +27,7 @@ export default function Book() {
             <div className="space-y-8">
               <ScrollReveal delay={0.4}>
                 <h2 className="text-2xl font-serif mb-4">About the Book</h2>
-                <p className="text-muted-foreground">
-                  In this transformative work, Glenda weaves personal narrative with somatic practices, offering a roadmap for anyone seeking to reclaim their voice and body.
-                </p>
+                <p className="text-muted-foreground">A lyrical and unflinching memoir about childhood silence, intergenerational trauma, and the long walk back to truth. Rooted in Filipina lineage and survivor wisdom, Salt in Her Lungs traces a journey through harm, shame, embodiment, motherhood, and healing. The book offers readers language for what was carried and practices for what comes next. This book is for survivors and advocates, mothers and daughters navigating complexity, educators, healers, and cultural workers, and anyone seeking a more honest and embodied practice of healing.</p>
               </ScrollReveal>
               
               <ScrollReveal delay={0.6}>
