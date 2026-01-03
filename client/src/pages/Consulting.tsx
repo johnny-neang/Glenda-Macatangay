@@ -47,9 +47,7 @@ export default function Consulting() {
               onClick={() => openCalendlyPopup()}
               className="inline-block bg-black text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-primary transition-colors cursor-pointer"
               data-testid="button-request-proposal"
-            >
-              Request a Proposal
-            </button>
+            >Schedule discovery call</button>
           </ScrollReveal>
 
           {testimonials.length > 0 && (
