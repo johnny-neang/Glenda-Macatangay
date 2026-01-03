@@ -66,20 +66,12 @@ export default function Home() {
 
           <div className="order-1 md:order-2 relative flex justify-center md:justify-end">
             <div className="relative w-full max-w-md aspect-[4/5]">
-              {/* Background shape */}
-              <motion.div 
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ duration: 1, delay: 0.2 }}
-                className="absolute top-12 right-0 bottom-0 left-12 bg-secondary z-0"
-              />
-              
               {/* Image */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 1 }}
-                className="relative z-10 h-full w-full overflow-hidden"
+                className="relative h-full w-full overflow-hidden"
               >
                  <img 
                   src={heroImage} 
