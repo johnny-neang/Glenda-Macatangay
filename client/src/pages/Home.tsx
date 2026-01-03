@@ -25,7 +25,6 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-white overflow-x-hidden flex flex-col">
       <Navbar />
-
       {/* Hero Section */}
       <section className="min-h-screen flex items-center pt-24 pb-12 px-6 md:px-12 relative">
         <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
@@ -41,9 +40,7 @@ export default function Home() {
                 <p className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed">
                   A journey of movement, healing, and returning to the ocean within.
                 </p>
-                <p className="text-sm uppercase tracking-widest font-bold text-foreground/80">
-                  By Glenda
-                </p>
+                <p className="text-sm uppercase tracking-widest font-bold text-foreground/80">By Glenda Macatangay</p>
               </motion.div>
 
               <motion.div variants={revealVariant} className="flex flex-col sm:flex-row gap-4 pt-4">
@@ -83,7 +80,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Short Intro */}
       <section className="py-24 bg-muted/20 px-6 md:px-12">
         <div className="max-w-4xl mx-auto text-center">
@@ -96,7 +92,6 @@ export default function Home() {
           </ScrollReveal>
         </div>
       </section>
-
       {/* Quick Sections Grid */}
       <section className="py-24 px-6 md:px-12" ref={targetRef}>
         <div className="max-w-7xl mx-auto">
@@ -200,7 +195,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
       {/* Testimonials Placeholder */}
       <section className="py-24 bg-secondary text-secondary-foreground px-6 md:px-12">
         <div className="max-w-4xl mx-auto text-center space-y-12">
@@ -216,7 +210,6 @@ export default function Home() {
           </ScrollReveal>
         </div>
       </section>
-
       {/* Footer */}
       <Footer />
     </div>
