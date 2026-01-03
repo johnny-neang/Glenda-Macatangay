@@ -5,6 +5,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, BookOpen, Mic, MapPin, Briefcase } from "lucide-react";
 import { useRef } from "react";
 import { Link } from "wouter";
+import { useQuery } from "@tanstack/react-query";
+import type { Testimonial } from "@shared/schema";
 
 // New book cover image
 import heroImage from "@assets/book-cover_1767438560120.png";
@@ -21,6 +23,14 @@ export default function Home() {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+
+  const { data: testimonials = [] } = useQuery<Testimonial[]>({
+    queryKey: ["testimonials", "home"],
+    queryFn: async () => {
+      const res = await fetch("/api/testimonials/placement/home");
+      return res.json();
+    },
+  });
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-white overflow-x-hidden flex flex-col">
@@ -193,21 +203,27 @@ export default function Home() {
           </div>
         </div>
       </section>
-      {/* Testimonials Placeholder */}
-      <section className="py-24 bg-secondary text-secondary-foreground px-6 md:px-12">
-        <div className="max-w-4xl mx-auto text-center space-y-12">
-          <ScrollReveal>
-             <h2 className="text-sm font-bold uppercase tracking-widest opacity-70">Praise for the Work</h2>
-          </ScrollReveal>
-          
-          <ScrollReveal delay={0.2}>
-             <blockquote className="text-2xl md:text-4xl font-serif leading-tight">
-               "A powerful voice for our times. Glenda's work reminds us that healing is not just personal, but political and planetary."
-             </blockquote>
-             <cite className="block mt-8 text-sm font-bold not-italic opacity-80">— Early Reviewer</cite>
-          </ScrollReveal>
-        </div>
-      </section>
+      {/* Testimonials */}
+      {testimonials.length > 0 && (
+        <section className="py-24 bg-secondary text-secondary-foreground px-6 md:px-12">
+          <div className="max-w-4xl mx-auto text-center space-y-12">
+            <ScrollReveal>
+               <h2 className="text-sm font-bold uppercase tracking-widest opacity-70">Praise for the Work</h2>
+            </ScrollReveal>
+            
+            {testimonials.map((testimonial, index) => (
+              <ScrollReveal key={testimonial.id} delay={0.2 + index * 0.1}>
+                 <blockquote className="text-2xl md:text-4xl font-serif leading-tight">
+                   "{testimonial.quote}"
+                 </blockquote>
+                 <cite className="block mt-8 text-sm font-bold not-italic opacity-80">
+                   — {testimonial.name}{testimonial.title && `, ${testimonial.title}`}
+                 </cite>
+              </ScrollReveal>
+            ))}
+          </div>
+        </section>
+      )}
       {/* Footer */}
       <Footer />
     </div>

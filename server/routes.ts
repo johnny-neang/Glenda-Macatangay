@@ -199,6 +199,12 @@ export async function registerRoutes(
   app.post("/api/testimonials", requireAdmin, async (req, res) => {
     try {
       const testimonialData = insertTestimonialSchema.parse(req.body);
+      if (!testimonialData.placement || testimonialData.placement.length === 0) {
+        return res.status(400).json({ error: "At least one placement is required" });
+      }
+      if (!testimonialData.name || !testimonialData.quote) {
+        return res.status(400).json({ error: "Name and quote are required" });
+      }
       const testimonial = await storage.createTestimonial(testimonialData);
       res.json(testimonial);
     } catch (error) {
@@ -209,6 +215,9 @@ export async function registerRoutes(
   app.put("/api/testimonials/:id", requireAdmin, async (req, res) => {
     try {
       const id = parseInt(req.params.id);
+      if (req.body.placement && req.body.placement.length === 0) {
+        return res.status(400).json({ error: "At least one placement is required" });
+      }
       const testimonial = await storage.updateTestimonial(id, req.body);
       res.json(testimonial);
     } catch (error) {

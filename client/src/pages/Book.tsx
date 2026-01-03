@@ -1,9 +1,19 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
+import { useQuery } from "@tanstack/react-query";
+import type { Testimonial } from "@shared/schema";
 import bookCover from "@assets/book-cover_1767440366702.png";
 
 export default function Book() {
+  const { data: testimonials = [] } = useQuery<Testimonial[]>({
+    queryKey: ["testimonials", "book"],
+    queryFn: async () => {
+      const res = await fetch("/api/testimonials/placement/book");
+      return res.json();
+    },
+  });
+
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <Navbar />
@@ -47,24 +57,23 @@ export default function Book() {
             </div>
           </div>
 
-          <ScrollReveal className="border-t border-border pt-12">
-            <h2 className="text-2xl font-serif mb-8">What people are saying</h2>
-            <div className="space-y-8">
-              <blockquote className="border-l-4 border-primary pl-6">
-                <p className="text-lg italic text-foreground mb-4">
-                  "Written with passion and honesty, Salt in Her Lungs, is part memoir, part poetry, and substantially a story about personal transformation. Combining stories of family, trauma, culture, love and transcendence, Macatangay's voice is sweet, yet hard hitting. She shares her stories of personal growth, triumph and healing without resentment or regret, but with the hope that others can benefit and learn from her journey."
-                </p>
-                <cite className="text-sm font-bold text-muted-foreground not-italic">— Pedro Noguera, Dean, Rossier School of Education, USC Distinguished Professor of Education</cite>
-              </blockquote>
-              
-              <blockquote className="border-l-4 border-primary pl-6">
-                <p className="text-lg italic text-foreground mb-4">
-                  "Illuminating & Courageous! 'Salt in Her Lungs' is a portal to healing after complex trauma—a luminous invitation to believe in Spirit, intuition, and the possibility of transformation."
-                </p>
-                <cite className="text-sm font-bold text-muted-foreground not-italic">— Jeannie E. Celestial, Ph.D., M.S.W., Licensed Psychologist & Co-Author/Co-Editor of "Clinical Interventions for Internalized Oppression"</cite>
-              </blockquote>
-            </div>
-          </ScrollReveal>
+          {testimonials.length > 0 && (
+            <ScrollReveal className="border-t border-border pt-12">
+              <h2 className="text-2xl font-serif mb-8">What people are saying</h2>
+              <div className="space-y-8">
+                {testimonials.map((testimonial) => (
+                  <blockquote key={testimonial.id} className="border-l-4 border-primary pl-6" data-testid={`testimonial-book-${testimonial.id}`}>
+                    <p className="text-lg italic text-foreground mb-4">
+                      "{testimonial.quote}"
+                    </p>
+                    <cite className="text-sm font-bold text-muted-foreground not-italic">
+                      — {testimonial.name}{testimonial.title && `, ${testimonial.title}`}
+                    </cite>
+                  </blockquote>
+                ))}
+              </div>
+            </ScrollReveal>
+          )}
 
           <ScrollReveal className="border-t border-border pt-12" width="100%">
             <div className="bg-secondary text-secondary-foreground p-8 md:p-12">
