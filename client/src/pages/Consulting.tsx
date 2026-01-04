@@ -5,9 +5,9 @@ import { useQuery } from "@tanstack/react-query";
 import { openCalendlyPopup } from "@/hooks/use-calendly";
 import { useMultiplePageContent } from "@/hooks/use-page-content";
 import type { Testimonial } from "@shared/schema";
-import consultingPhoto1 from "@assets/IMG_0464_1767441391421.JPG";
-import consultingPhoto2 from "@assets/IMG_1942_1767441391422.JPG";
-import consultingPhoto3 from "@assets/IMG_1944_1767441391423.JPG";
+import consultingPhoto1 from "@assets/consulting1.jpg";
+import consultingPhoto2 from "@assets/consulting2.jpg";
+import consultingPhoto3 from "@assets/consulting3.jpg";
 
 const DEFAULT_CONSULTING_INTRO = "Through My Healing Language, Glenda partners with organizations to support relational wellbeing, organizational wellness, and culturally responsive leadership.";
 
