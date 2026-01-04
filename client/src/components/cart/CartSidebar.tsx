@@ -79,10 +79,11 @@ export function CartSidebar() {
                         <h3 className="font-serif text-sm leading-tight mb-1">
                           {line.merchandise.product.title}
                         </h3>
-                        {line.merchandise.product.description && (
-                          <p className="text-xs text-muted-foreground mb-4 leading-relaxed italic">
-                            {line.merchandise.product.description}
-                          </p>
+                        {line.merchandise.product.descriptionHtml && (
+                          <div 
+                            className="text-xs text-muted-foreground mb-4 leading-relaxed italic prose prose-sm max-w-none [&>p]:mb-2"
+                            dangerouslySetInnerHTML={{ __html: line.merchandise.product.descriptionHtml }}
+                          />
                         )}
                         {line.merchandise.title !== "Default Title" && (
                           <p className="text-xs text-muted-foreground mb-2">
