@@ -11,6 +11,8 @@ import consultingPhoto3 from "@assets/consulting3.jpg";
 
 import _mg_6553 from "@assets/_mg_6553.jpeg";
 
+import _mg_6402_2 from "@assets/_mg_6402-2.jpeg";
+
 const DEFAULT_CONSULTING_INTRO = "Through My Healing Language, Glenda partners with organizations to support relational wellbeing, organizational wellness, and culturally responsive leadership.";
 
 export default function Consulting() {
@@ -78,7 +80,7 @@ export default function Consulting() {
             <div className="grid grid-cols-3 gap-4">
               <div className="aspect-[4/3] overflow-hidden">
                 <img 
-                  src={consultingPhoto1} 
+                  src={_mg_6402_2} 
                   alt="Glenda Macatangay consulting" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
