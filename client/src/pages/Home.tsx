@@ -8,7 +8,10 @@ import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { openCalendlyPopup } from "@/hooks/use-calendly";
 import { useMultiplePageContent } from "@/hooks/use-page-content";
+import { useCart } from "@/hooks/use-shopify-cart";
 import type { Testimonial } from "@shared/schema";
+
+const BOOK_VARIANT_ID = "gid://shopify/ProductVariant/51523523805466";
 
 // New book cover image
 import heroImage from "@assets/book-cover_1767438560120.png";
@@ -22,6 +25,7 @@ const DEFAULT_HOME_INTRO = "I'm Glenda Macatangay, a Filipina author, healing ar
 
 export default function Home() {
   const { data: content = {} } = useMultiplePageContent(["home_hero", "home_intro"]);
+  const { addToCart, isLoading } = useCart();
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
@@ -60,14 +64,14 @@ export default function Home() {
               </motion.div>
 
               <motion.div variants={revealVariant} className="flex flex-col gap-4 pt-4 max-w-xs">
-                <a 
-                  href="https://squarespace.com/placeholder" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="bg-primary text-white px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-black transition-colors w-full"
+                <button 
+                  onClick={() => addToCart(BOOK_VARIANT_ID, 1)}
+                  disabled={isLoading}
+                  className="bg-primary text-white px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-black transition-colors w-full disabled:opacity-50"
+                  data-testid="button-preorder-book"
                 >
-                  Pre-Order the Book
-                </a>
+                  {isLoading ? "Adding..." : "Pre-Order the Book"}
+                </button>
                 <button 
                   onClick={() => openCalendlyPopup()}
                   className="block border border-foreground px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-foreground hover:text-white transition-colors w-full"
