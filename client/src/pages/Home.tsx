@@ -132,9 +132,7 @@ export default function Home() {
 
                 <BookOpen className="w-8 h-8 text-white group-hover:scale-110 transition-transform relative z-10" />
                 <h3 className="text-xl font-serif text-white relative z-10">The Book</h3>
-                <p className="text-sm text-gray-200 leading-relaxed relative z-10">
-                  Discover "Salt in Her Lungs" and the themes of resilience and ocean healing.
-                </p>
+                <p className="text-sm text-gray-200 leading-relaxed relative z-10">Discover Salt In Her Lungs and themes of self- love, relational well-being, survival, and ancestral healing.</p>
                 <div className="flex items-center text-xs font-bold uppercase tracking-widest text-white pt-2 relative z-10">
                   Learn More <ArrowRight className="ml-2 w-3 h-3 group-hover:translate-x-1 transition-transform" />
                 </div>
