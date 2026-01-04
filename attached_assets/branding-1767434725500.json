@@ -65,12 +65,12 @@
   "images": {
     "logo": "File saved at: attached_assets/logo.webp",
     "favicon": "File saved at: attached_assets/favicon.webp",
-    "ogImage": "http://static1.squarespace.com/static/6430aae871ab6e092454a678/t/6430ab4871ab6e092454b103/1662618878187/Michaela-Ternasky-Holland-Logo.png?format=1500w"
+    
   },
   "__framework_hints": [],
   "__llm_logo_reasoning": {
     "selectedIndex": 1,
-    "reasoning": "Strong indicators: header logo linking to homepage, header location, visible, top-left position, src contains logo, class contains logo, alt exactly matches brand name \"Michaela Ternasky-Holland\", reasonable size. Score: 130 (clear winner by 60 points)",
+    
     "confidence": 0.9
   },
   "__llm_button_reasoning": {
