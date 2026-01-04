@@ -79,6 +79,11 @@ export function CartSidebar() {
                         <h3 className="font-serif text-sm leading-tight mb-1">
                           {line.merchandise.product.title}
                         </h3>
+                        {line.merchandise.product.description && (
+                          <p className="text-[10px] text-muted-foreground line-clamp-2 mb-2 leading-tight">
+                            {line.merchandise.product.description}
+                          </p>
+                        )}
                         {line.merchandise.title !== "Default Title" && (
                           <p className="text-xs text-muted-foreground mb-2">
                             {line.merchandise.title}
