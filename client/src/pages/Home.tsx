@@ -55,6 +55,14 @@ export default function Home() {
                   Salt in Her Lungs
                 </h1>
               </motion.div>
+
+              <motion.div variants={revealVariant}>
+                <div className="bg-blue-600/10 border border-blue-600/20 px-6 py-4 rounded-sm">
+                  <p className="text-blue-700 text-sm font-bold tracking-wide uppercase">
+                    Limited Edition Pre-Orders Available through February 14, Shipping March 1
+                  </p>
+                </div>
+              </motion.div>
               
               <motion.div variants={revealVariant} className="space-y-4">
                 <p className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed">
@@ -70,7 +78,7 @@ export default function Home() {
                   className="bg-primary text-white px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-black transition-colors w-full disabled:opacity-50"
                   data-testid="button-preorder-book"
                 >
-                  {isLoading ? "Adding..." : "Pre-Order Limited Edition Copies"}
+                  {isLoading ? "Adding..." : "Pre-Order Your Copy Today"}
                 </button>
                 <button 
                   onClick={() => openCalendlyPopup()}
