@@ -24,7 +24,7 @@ export default function Speaking() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.2} className="border-t border-border pt-12">
-            <h2 className="text-2xl font-serif mb-6">Signature Talk</h2>
+            <h2 className="text-2xl font-serif mb-6">Signature Talks</h2>
             <div className="space-y-6">
               <div className="p-6 border border-border">
                 <h3 className="text-lg font-bold mb-2">The Weight of Silence: Truth, Power, and The Practice of Safety</h3>
