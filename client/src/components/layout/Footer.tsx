@@ -104,7 +104,7 @@ export function Footer() {
                 <button
                   type="submit"
                   disabled={subscribeMutation.isPending}
-                  className="bg-primary text-white px-6 py-3 text-sm font-bold tracking-widest uppercase hover:bg-white hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                  className="bg-primary text-white px-6 py-3 text-sm font-bold tracking-widest uppercase hover:bg-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
                   data-testid="button-subscribe"
                 >
                   {subscribeMutation.isPending ? (
