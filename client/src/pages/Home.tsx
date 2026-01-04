@@ -66,7 +66,7 @@ export default function Home() {
               
               <motion.div variants={revealVariant} className="space-y-4">
                 <p className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed">
-                  {content.home_hero || DEFAULT_HOME_HERO}
+                  Salt in Her Lungs is a journey of healing, movement, and return to sacredness—an exploration of love, resilience, memory, and the ocean of wisdom we carry within.
                 </p>
                 <p className="text-sm uppercase tracking-widest font-bold text-foreground/80">By Glenda Macatangay</p>
               </motion.div>
