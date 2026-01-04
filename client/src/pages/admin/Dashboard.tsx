@@ -6,7 +6,7 @@ import type { TourDate, Testimonial } from "@shared/schema";
 
 export default function AdminDashboard() {
   const [, setLocation] = useLocation();
-  const [activeTab, setActiveTab] = useState<"tour" | "content" | "testimonials">("tour");
+  const [activeTab, setActiveTab] = useState<"tour" | "testimonials">("tour");
   const queryClient = useQueryClient();
 
   const { data: authData, isLoading: authLoading } = useQuery({
@@ -70,15 +70,6 @@ export default function AdminDashboard() {
             Tour Dates
           </button>
           <button
-            onClick={() => setActiveTab("content")}
-            className={`py-4 text-sm font-bold uppercase tracking-widest border-b-2 transition-colors ${
-              activeTab === "content" ? "border-primary text-primary" : "border-transparent hover:text-primary"
-            }`}
-            data-testid="tab-content"
-          >
-            Page Content
-          </button>
-          <button
             onClick={() => setActiveTab("testimonials")}
             className={`py-4 text-sm font-bold uppercase tracking-widest border-b-2 transition-colors ${
               activeTab === "testimonials" ? "border-primary text-primary" : "border-transparent hover:text-primary"
@@ -92,7 +83,6 @@ export default function AdminDashboard() {
 
       <main className="p-6 max-w-6xl mx-auto">
         {activeTab === "tour" && <TourDatesManager />}
-        {activeTab === "content" && <ContentManager />}
         {activeTab === "testimonials" && <TestimonialsManager />}
       </main>
     </div>
@@ -294,112 +284,6 @@ function TourDatesManager() {
         {tourDates.length === 0 && (
           <p className="text-muted-foreground text-center py-8">No tour dates yet. Add your first event above.</p>
         )}
-      </div>
-    </div>
-  );
-}
-
-function ContentManager() {
-  const queryClient = useQueryClient();
-  const [selectedPage, setSelectedPage] = useState<string | null>(null);
-  const [content, setContent] = useState("");
-
-  const pages = [
-    { key: "home_hero", label: "Home - Hero Tagline" },
-    { key: "home_intro", label: "Home - Introduction" },
-    { key: "book_tagline", label: "Book - Tagline" },
-    { key: "book_about", label: "Book - About Section" },
-    { key: "book_preorder", label: "Book - Pre-Order Info" },
-    { key: "tour_intro", label: "Tour - Introduction" },
-    { key: "speaking_intro", label: "Speaking - Introduction" },
-    { key: "consulting_intro", label: "Consulting - Introduction" },
-    { key: "about_bio", label: "About - Biography" },
-    { key: "privacy_policy", label: "Privacy Policy" },
-    { key: "acknowledgement", label: "Acknowledgement - Land & Lineage" },
-  ];
-
-  const { data: pageContent } = useQuery({
-    queryKey: ["page-content", selectedPage],
-    queryFn: async () => {
-      if (!selectedPage) return null;
-      const res = await fetch(`/api/content/${selectedPage}`);
-      return res.json();
-    },
-    enabled: !!selectedPage,
-  });
-
-  useEffect(() => {
-    if (pageContent?.content) {
-      setContent(pageContent.content);
-    } else {
-      setContent("");
-    }
-  }, [pageContent]);
-
-  const updateMutation = useMutation({
-    mutationFn: async () => {
-      const res = await fetch(`/api/content/${selectedPage}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ content }),
-        credentials: "include",
-      });
-      return res.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["page-content"] });
-      queryClient.invalidateQueries({ queryKey: ["page-content-multiple"] });
-      alert("Content saved successfully!");
-    },
-  });
-
-  return (
-    <div className="space-y-6">
-      <h2 className="text-2xl font-serif">Page Content</h2>
-      
-      <div className="grid md:grid-cols-3 gap-6">
-        <div className="space-y-2">
-          <h3 className="font-bold text-sm uppercase tracking-widest text-muted-foreground">Select Page Section</h3>
-          <div className="space-y-1">
-            {pages.map((page) => (
-              <button
-                key={page.key}
-                onClick={() => setSelectedPage(page.key)}
-                className={`w-full text-left px-4 py-2 text-sm transition-colors ${
-                  selectedPage === page.key ? "bg-primary text-white" : "hover:bg-muted"
-                }`}
-                data-testid={`button-page-${page.key}`}
-              >
-                {page.label}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div className="md:col-span-2">
-          {selectedPage ? (
-            <div className="space-y-4">
-              <h3 className="font-bold">{pages.find(p => p.key === selectedPage)?.label}</h3>
-              <textarea
-                value={content}
-                onChange={(e) => setContent(e.target.value)}
-                className="w-full h-96 bg-white border border-border px-4 py-2 font-mono text-sm"
-                placeholder="Enter content here... Use plain text or basic formatting."
-                data-testid="textarea-content"
-              />
-              <button
-                onClick={() => updateMutation.mutate()}
-                disabled={updateMutation.isPending}
-                className="flex items-center gap-2 bg-primary text-white px-4 py-2 text-sm font-bold uppercase tracking-widest hover:bg-black transition-colors disabled:opacity-50"
-                data-testid="button-save-content"
-              >
-                <Save className="w-4 h-4" /> {updateMutation.isPending ? "Saving..." : "Save Content"}
-              </button>
-            </div>
-          ) : (
-            <p className="text-muted-foreground py-8 text-center">Select a page section to edit its content.</p>
-          )}
-        </div>
       </div>
     </div>
   );
