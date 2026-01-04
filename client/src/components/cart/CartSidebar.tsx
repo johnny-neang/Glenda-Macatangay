@@ -80,7 +80,7 @@ export function CartSidebar() {
                           {line.merchandise.product.title}
                         </h3>
                         {line.merchandise.product.description && (
-                          <p className="text-[10px] text-muted-foreground line-clamp-2 mb-2 leading-tight">
+                          <p className="text-xs text-muted-foreground mb-4 leading-relaxed italic">
                             {line.merchandise.product.description}
                           </p>
                         )}

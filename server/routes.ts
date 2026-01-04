@@ -325,6 +325,7 @@ export async function registerRoutes(
                         }
                         product {
                           title
+                          description
                           featuredImage {
                             url
                           }
@@ -403,6 +404,7 @@ export async function registerRoutes(
                         }
                         product {
                           title
+                          description
                           featuredImage {
                             url
                           }
@@ -540,6 +542,7 @@ export async function registerRoutes(
                         }
                         product {
                           title
+                          description
                           featuredImage {
                             url
                           }
@@ -617,6 +620,7 @@ export async function registerRoutes(
                         }
                         product {
                           title
+                          description
                           featuredImage {
                             url
                           }
