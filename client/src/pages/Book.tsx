@@ -68,22 +68,6 @@ export default function Book() {
             </p>
           </ScrollReveal>
 
-          <ScrollReveal>
-            <h2 className="text-2xl font-serif mb-8">What people are saying</h2>
-            <div className="space-y-8">
-              {BOOK_ENDORSEMENTS.map((endorsement) => (
-                <blockquote key={endorsement.id} className="border-l-4 border-primary pl-6" data-testid={`testimonial-book-${endorsement.id}`}>
-                  <p className="text-lg italic text-foreground mb-4">
-                    "{endorsement.quote}"
-                  </p>
-                  <cite className="text-sm font-bold text-muted-foreground not-italic">
-                    — {endorsement.name}{endorsement.title && `, ${endorsement.title}`}
-                  </cite>
-                </blockquote>
-              ))}
-            </div>
-          </ScrollReveal>
-
           <div className="grid md:grid-cols-2 gap-12">
             <ScrollReveal delay={0.2} className="relative aspect-[3/4] overflow-hidden shadow-2xl">
               <img 
@@ -175,6 +159,22 @@ export default function Book() {
                   Email: <a href="mailto:hello@myhealinglanguage.com" className="hover:underline text-[#ffffff]">hello@myhealinglanguage.com</a>
                 </p>
               </div>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal>
+            <h2 className="text-2xl font-serif mb-8">What people are saying</h2>
+            <div className="space-y-8">
+              {BOOK_ENDORSEMENTS.map((endorsement) => (
+                <blockquote key={endorsement.id} className="border-l-4 border-primary pl-6" data-testid={`testimonial-book-${endorsement.id}`}>
+                  <p className="text-lg italic text-foreground mb-4">
+                    "{endorsement.quote}"
+                  </p>
+                  <cite className="text-sm font-bold text-muted-foreground not-italic">
+                    — {endorsement.name}{endorsement.title && `, ${endorsement.title}`}
+                  </cite>
+                </blockquote>
+              ))}
             </div>
           </ScrollReveal>
         </div>
