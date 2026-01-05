@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
 import { Menu, X, ShoppingBag } from "lucide-react";
 import { useCart } from "@/hooks/use-shopify-cart";
+import logo from "@assets/glenda-logo_1767436360222.png";
 
 const BOOK_VARIANT_ID = "gid://shopify/ProductVariant/51523523805466";
 
@@ -45,12 +46,11 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="block group">
-          <span 
-            className="text-4xl text-foreground group-hover:text-primary transition-colors"
-            style={{ fontFamily: "'Great Vibes', cursive" }}
-          >
-            glenda
-          </span>
+          <img 
+            src={logo} 
+            alt="Glenda Logo" 
+            className="h-12 w-auto"
+          />
         </Link>
 
         <div className="hidden md:flex items-center space-x-8">
