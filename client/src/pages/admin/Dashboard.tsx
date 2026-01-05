@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import { useLocation, Link } from "wouter";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Pencil, Trash2, Plus, LogOut, X, Save } from "lucide-react";
-import type { TourDate, Testimonial } from "@shared/schema";
+import type { TourDate } from "@shared/schema";
 
 export default function AdminDashboard() {
   const [, setLocation] = useLocation();
-  const [activeTab, setActiveTab] = useState<"tour" | "testimonials">("tour");
   const queryClient = useQueryClient();
 
   const { data: authData, isLoading: authLoading } = useQuery({
@@ -61,29 +60,16 @@ export default function AdminDashboard() {
       <nav className="border-b border-border px-6">
         <div className="flex gap-6">
           <button
-            onClick={() => setActiveTab("tour")}
-            className={`py-4 text-sm font-bold uppercase tracking-widest border-b-2 transition-colors ${
-              activeTab === "tour" ? "border-primary text-primary" : "border-transparent hover:text-primary"
-            }`}
+            className="py-4 text-sm font-bold uppercase tracking-widest border-b-2 border-primary text-primary"
             data-testid="tab-tour"
           >
             Tour Dates
-          </button>
-          <button
-            onClick={() => setActiveTab("testimonials")}
-            className={`py-4 text-sm font-bold uppercase tracking-widest border-b-2 transition-colors ${
-              activeTab === "testimonials" ? "border-primary text-primary" : "border-transparent hover:text-primary"
-            }`}
-            data-testid="tab-testimonials"
-          >
-            Testimonials
           </button>
         </div>
       </nav>
 
       <main className="p-6 max-w-6xl mx-auto">
-        {activeTab === "tour" && <TourDatesManager />}
-        {activeTab === "testimonials" && <TestimonialsManager />}
+        <TourDatesManager />
       </main>
     </div>
   );
@@ -288,214 +274,3 @@ function TourDatesManager() {
     </div>
   );
 }
-
-const PLACEMENT_OPTIONS = [
-  { value: "home", label: "Home Page" },
-  { value: "book", label: "Book Page" },
-  { value: "consulting", label: "Consulting Page" },
-];
-
-function TestimonialsManager() {
-  const queryClient = useQueryClient();
-  const [editingId, setEditingId] = useState<number | null>(null);
-  const [showAddForm, setShowAddForm] = useState(false);
-  const [formData, setFormData] = useState({
-    name: "",
-    title: "",
-    quote: "",
-    placement: [] as string[],
-    sortOrder: 0,
-  });
-
-  const { data: testimonials = [], isLoading } = useQuery<Testimonial[]>({
-    queryKey: ["testimonials"],
-    queryFn: async () => {
-      const res = await fetch("/api/testimonials", { credentials: "include" });
-      return res.json();
-    },
-  });
-
-  const createMutation = useMutation({
-    mutationFn: async (data: typeof formData) => {
-      const res = await fetch("/api/testimonials", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-        credentials: "include",
-      });
-      return res.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["testimonials"] });
-      setShowAddForm(false);
-      resetForm();
-    },
-  });
-
-  const updateMutation = useMutation({
-    mutationFn: async ({ id, data }: { id: number; data: typeof formData }) => {
-      const res = await fetch(`/api/testimonials/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-        credentials: "include",
-      });
-      return res.json();
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["testimonials"] });
-      setEditingId(null);
-      resetForm();
-    },
-  });
-
-  const deleteMutation = useMutation({
-    mutationFn: async (id: number) => {
-      await fetch(`/api/testimonials/${id}`, { method: "DELETE", credentials: "include" });
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["testimonials"] });
-    },
-  });
-
-  const resetForm = () => {
-    setFormData({ name: "", title: "", quote: "", placement: [], sortOrder: 0 });
-  };
-
-  const startEdit = (testimonial: Testimonial) => {
-    setEditingId(testimonial.id);
-    setFormData({
-      name: testimonial.name,
-      title: testimonial.title || "",
-      quote: testimonial.quote,
-      placement: testimonial.placement,
-      sortOrder: testimonial.sortOrder || 0,
-    });
-  };
-
-  const togglePlacement = (value: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      placement: prev.placement.includes(value)
-        ? prev.placement.filter((p) => p !== value)
-        : [...prev.placement, value],
-    }));
-  };
-
-  if (isLoading) return <div>Loading...</div>;
-
-  return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-serif">Testimonials</h2>
-        <button
-          onClick={() => setShowAddForm(true)}
-          className="flex items-center gap-2 bg-primary text-white px-4 py-2 text-sm font-bold uppercase tracking-widest hover:bg-black transition-colors"
-          data-testid="button-add-testimonial"
-        >
-          <Plus className="w-4 h-4" /> Add Testimonial
-        </button>
-      </div>
-
-      {(showAddForm || editingId) && (
-        <div className="bg-muted p-6 space-y-4">
-          <div className="flex justify-between items-center">
-            <h3 className="font-bold">{editingId ? "Edit Testimonial" : "Add New Testimonial"}</h3>
-            <button onClick={() => { setShowAddForm(false); setEditingId(null); resetForm(); }}>
-              <X className="w-5 h-5" />
-            </button>
-          </div>
-          <div className="grid gap-4">
-            <input
-              placeholder="Name *"
-              value={formData.name}
-              onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              className="bg-white border border-border px-4 py-2"
-              data-testid="input-testimonial-name"
-            />
-            <input
-              placeholder="Title/Role (e.g., 'Author, Speaker')"
-              value={formData.title}
-              onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-              className="bg-white border border-border px-4 py-2"
-              data-testid="input-testimonial-title"
-            />
-            <textarea
-              placeholder="Quote *"
-              value={formData.quote}
-              onChange={(e) => setFormData({ ...formData, quote: e.target.value })}
-              className="bg-white border border-border px-4 py-2 h-32"
-              data-testid="input-testimonial-quote"
-            />
-            <div>
-              <p className="text-sm font-bold mb-2">Display on Pages:</p>
-              <div className="flex gap-4">
-                {PLACEMENT_OPTIONS.map((option) => (
-                  <label key={option.value} className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={formData.placement.includes(option.value)}
-                      onChange={() => togglePlacement(option.value)}
-                      className="w-4 h-4"
-                      data-testid={`checkbox-placement-${option.value}`}
-                    />
-                    <span className="text-sm">{option.label}</span>
-                  </label>
-                ))}
-              </div>
-            </div>
-            <input
-              type="number"
-              placeholder="Sort Order (lower = first)"
-              value={formData.sortOrder}
-              onChange={(e) => setFormData({ ...formData, sortOrder: parseInt(e.target.value) || 0 })}
-              className="bg-white border border-border px-4 py-2 w-48"
-              data-testid="input-testimonial-sort"
-            />
-          </div>
-          <button
-            onClick={() => editingId ? updateMutation.mutate({ id: editingId, data: formData }) : createMutation.mutate(formData)}
-            disabled={!formData.name || !formData.quote || formData.placement.length === 0}
-            className="bg-primary text-white px-6 py-2 text-sm font-bold uppercase tracking-widest hover:bg-black transition-colors disabled:opacity-50"
-            data-testid="button-save-testimonial"
-          >
-            {editingId ? "Update" : "Add"} Testimonial
-          </button>
-        </div>
-      )}
-
-      <div className="space-y-2">
-        {testimonials.map((testimonial) => (
-          <div key={testimonial.id} className="p-4 border border-border">
-            <div className="flex justify-between items-start">
-              <div className="flex-1">
-                <p className="font-bold">{testimonial.name}</p>
-                {testimonial.title && <p className="text-sm text-muted-foreground">{testimonial.title}</p>}
-                <p className="text-sm mt-2 italic">"{testimonial.quote}"</p>
-                <div className="flex gap-2 mt-2">
-                  {testimonial.placement.map((p) => (
-                    <span key={p} className="bg-muted px-2 py-1 text-xs uppercase tracking-widest">
-                      {PLACEMENT_OPTIONS.find((o) => o.value === p)?.label || p}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              <div className="flex gap-2">
-                <button onClick={() => startEdit(testimonial)} className="p-2 hover:text-primary" data-testid={`button-edit-testimonial-${testimonial.id}`}>
-                  <Pencil className="w-4 h-4" />
-                </button>
-                <button onClick={() => deleteMutation.mutate(testimonial.id)} className="p-2 hover:text-red-600" data-testid={`button-delete-testimonial-${testimonial.id}`}>
-                  <Trash2 className="w-4 h-4" />
-                </button>
-              </div>
-            </div>
-          </div>
-        ))}
-        {testimonials.length === 0 && (
-          <p className="text-muted-foreground text-center py-8">No testimonials yet. Add your first one above.</p>
-        )}
-      </div>
-    </div>
-  );
-}
-

@@ -5,15 +5,12 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, BookOpen, Mic, MapPin, Briefcase } from "lucide-react";
 import { useRef } from "react";
 import { Link } from "wouter";
-import { useQuery } from "@tanstack/react-query";
 import { openCalendlyPopup } from "@/hooks/use-calendly";
 import { useMultiplePageContent } from "@/hooks/use-page-content";
 import { useCart } from "@/hooks/use-shopify-cart";
-import type { Testimonial } from "@shared/schema";
 
 const BOOK_VARIANT_ID = "gid://shopify/ProductVariant/51523523805466";
 
-// New book cover image
 import heroImage from "@assets/book-cover_1767438560120.png";
 import bookCardBg from "@assets/Book_1767439512805.jpg";
 import tourCardBg from "@assets/Tour_1767439512806.jpg";
@@ -22,6 +19,13 @@ import consultingCardBg from "@assets/Consulting_1767439512805.jpg";
 
 const DEFAULT_HOME_HERO = "Discover Salt In Her Lungs and themes of self-love, relational well-being, survival, and ancestral healing";
 const DEFAULT_HOME_INTRO = "I'm Glenda Macatangay, a Filipina author and ancestral healing practitioner working at the intersection of story, culture, and collective care. Through writing, teaching, community practice, and ceremony, I center survivors and spirit—helping transform silence into safety and remembrance into healing.";
+
+const HOME_TESTIMONIAL = {
+  id: 1,
+  name: "Pedro Noguera",
+  title: "Dean, Rossier School of Education, USC Distinguished Professor of Education",
+  quote: "Written with passion and honesty, Salt in Her Lungs, is part memoir, part poetry, and substantially a story about personal transformation. Combining stories of family, trauma, culture, love and transcendence, Macatangay's voice is sweet, yet hard hitting. She shares her stories of personal growth, triumph and healing without resentment or regret, but with the hope that others can benefit and learn from her journey."
+};
 
 export default function Home() {
   const { data: content = {} } = useMultiplePageContent(["home_hero", "home_intro"]);
@@ -33,14 +37,6 @@ export default function Home() {
   });
 
   const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
-
-  const { data: testimonials = [] } = useQuery<Testimonial[]>({
-    queryKey: ["testimonials", "home"],
-    queryFn: async () => {
-      const res = await fetch("/api/testimonials/placement/home");
-      return res.json();
-    },
-  });
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-white overflow-x-hidden flex flex-col">
@@ -222,26 +218,22 @@ export default function Home() {
         </div>
       </section>
       {/* Testimonials */}
-      {testimonials.length > 0 && (
-        <section className="py-24 bg-secondary text-secondary-foreground px-6 md:px-12">
-          <div className="max-w-4xl mx-auto text-center space-y-12">
-            <ScrollReveal>
-               <h2 className="text-sm font-bold uppercase tracking-widest opacity-70">Praise for the Work</h2>
-            </ScrollReveal>
-            
-            {testimonials.map((testimonial, index) => (
-              <ScrollReveal key={testimonial.id} delay={0.2 + index * 0.1}>
-                 <blockquote className="text-2xl md:text-4xl font-serif leading-tight">
-                   "{testimonial.quote}"
-                 </blockquote>
-                 <cite className="block mt-8 text-sm font-bold not-italic opacity-80">
-                   — {testimonial.name}{testimonial.title && `, ${testimonial.title}`}
-                 </cite>
-              </ScrollReveal>
-            ))}
-          </div>
-        </section>
-      )}
+      <section className="py-24 bg-secondary text-secondary-foreground px-6 md:px-12">
+        <div className="max-w-4xl mx-auto text-center space-y-12">
+          <ScrollReveal>
+             <h2 className="text-sm font-bold uppercase tracking-widest opacity-70">Praise for the Work</h2>
+          </ScrollReveal>
+          
+          <ScrollReveal delay={0.2}>
+             <blockquote className="text-2xl md:text-4xl font-serif leading-tight">
+               "{HOME_TESTIMONIAL.quote}"
+             </blockquote>
+             <cite className="block mt-8 text-sm font-bold not-italic opacity-80">
+               — {HOME_TESTIMONIAL.name}, {HOME_TESTIMONIAL.title}
+             </cite>
+          </ScrollReveal>
+        </div>
+      </section>
       {/* Footer */}
       <Footer />
     </div>

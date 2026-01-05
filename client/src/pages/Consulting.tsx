@@ -1,29 +1,37 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { useQuery } from "@tanstack/react-query";
 import { openCalendlyPopup } from "@/hooks/use-calendly";
 import { useMultiplePageContent } from "@/hooks/use-page-content";
-import type { Testimonial } from "@shared/schema";
 import consultingPhoto1 from "@assets/consulting_new_1.jpg";
 import consultingPhoto2 from "@assets/consulting_new_2.jpg";
 import consultingPhoto3 from "@assets/consulting_new_3.jpg";
 
-// Remove unused imports
-// import _mg_6553 from "@assets/_mg_6553.jpeg";
-// import _mg_6402_2 from "@assets/_mg_6402-2.jpeg";
-
 const DEFAULT_CONSULTING_INTRO = "Through My Healing Language, Glenda partners with organizations to support relational wellbeing, organizational wellness, and culturally responsive leadership.";
+
+const CONSULTING_TESTIMONIALS = [
+  {
+    id: 1,
+    name: "Mima Takemoto",
+    title: "Menlo Schools",
+    quote: "We were fortunate enough to hire Glenda Macatangay as a consultant to help our team formulate a Mental Health and Wellness Strategic Plan from scratch. Glenda's thoughtful guidance made what could have been a daunting project approachable and enjoyable by walking us through step by step with regular communication and check-ins, great care, and compassionate candor. I appreciated her wisdom, passion, authenticity, transparency, and unwavering support throughout the whole process."
+  },
+  {
+    id: 2,
+    name: "City of Sacramento, Office of Culture and Arts",
+    title: null,
+    quote: "Being familiar with Glenda's work with Community Responsive Education, I was excited to experience firsthand how her facilitation practices could create a safe container for both personal and team growth. Her approach and that of her partners served to unlock healthier ways of working, creative thinking, and organizational insight that has proven beneficial to our entire staff. Most important was the clarity and care offered throughout the entire process—setting a strong foundation for continuing discussions that honor our mission, vision, and values, and that ultimately supports our ability to serve our constituents in meaningful and impactful ways."
+  },
+  {
+    id: 3,
+    name: "Adam Gelb",
+    title: "Menlo Schools",
+    quote: "I've had the privilege of knowing Glenda Macatangay for over 40 years, and most recently, I had the joy of working with her in a professional capacity. We brought Glenda on as a consultant to help our team here at Menlo School develop a Mental Health and Wellness Strategic Plan from the ground up. What could have felt overwhelming quickly became a meaningful and even enjoyable journey, thanks to Glenda's steady, compassionate, and thoughtful guidance. She walked us through every step with care, consistent communication, and a deep sense of integrity. Her facilitation of our full-day planning retreat was not only skillful but also inspiring. Glenda brings a rare blend of insight, authenticity, and clarity—especially in navigating complex systems and issues. She's not just a consultant; she's a true healer, a wise leader, and an invaluable thought partner. I can't recommend her highly enough for anyone looking to foster healing, equity, and wellness within their organization."
+  }
+];
 
 export default function Consulting() {
   const { data: content = {} } = useMultiplePageContent(["consulting_intro"]);
-  const { data: testimonials = [] } = useQuery<Testimonial[]>({
-    queryKey: ["testimonials", "consulting"],
-    queryFn: async () => {
-      const res = await fetch("/api/testimonials/placement/consulting");
-      return res.json();
-    },
-  });
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
@@ -58,23 +66,21 @@ export default function Consulting() {
             >Schedule discovery call</button>
           </ScrollReveal>
 
-          {testimonials.length > 0 && (
-            <ScrollReveal delay={0.3} className="border-t border-border pt-12">
-              <h2 className="text-2xl font-serif mb-8">Client Testimonials</h2>
-              <div className="space-y-8">
-                {testimonials.map((testimonial) => (
-                  <blockquote key={testimonial.id} className="border-l-4 border-primary pl-6" data-testid={`testimonial-consulting-${testimonial.id}`}>
-                    <p className="text-lg italic text-foreground mb-4">
-                      "{testimonial.quote}"
-                    </p>
-                    <cite className="text-sm font-bold text-muted-foreground not-italic">
-                      — {testimonial.name}{testimonial.title && `, ${testimonial.title}`}
-                    </cite>
-                  </blockquote>
-                ))}
-              </div>
-            </ScrollReveal>
-          )}
+          <ScrollReveal delay={0.3} className="border-t border-border pt-12">
+            <h2 className="text-2xl font-serif mb-8">Client Testimonials</h2>
+            <div className="space-y-8">
+              {CONSULTING_TESTIMONIALS.map((testimonial) => (
+                <blockquote key={testimonial.id} className="border-l-4 border-primary pl-6" data-testid={`testimonial-consulting-${testimonial.id}`}>
+                  <p className="text-lg italic text-foreground mb-4">
+                    "{testimonial.quote}"
+                  </p>
+                  <cite className="text-sm font-bold text-muted-foreground not-italic">
+                    — {testimonial.name}{testimonial.title && `, ${testimonial.title}`}
+                  </cite>
+                </blockquote>
+              ))}
+            </div>
+          </ScrollReveal>
 
           <ScrollReveal delay={0.4}>
             <div className="grid grid-cols-3 gap-4">

@@ -1,10 +1,8 @@
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal } from "@/components/ui/scroll-reveal";
-import { useQuery } from "@tanstack/react-query";
 import { useMultiplePageContent } from "@/hooks/use-page-content";
 import { useCart } from "@/hooks/use-shopify-cart";
-import type { Testimonial } from "@shared/schema";
 import bookCover from "@assets/book-cover_1767440366702.png";
 import { Loader2 } from "lucide-react";
 
@@ -26,17 +24,25 @@ Each pre-order includes:
 
 Quantities are limited and available while supplies last. Pre-orders will end on February 14.`;
 
+const BOOK_ENDORSEMENTS = [
+  {
+    id: 1,
+    name: "Pedro Noguera",
+    title: "Dean, Rossier School of Education, USC Distinguished Professor of Education",
+    quote: "Written with passion and honesty, Salt in Her Lungs, is part memoir, part poetry, and substantially a story about personal transformation. Combining stories of family, trauma, culture, love and transcendence, Macatangay's voice is sweet, yet hard hitting. She shares her stories of personal growth, triumph and healing without resentment or regret, but with the hope that others can benefit and learn from her journey."
+  },
+  {
+    id: 2,
+    name: "Jeannie E. Celestial, Ph.D., M.S.W.",
+    title: "Licensed Psychologist & Co-Author/Co-Editor of \"Clinical Interventions for Internalized Oppression\"",
+    quote: "Illuminating & Courageous! 'Salt in Her Lungs' is a portal to healing after complex trauma—a luminous invitation to believe in Spirit, intuition, and the possibility of transformation."
+  }
+];
+
 const BOOK_VARIANT_ID = "gid://shopify/ProductVariant/51523523805466";
 
 export default function Book() {
   const { data: content = {} } = useMultiplePageContent(["book_tagline", "book_about", "book_preorder"]);
-  const { data: testimonials = [] } = useQuery<Testimonial[]>({
-    queryKey: ["testimonials", "book"],
-    queryFn: async () => {
-      const res = await fetch("/api/testimonials/placement/book");
-      return res.json();
-    },
-  });
   const { addToCart, isLoading } = useCart();
 
   const bookAbout = content.book_about || DEFAULT_BOOK_ABOUT;
@@ -62,23 +68,21 @@ export default function Book() {
             </p>
           </ScrollReveal>
 
-          {testimonials.length > 0 && (
-            <ScrollReveal>
-              <h2 className="text-2xl font-serif mb-8">What people are saying</h2>
-              <div className="space-y-8">
-                {testimonials.map((testimonial) => (
-                  <blockquote key={testimonial.id} className="border-l-4 border-primary pl-6" data-testid={`testimonial-book-${testimonial.id}`}>
-                    <p className="text-lg italic text-foreground mb-4">
-                      "{testimonial.quote}"
-                    </p>
-                    <cite className="text-sm font-bold text-muted-foreground not-italic">
-                      — {testimonial.name}{testimonial.title && `, ${testimonial.title}`}
-                    </cite>
-                  </blockquote>
-                ))}
-              </div>
-            </ScrollReveal>
-          )}
+          <ScrollReveal>
+            <h2 className="text-2xl font-serif mb-8">What people are saying</h2>
+            <div className="space-y-8">
+              {BOOK_ENDORSEMENTS.map((endorsement) => (
+                <blockquote key={endorsement.id} className="border-l-4 border-primary pl-6" data-testid={`testimonial-book-${endorsement.id}`}>
+                  <p className="text-lg italic text-foreground mb-4">
+                    "{endorsement.quote}"
+                  </p>
+                  <cite className="text-sm font-bold text-muted-foreground not-italic">
+                    — {endorsement.name}{endorsement.title && `, ${endorsement.title}`}
+                  </cite>
+                </blockquote>
+              ))}
+            </div>
+          </ScrollReveal>
 
           <div className="grid md:grid-cols-2 gap-12">
             <ScrollReveal delay={0.2} className="relative aspect-[3/4] overflow-hidden shadow-2xl">
