@@ -21,7 +21,7 @@ import speakingCardBg from "@assets/Speaking_1767439512806.jpg";
 import consultingCardBg from "@assets/Consulting_1767439512805.jpg";
 
 const DEFAULT_HOME_HERO = "Discover Salt In Her Lungs and themes of self-love, relational well-being, survival, and ancestral healing";
-const DEFAULT_HOME_INTRO = "I'm glenda Macatangay, a Filipina author and ancestral healing practitioner working at the intersection of story, culture, and collective care. Through writing, teaching, community practice, and ceremony, I center survivors and spirit—helping transform silence into safety and remembrance into healing.";
+const DEFAULT_HOME_INTRO = "I'm Glenda Macatangay, a Filipina author and ancestral healing practitioner working at the intersection of story, culture, and collective care. Through writing, teaching, community practice, and ceremony, I center survivors and spirit—helping transform silence into safety and remembrance into healing.";
 
 export default function Home() {
   const { data: content = {} } = useMultiplePageContent(["home_hero", "home_intro"]);
@@ -68,7 +68,7 @@ export default function Home() {
                 <p className="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed">
                   Salt in Her Lungs is a journey of healing, movement, and return to sacredness—an exploration of love, resilience, memory, and the ocean of wisdom we carry within.
                 </p>
-                <p className="text-sm uppercase tracking-widest font-bold text-foreground/80">By glenda Macatangay</p>
+                <p className="text-sm uppercase tracking-widest font-bold text-foreground/80">By Glenda Macatangay</p>
               </motion.div>
 
               <motion.div variants={revealVariant} className="flex flex-col gap-4 pt-4 max-w-xs">

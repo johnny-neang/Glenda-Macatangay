@@ -45,17 +45,12 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link href="/" className="block group">
-          <div className="flex flex-col items-start leading-none">
-            <span 
-              className="text-4xl text-foreground group-hover:text-primary transition-colors"
-              style={{ fontFamily: "'Great Vibes', cursive" }}
-            >
-              glenda
-            </span>
-            <span className="text-[10px] font-bold tracking-[0.3em] uppercase text-foreground group-hover:text-primary transition-colors">
-              MACATANGAY
-            </span>
-          </div>
+          <span 
+            className="text-4xl text-foreground group-hover:text-primary transition-colors"
+            style={{ fontFamily: "'Great Vibes', cursive" }}
+          >
+            glenda
+          </span>
         </Link>
 
         <div className="hidden md:flex items-center space-x-8">

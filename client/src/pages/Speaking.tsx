@@ -4,7 +4,7 @@ import { ScrollReveal } from "@/components/ui/scroll-reveal";
 import { openCalendlyPopup } from "@/hooks/use-calendly";
 import { useMultiplePageContent } from "@/hooks/use-page-content";
 
-const DEFAULT_SPEAKING_INTRO = "glenda Macatangay brings a rare blend of survivor truth, ancestral wisdom, and practical frameworks to keynotes that help communities transform silence into safety. Her work offers a grounded, culturally rooted approach to trauma, healing, leadership, and relational wellbeing.";
+const DEFAULT_SPEAKING_INTRO = "Glenda Macatangay brings a rare blend of survivor truth, ancestral wisdom, and practical frameworks to keynotes that help communities transform silence into safety. Her work offers a grounded, culturally rooted approach to trauma, healing, leadership, and relational wellbeing.";
 
 export default function Speaking() {
   const { data: content = {} } = useMultiplePageContent(["speaking_intro"]);
