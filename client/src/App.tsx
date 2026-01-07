@@ -14,8 +14,6 @@ import About from "@/pages/About";
 import Contact from "@/pages/Contact";
 import Privacy from "@/pages/Privacy";
 import Acknowledgement from "@/pages/Acknowledgement";
-import AdminLogin from "@/pages/admin/Login";
-import AdminDashboard from "@/pages/admin/Dashboard";
 import { CartProvider } from "@/hooks/use-shopify-cart";
 import { CartSidebar } from "@/components/cart/CartSidebar";
 
@@ -43,8 +41,6 @@ function Router() {
         <Route path="/contact" component={Contact} />
         <Route path="/privacy" component={Privacy} />
         <Route path="/acknowledgement" component={Acknowledgement} />
-        <Route path="/admin/login" component={AdminLogin} />
-        <Route path="/admin" component={AdminDashboard} />
         <Route component={NotFound} />
       </Switch>
     </>
