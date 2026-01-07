@@ -15,9 +15,24 @@ Tour elements may include author readings and conversation, visual art installat
 
 Planned cities include Hawai'i, Sacramento, the Bay Area, Los Angeles, Colorado, New York, Vancouver, Montreal, and beyond.`;
 
+const FALLBACK_TOUR_DATES: TourDate[] = [
+  { id: 1, city: "Bailey", state: "CO", date: "February 4-7", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 2, city: "Denver", state: "CO", date: "February 8-11", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 3, city: "Sacramento", state: "CA", date: "March", time: null, venue: null, rsvpLink: null, description: "book release" },
+  { id: 4, city: "Kona", state: "HI", date: "March 24-27", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 5, city: "Kaua'i", state: "HI", date: "April 3", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 6, city: "Honolulu", state: "HI", date: "April 18-19", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 7, city: "San Francisco", state: "CA", date: "April 26", time: null, venue: null, rsvpLink: null, description: "book launch" },
+  { id: 8, city: "New York", state: "NY", date: "May TBD", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 9, city: "Honolulu", state: "HI", date: "May TBD", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 10, city: "Vancouver", state: "CAN", date: "June 4-7", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 11, city: "Montreal", state: "CAN", date: "June 14-17", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 12, city: "Toronto", state: "CAN", date: "June 18-20", time: null, venue: null, rsvpLink: null, description: null },
+];
+
 export default function Tour() {
   const { data: content = {} } = useMultiplePageContent(["tour_intro"]);
-  const { data: tourDates, isLoading } = useQuery<TourDate[]>({
+  const { data: apiTourDates, isLoading } = useQuery<TourDate[]>({
     queryKey: ["tourDates"],
     queryFn: async () => {
       const response = await fetch("/api/tour-dates");
@@ -26,6 +41,7 @@ export default function Tour() {
     },
   });
 
+  const tourDates = (apiTourDates && apiTourDates.length > 0) ? apiTourDates : FALLBACK_TOUR_DATES;
   const tourIntro = content.tour_intro || DEFAULT_TOUR_INTRO;
 
   return (
@@ -53,51 +69,43 @@ export default function Tour() {
           <ScrollReveal delay={0.2} width="100%">
             <div className="border-t border-b border-border py-12 space-y-8">
               <h2 className="text-2xl font-serif uppercase tracking-widest">Events</h2>
-              {isLoading ? (
-                <p className="text-muted-foreground">Loading tour dates...</p>
-              ) : tourDates && tourDates.length > 0 ? (
-                <div className="space-y-6">
-                  {tourDates.map((event, index) => (
-                    <div key={event.id} className={`py-6 ${index !== tourDates.length - 1 ? 'border-b border-border/50' : ''}`}>
-                      <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
-                        <div className="space-y-2">
-                          <div className="flex items-center gap-2">
-                            <span className="font-bold text-lg">{event.city}, {event.state}</span>
-                            {event.description && (
-                              <span className="text-sm bg-primary/10 text-primary px-2 py-0.5 rounded">{event.description}</span>
-                            )}
-                          </div>
-                          <div className="text-muted-foreground space-y-1 text-sm">
-                            <p><span className="font-semibold">Date:</span> {event.date}</p>
-                            <p><span className="font-semibold">Time:</span> {event.time || 'TBD'}</p>
-                            <p><span className="font-semibold">Venue:</span> {event.venue || 'TBD'}</p>
-                          </div>
-                        </div>
-                        <div className="flex-shrink-0">
-                          {event.rsvpLink ? (
-                            <a 
-                              href={event.rsvpLink} 
-                              target="_blank" 
-                              rel="noopener noreferrer"
-                              className="inline-block bg-primary text-white px-6 py-2 text-xs font-bold tracking-widest uppercase hover:bg-black transition-colors"
-                            >
-                              RSVP
-                            </a>
-                          ) : (
-                            <span className="inline-block border border-muted-foreground/30 text-muted-foreground px-6 py-2 text-xs font-bold tracking-widest uppercase">
-                              RSVP Coming Soon
-                            </span>
+              <div className="space-y-6">
+                {tourDates.map((event, index) => (
+                  <div key={event.id} className={`py-6 ${index !== tourDates.length - 1 ? 'border-b border-border/50' : ''}`}>
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-4">
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <span className="font-bold text-lg">{event.city}, {event.state}</span>
+                          {event.description && (
+                            <span className="text-sm bg-primary/10 text-primary px-2 py-0.5 rounded">{event.description}</span>
                           )}
                         </div>
+                        <div className="text-muted-foreground space-y-1 text-sm">
+                          <p><span className="font-semibold">Date:</span> {event.date}</p>
+                          <p><span className="font-semibold">Time:</span> {event.time || 'TBD'}</p>
+                          <p><span className="font-semibold">Venue:</span> {event.venue || 'TBD'}</p>
+                        </div>
+                      </div>
+                      <div className="flex-shrink-0">
+                        {event.rsvpLink ? (
+                          <a 
+                            href={event.rsvpLink} 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                            className="inline-block bg-primary text-white px-6 py-2 text-xs font-bold tracking-widest uppercase hover:bg-black transition-colors"
+                          >
+                            RSVP
+                          </a>
+                        ) : (
+                          <span className="inline-block border border-muted-foreground/30 text-muted-foreground px-6 py-2 text-xs font-bold tracking-widest uppercase">
+                            RSVP Coming Soon
+                          </span>
+                        )}
                       </div>
                     </div>
-                  ))}
-                </div>
-              ) : (
-                <p className="text-muted-foreground">
-                  Tour dates coming soon! Check back for updates.
-                </p>
-              )}
+                  </div>
+                ))}
+              </div>
             </div>
           </ScrollReveal>
           
