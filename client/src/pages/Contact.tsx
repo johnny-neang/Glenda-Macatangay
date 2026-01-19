@@ -164,9 +164,9 @@ export default function Contact() {
                   </ul>
                 </div>
                 
-                <p>It is collective care.</p>
-                <p>It is belief in stories.</p>
-                <p>It is an investment in healing that ripples outward.</p>
+                <p>This work is made possible through collective care.</p>
+                <p>Through belief in stories.</p>
+                <p>Through shared responsibility for healing that ripples outward.</p>
                 
                 <p>
                   If this work has moved you, supported you, or resonated with your values, your contribution—of any amount—helps carry it forward.
