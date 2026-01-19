@@ -164,7 +164,6 @@ export default function Contact() {
                   </ul>
                 </div>
                 
-                <p className="font-semibold text-foreground">This is not charity.</p>
                 <p>It is collective care.</p>
                 <p>It is belief in stories.</p>
                 <p>It is an investment in healing that ripples outward.</p>
