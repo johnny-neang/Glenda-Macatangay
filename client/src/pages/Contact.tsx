@@ -135,6 +135,62 @@ export default function Contact() {
               </div>
             </ScrollReveal>
           </div>
+
+          <ScrollReveal delay={0.4} className="mt-24">
+            <div className="border-t border-border pt-16">
+              <h2 className="text-3xl md:text-4xl font-serif mb-8">Support the Work</h2>
+              
+              <div className="max-w-3xl space-y-6 text-muted-foreground leading-relaxed">
+                <p>
+                  This work exists because of community.
+                </p>
+                
+                <p>
+                  All donations are received by Paz Y Luz Consulting LLC, the umbrella under which My Healing Language and the Salt In Her Lungs book tour and related offerings are created and stewarded.
+                </p>
+                
+                <p>
+                  Your contribution helps sustain survivor-centered storytelling, healing spaces, and educational offerings rooted in care, culture, and truth-telling. It allows this work to remain accessible, values-aligned, and community-supported—especially for those who would otherwise be unable to participate.
+                </p>
+                
+                <div className="py-4">
+                  <p className="font-bold text-foreground mb-4">Your support helps fund:</p>
+                  <ul className="space-y-2 pl-4">
+                    <li className="flex gap-3"><span className="text-primary">•</span> Survivor storytelling projects, zines, and creative offerings</li>
+                    <li className="flex gap-3"><span className="text-primary">•</span> Healing circles, workshops, and community gatherings</li>
+                    <li className="flex gap-3"><span className="text-primary">•</span> Sliding-scale and scholarship access for survivors and families</li>
+                    <li className="flex gap-3"><span className="text-primary">•</span> Educational resources focused on prevention, belief, and healing</li>
+                    <li className="flex gap-3"><span className="text-primary">•</span> The ongoing labor of holding safe, intentional spaces for truth and repair</li>
+                  </ul>
+                </div>
+                
+                <p className="font-semibold text-foreground">This is not charity.</p>
+                <p>It is collective care.</p>
+                <p>It is belief in stories.</p>
+                <p>It is an investment in healing that ripples outward.</p>
+                
+                <p>
+                  If this work has moved you, supported you, or resonated with your values, your contribution—of any amount—helps carry it forward.
+                </p>
+                
+                <p className="font-semibold text-foreground">
+                  Thank you for being part of this circle.
+                </p>
+                
+                <div className="pt-6">
+                  <a 
+                    href="https://www.paypal.com/donate/?hosted_button_id=JNP33BDCF364N"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block bg-primary text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-black transition-colors"
+                    data-testid="button-donate"
+                  >
+                    Donate via PayPal
+                  </a>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </main>
       <Footer />
