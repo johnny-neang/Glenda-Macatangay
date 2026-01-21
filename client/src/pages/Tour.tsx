@@ -16,8 +16,8 @@ Tour elements may include author readings and conversation, visual art installat
 Planned cities include Hawai'i, Sacramento, the Bay Area, Los Angeles, Colorado, New York, Vancouver, Montreal, and beyond.`;
 
 const FALLBACK_TOUR_DATES: TourDate[] = [
-  { id: 1, city: "Bailey", state: "CO", date: "February 4-7", time: null, venue: null, rsvpLink: null, description: null },
-  { id: 2, city: "Denver", state: "CO", date: "February 8-11", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 1, city: "Bailey", state: "CO", date: "February 4-7", time: null, venue: null, rsvpLink: "private", description: null },
+  { id: 2, city: "Denver", state: "CO", date: "February 8-11", time: null, venue: null, rsvpLink: "private", description: null },
   { id: 3, city: "Sacramento", state: "CA", date: "March 1", time: "7am HST, 9am PST, 11am CST, 12pm EST", venue: "Zoom", rsvpLink: null, description: null },
   { id: 4, city: "Sacramento", state: "CA", date: "March 21, 2026", time: "5pm-8pm", venue: null, rsvpLink: null, description: "book release" },
   { id: 5, city: "New York", state: "NY", date: "March 27-April 5", time: null, venue: null, rsvpLink: null, description: null },
@@ -87,7 +87,11 @@ export default function Tour() {
                         </div>
                       </div>
                       <div className="flex-shrink-0">
-                        {event.rsvpLink ? (
+                        {event.rsvpLink === "private" ? (
+                          <span className="inline-block border border-muted-foreground/30 text-muted-foreground px-6 py-2 text-xs font-bold tracking-widest uppercase">
+                            Private Convening
+                          </span>
+                        ) : event.rsvpLink ? (
                           <a 
                             href={event.rsvpLink} 
                             target="_blank" 
