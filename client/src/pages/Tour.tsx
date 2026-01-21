@@ -25,7 +25,7 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 7, city: "San Francisco", state: "CA", date: "April 26", time: null, venue: null, rsvpLink: null, description: "book launch" },
   { id: 8, city: "Toronto", state: "CAN", date: "June 1-3", time: null, venue: null, rsvpLink: null, description: null },
   { id: 9, city: "Vancouver", state: "CAN", date: "June 4-7", time: null, venue: null, rsvpLink: null, description: null },
-  { id: 10, city: "Montreal", state: "CAN", date: "June 14-17", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 10, city: "Montreal", state: "CAN", date: "June 14-17", time: null, venue: "Concordia University", rsvpLink: null, description: null },
   { id: 11, city: "New Orleans", state: "LA", date: "June 18", time: "10:15am-11:45am", venue: "APSAC 33rd Annual Colloquium", rsvpLink: null, description: null },
 ];
 
