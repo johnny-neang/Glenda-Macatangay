@@ -29,6 +29,7 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 11, city: "Montreal", state: "CAN", date: "June 14-17", time: null, venue: "Concordia University", rsvpLink: null, description: null },
   { id: 12, city: "New Orleans", state: "LA", date: "June 18", time: "10:15am-11:45am", venue: "APSAC 33rd Annual Colloquium", rsvpLink: null, description: null },
   { id: 13, city: "Arlington", state: "VA", date: "July", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 14, city: "Big Island", state: "Hawai'i", date: "August 1-8", time: null, venue: null, rsvpLink: null, description: null },
 ];
 
 export default function Tour() {
