@@ -59,11 +59,11 @@ export default function Tour() {
                 <p key={i}>{paragraph}</p>
               ))}
               <div className="pt-4">
-                <Link href="/contact">
+                <a href="https://form.typeform.com/to/tj3qU87u" target="_blank" rel="noopener noreferrer">
                   <button className="bg-black text-white px-8 py-3 text-sm font-bold tracking-widest uppercase hover:bg-primary transition-colors">
                     Host a Tour Stop
                   </button>
-                </Link>
+                </a>
               </div>
             </div>
           </ScrollReveal>
