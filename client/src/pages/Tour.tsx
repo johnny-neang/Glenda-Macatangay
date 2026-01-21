@@ -18,16 +18,13 @@ Planned cities include Hawai'i, Sacramento, the Bay Area, Los Angeles, Colorado,
 const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 1, city: "Bailey", state: "CO", date: "February 4-7", time: null, venue: null, rsvpLink: null, description: null },
   { id: 2, city: "Denver", state: "CO", date: "February 8-11", time: null, venue: null, rsvpLink: null, description: null },
-  { id: 3, city: "Sacramento", state: "CA", date: "March", time: null, venue: null, rsvpLink: null, description: "book release" },
-  { id: 4, city: "Kona", state: "HI", date: "March 24-27", time: null, venue: null, rsvpLink: null, description: null },
-  { id: 5, city: "Kaua'i", state: "HI", date: "April 3", time: null, venue: null, rsvpLink: null, description: null },
-  { id: 6, city: "Honolulu", state: "HI", date: "April 18-19", time: null, venue: null, rsvpLink: null, description: null },
-  { id: 7, city: "San Francisco", state: "CA", date: "April 26", time: null, venue: null, rsvpLink: null, description: "book launch" },
-  { id: 8, city: "New York", state: "NY", date: "May TBD", time: null, venue: null, rsvpLink: null, description: null },
-  { id: 9, city: "Honolulu", state: "HI", date: "May TBD", time: null, venue: null, rsvpLink: null, description: null },
-  { id: 10, city: "Vancouver", state: "CAN", date: "June 4-7", time: null, venue: null, rsvpLink: null, description: null },
-  { id: 11, city: "Montreal", state: "CAN", date: "June 14-17", time: null, venue: null, rsvpLink: null, description: null },
-  { id: 12, city: "Toronto", state: "CAN", date: "June 18-20", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 3, city: "Sacramento", state: "CA", date: "March 21, 2026", time: "5pm-8pm", venue: null, rsvpLink: null, description: "book release" },
+  { id: 4, city: "New York", state: "NY", date: "March 27-April 5", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 5, city: "Honolulu", state: "HI", date: "April 6-20", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 6, city: "San Francisco", state: "CA", date: "April 26", time: null, venue: null, rsvpLink: null, description: "book launch" },
+  { id: 7, city: "Toronto", state: "CAN", date: "June 1-3", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 8, city: "Vancouver", state: "CAN", date: "June 4-7", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 9, city: "Montreal", state: "CAN", date: "June 14-17", time: null, venue: null, rsvpLink: null, description: null },
 ];
 
 export default function Tour() {
