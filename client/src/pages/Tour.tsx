@@ -23,10 +23,11 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 5, city: "New York", state: "NY", date: "March 27-April 5", time: null, venue: null, rsvpLink: null, description: null },
   { id: 6, city: "Honolulu", state: "HI", date: "April 6-20", time: null, venue: null, rsvpLink: null, description: null },
   { id: 7, city: "San Francisco", state: "CA", date: "April 26", time: null, venue: null, rsvpLink: null, description: "book launch" },
-  { id: 8, city: "Toronto", state: "CAN", date: "June 1-3", time: null, venue: null, rsvpLink: null, description: null },
-  { id: 9, city: "Vancouver", state: "CAN", date: "June 4-7", time: null, venue: null, rsvpLink: null, description: null },
-  { id: 10, city: "Montreal", state: "CAN", date: "June 14-17", time: null, venue: "Concordia University", rsvpLink: null, description: null },
-  { id: 11, city: "New Orleans", state: "LA", date: "June 18", time: "10:15am-11:45am", venue: "APSAC 33rd Annual Colloquium", rsvpLink: null, description: null },
+  { id: 8, city: "Los Angeles", state: "CA", date: "May", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 9, city: "Toronto", state: "CAN", date: "June 1-3", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 10, city: "Vancouver", state: "CAN", date: "June 4-7", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 11, city: "Montreal", state: "CAN", date: "June 14-17", time: null, venue: "Concordia University", rsvpLink: null, description: null },
+  { id: 12, city: "New Orleans", state: "LA", date: "June 18", time: "10:15am-11:45am", venue: "APSAC 33rd Annual Colloquium", rsvpLink: null, description: null },
 ];
 
 export default function Tour() {
