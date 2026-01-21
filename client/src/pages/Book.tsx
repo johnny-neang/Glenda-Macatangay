@@ -156,7 +156,7 @@ export default function Book() {
                   Educator and bulk discounts are available.
                 </p>
                 <p className="font-bold">
-                  Email: <a href="mailto:hello@myhealinglanguage.com" className="hover:underline text-[#ffffff]">hello@myhealinglanguage.com</a>
+                  Email: <a href="mailto:impact@myhealinglanguage.com" className="hover:underline text-[#ffffff]">impact@myhealinglanguage.com</a>
                 </p>
               </div>
             </div>
