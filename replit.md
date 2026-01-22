@@ -8,6 +8,8 @@ This is a personal portfolio and book promotion website for author Glenda Macata
 
 Preferred communication style: Simple, everyday language.
 
+**IMPORTANT: Do NOT add or modify meta descriptions (og:description, twitter:description) without explicit user approval. These fields must remain blank unless the user specifically provides the text to use.**
+
 ## System Architecture
 
 ### Frontend Architecture
