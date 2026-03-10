@@ -20,7 +20,7 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 2, city: "Denver", state: "CO", date: "February 8-11", time: null, venue: null, rsvpLink: "private", description: null },
   { id: 3, city: "Sacramento", state: "CA", date: "March 1", time: "7am HST, 9am PST, 11am CST, 12pm EST", venue: "Zoom", rsvpLink: null, description: null },
   { id: 4, city: "Sacramento", state: "CA", date: "March 21, 2026", time: "5pm-8pm", venue: null, rsvpLink: null, description: "book release" },
-  { id: 6, city: "Honolulu", state: "HI", date: "April 6-20", time: null, venue: null, rsvpLink: null, description: null },
+  { id: 6, city: "Honolulu", state: "HI", date: "May 22-23", time: null, venue: null, rsvpLink: "https://www.eventbrite.com/e/1984515233485?aff=oddtdtcreator", description: null },
   { id: 7, city: "San Francisco", state: "CA", date: "April 26", time: null, venue: null, rsvpLink: null, description: "book launch" },
   { id: 8, city: "Los Angeles", state: "CA", date: "May", time: null, venue: null, rsvpLink: null, description: null },
   { id: 9, city: "Toronto", state: "CAN", date: "June 1-3", time: null, venue: null, rsvpLink: null, description: null },
