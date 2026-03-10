@@ -31,6 +31,7 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 13, city: "Arlington", state: "VA", date: "July", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 15, city: "Long Beach", state: "CA", date: "July 11", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 14, city: "O'ahu", state: "Hawai'i", date: "August 1-8", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
+  { id: 17, city: "San Diego", state: "CA", date: "September 24-26", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
 ];
 
 export default function Tour() {
