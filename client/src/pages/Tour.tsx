@@ -19,7 +19,7 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 1, city: "Bailey", state: "CO", date: "February 4-7", time: null, venue: null, rsvpLink: "private", description: null },
   { id: 2, city: "Denver", state: "CO", date: "February 8-11", time: null, venue: null, rsvpLink: "private", description: null },
   { id: 3, city: "Sacramento", state: "CA", date: "March 1", time: "7am HST, 9am PST, 11am CST, 12pm EST", venue: "Zoom", rsvpLink: null, description: null },
-  { id: 4, city: "Sacramento", state: "CA", date: "March 21, 2026", time: "5pm-8pm", venue: null, rsvpLink: null, description: "book release" },
+  { id: 4, city: "Sacramento", state: "CA", date: "March 21, 2026", time: "5pm-8pm", venue: null, rsvpLink: "https://www.eventbrite.com/e/1981866840069?aff=oddtdtcreator", description: "book release" },
   { id: 7, city: "San Francisco", state: "CA", date: "April 24", time: "6-10pm", venue: "201 Jackson St. San Francisco, CA", rsvpLink: "https://www.eventbrite.com/e/official-bay-area-book-launch-birthday-celebration-tickets-1984482847618?aff=oddtdtcreator", description: "book launch" },
   { id: 8, city: "Los Angeles", state: "CA", date: "May 7", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 6, city: "Honolulu", state: "HI", date: "May 22-23", time: null, venue: null, rsvpLink: "https://www.eventbrite.com/e/1984515233485?aff=oddtdtcreator", description: null },
