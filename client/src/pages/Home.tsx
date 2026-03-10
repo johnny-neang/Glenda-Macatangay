@@ -55,7 +55,7 @@ export default function Home() {
               <motion.div variants={revealVariant}>
                 <div className="bg-blue-600/10 border border-blue-600/20 px-6 py-4 rounded-sm">
                   <p className="text-blue-700 text-sm font-bold tracking-wide uppercase">
-                    Limited Edition Pre-Orders Available through February 14, Shipping March 1
+                    Limited Edition Pre-Orders Available Through March 30th, Shipping April 10
                   </p>
                 </div>
               </motion.div>

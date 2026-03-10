@@ -22,7 +22,7 @@ Each pre-order includes:
 • Memory Palace, a companion zine featuring the voices and reflections of fellow survivors
 • A Lala Paz Candle, created as a ritual companion for reading, remembering, and grounding
 
-Quantities are limited and available while supplies last. Pre-orders will end on February 14.`;
+Quantities are limited and available while supplies last. Pre-orders will end on March 30th, shipping April 10.`;
 
 const BOOK_ENDORSEMENTS = [
   {
