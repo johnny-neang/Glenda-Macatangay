@@ -41,6 +41,22 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary selection:text-white overflow-x-hidden flex flex-col">
       <Navbar />
+      {/* Video Section */}
+      <section className="pt-28 pb-12 px-6 md:px-12 bg-background">
+        <div className="max-w-4xl mx-auto">
+          <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
+            <iframe
+              className="absolute top-0 left-0 w-full h-full"
+              src="https://www.youtube.com/embed/0Y2KLqSnmRE"
+              title="Salt in Her Lungs"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Hero Section */}
       <section className="min-h-screen flex items-center pt-24 pb-12 px-6 md:px-12 relative">
         <div className="max-w-7xl mx-auto w-full grid md:grid-cols-2 gap-12 items-center">
