@@ -8,6 +8,23 @@ import { Link } from "wouter";
 import tourPhoto1 from "@assets/IMG_7787_1767440597169.JPG";
 import tourPhoto2 from "@assets/IMG_7793_1767440597170.JPG";
 import tourPhoto3 from "@assets/IMG_7796_1767440597170.JPG";
+import gallery1 from "@assets/IMG_4689_2_1774637270535.JPG";
+import gallery2 from "@assets/IMG_4690_1774637270540.JPG";
+import gallery3 from "@assets/IMG_4693_1774637270541.JPG";
+import gallery4 from "@assets/IMG_4694_1774637270541.JPG";
+import gallery5 from "@assets/IMG_4696_1774637270542.JPG";
+import gallery6 from "@assets/IMG_4697_1774637270542.JPG";
+import gallery7 from "@assets/IMG_4698_1774637270542.JPG";
+import gallery8 from "@assets/IMG_4699_1774637270542.JPG";
+import gallery9 from "@assets/IMG_4700_1774637270542.JPG";
+import gallery10 from "@assets/IMG_4701_1774637270543.JPG";
+import gallery11 from "@assets/IMG_4703_1774637270543.JPG";
+import gallery12 from "@assets/IMG_4705_2_1774637270543.JPG";
+import gallery13 from "@assets/IMG_4708_1774637270543.JPG";
+import gallery14 from "@assets/IMG_4709_1774637270544.JPG";
+import gallery15 from "@assets/IMG_4710_1774637270544.JPG";
+import gallery16 from "@assets/IMG_4712_1774637270544.JPG";
+import gallery17 from "@assets/IMG_4715_1774637270544.JPG";
 
 const DEFAULT_TOUR_INTRO = `The SALTY Tour is a multi-city gathering series accompanying the release of Salt in Her Lungs. Each stop blends reading, visual art, music, and facilitated dialogue, partnering with community organizations and universities to create spaces rooted in culture, consent, and care.
 
@@ -142,6 +159,38 @@ export default function Tour() {
                   alt="Glenda Macatangay" 
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
+              </div>
+            </div>
+          </ScrollReveal>
+
+          <ScrollReveal delay={0.4} width="100%">
+            <div className="overflow-hidden w-full mt-4" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+              <style>{`
+                @keyframes scroll-gallery {
+                  0% { transform: translateX(0); }
+                  100% { transform: translateX(-50%); }
+                }
+                .gallery-track {
+                  display: flex;
+                  gap: 12px;
+                  width: max-content;
+                  animation: scroll-gallery 40s linear infinite;
+                }
+                .gallery-track:hover {
+                  animation-play-state: paused;
+                }
+              `}</style>
+              <div className="gallery-track">
+                {[gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery10, gallery11, gallery12, gallery13, gallery14, gallery15, gallery16, gallery17,
+                  gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery10, gallery11, gallery12, gallery13, gallery14, gallery15, gallery16, gallery17].map((src, i) => (
+                  <div key={i} className="flex-shrink-0 h-64 w-44 overflow-hidden">
+                    <img
+                      src={src}
+                      alt="SALTY Tour"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+                ))}
               </div>
             </div>
           </ScrollReveal>
