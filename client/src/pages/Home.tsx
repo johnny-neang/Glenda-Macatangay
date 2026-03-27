@@ -3,11 +3,12 @@ import { Footer } from "@/components/layout/Footer";
 import { ScrollReveal, StaggerContainer, revealVariant } from "@/components/ui/scroll-reveal";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight, BookOpen, Mic, MapPin, Briefcase } from "lucide-react";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Link } from "wouter";
 import { openCalendlyPopup } from "@/hooks/use-calendly";
 import { useMultiplePageContent } from "@/hooks/use-page-content";
 import { useCart } from "@/hooks/use-shopify-cart";
+import { useQuery } from "@tanstack/react-query";
 
 const BOOK_VARIANT_ID = "gid://shopify/ProductVariant/51523523805466";
 
@@ -20,17 +21,28 @@ import consultingCardBg from "@assets/Consulting_1767439512805.jpg";
 const DEFAULT_HOME_HERO = "Discover Salt In Her Lungs and themes of self-love, relational well-being, survival, and ancestral healing";
 const DEFAULT_HOME_INTRO = "I'm Glenda Macatangay, a Filipina author and ancestral healing practitioner working at the intersection of story, culture, and collective care. Through writing, teaching, community practice, and ceremony, I center survivors and spirit—helping transform silence into safety and remembrance into healing.";
 
-const HOME_TESTIMONIAL = {
-  id: 1,
-  name: "Pedro Noguera",
-  title: "Dean, Rossier School of Education, USC Distinguished Professor of Education",
-  quote: "Written with passion and honesty, Salt in Her Lungs, is part memoir, part poetry, and substantially a story about personal transformation. Combining stories of family, trauma, culture, love and transcendence, Macatangay's voice is sweet, yet hard hitting. She shares her stories of personal growth, triumph and healing without resentment or regret, but with the hope that others can benefit and learn from her journey."
-};
-
 export default function Home() {
   const { data: content = {} } = useMultiplePageContent(["home_hero", "home_intro"]);
   const { addToCart, isLoading } = useCart();
   const targetRef = useRef<HTMLDivElement>(null);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
+
+  const { data: testimonials = [] } = useQuery<{ id: number; name: string; title: string; quote: string }[]>({
+    queryKey: ["testimonials", "home"],
+    queryFn: async () => {
+      const res = await fetch("/api/testimonials?placement=home");
+      if (!res.ok) throw new Error("Failed to fetch testimonials");
+      return res.json();
+    },
+  });
+
+  useEffect(() => {
+    if (testimonials.length <= 1) return;
+    const interval = setInterval(() => {
+      setActiveTestimonial(prev => (prev + 1) % testimonials.length);
+    }, 8000);
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start end", "end start"],
@@ -237,17 +249,39 @@ export default function Home() {
       <section className="py-24 bg-secondary text-secondary-foreground px-6 md:px-12">
         <div className="max-w-4xl mx-auto text-center space-y-12">
           <ScrollReveal>
-             <h2 className="text-sm font-bold uppercase tracking-widest opacity-70">Praise for the Work</h2>
+            <h2 className="text-sm font-bold uppercase tracking-widest opacity-70">Praise for the Work</h2>
           </ScrollReveal>
-          
-          <ScrollReveal delay={0.2}>
-             <blockquote className="text-2xl md:text-4xl font-serif leading-tight">
-               "{HOME_TESTIMONIAL.quote}"
-             </blockquote>
-             <cite className="block mt-8 text-sm font-bold not-italic opacity-80">
-               — {HOME_TESTIMONIAL.name}, {HOME_TESTIMONIAL.title}
-             </cite>
-          </ScrollReveal>
+
+          {testimonials.length > 0 && (
+            <div className="relative min-h-[200px]">
+              <motion.div
+                key={activeTestimonial}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.6 }}
+              >
+                <blockquote className="text-xl md:text-2xl font-serif leading-tight">
+                  "{testimonials[activeTestimonial]?.quote}"
+                </blockquote>
+                <cite className="block mt-8 text-sm font-bold not-italic opacity-80">
+                  — {testimonials[activeTestimonial]?.name}, {testimonials[activeTestimonial]?.title}
+                </cite>
+              </motion.div>
+
+              {testimonials.length > 1 && (
+                <div className="flex justify-center gap-2 mt-10">
+                  {testimonials.map((_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveTestimonial(i)}
+                      className={`w-2 h-2 rounded-full transition-all duration-300 ${i === activeTestimonial ? "bg-current opacity-100 w-4" : "bg-current opacity-30"}`}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </section>
       {/* Footer */}

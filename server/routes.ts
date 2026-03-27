@@ -128,6 +128,19 @@ export async function registerRoutes(
     }
   });
 
+  // Testimonials routes
+  app.get("/api/testimonials", async (req, res) => {
+    try {
+      const placement = req.query.placement as string | undefined;
+      const results = placement
+        ? await storage.getTestimonialsByPlacement(placement)
+        : await storage.getTestimonials();
+      res.json(results);
+    } catch (error) {
+      res.status(500).json({ error: "Failed to fetch testimonials" });
+    }
+  });
+
   // Shopify Storefront API routes
   app.post("/api/shopify/cart/create", async (req, res) => {
     try {
