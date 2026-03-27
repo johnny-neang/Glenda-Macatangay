@@ -90,6 +90,32 @@ export default function Tour() {
             </div>
           </ScrollReveal>
 
+          <div className="overflow-hidden w-full -mx-6 md:-mx-12" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
+            <style>{`
+              @keyframes scroll-gallery {
+                0% { transform: translateX(0); }
+                100% { transform: translateX(-50%); }
+              }
+              .gallery-track {
+                display: flex;
+                gap: 12px;
+                width: max-content;
+                animation: scroll-gallery 40s linear infinite;
+              }
+              .gallery-track:hover {
+                animation-play-state: paused;
+              }
+            `}</style>
+            <div className="gallery-track">
+              {[gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery10, gallery11, gallery12, gallery13, gallery14, gallery15, gallery16, gallery17,
+                gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery10, gallery11, gallery12, gallery13, gallery14, gallery15, gallery16, gallery17].map((src, i) => (
+                <div key={i} className="flex-shrink-0 h-64 w-44 overflow-hidden">
+                  <img src={src} alt="SALTY Tour" className="h-full w-full object-cover" />
+                </div>
+              ))}
+            </div>
+          </div>
+
           <ScrollReveal delay={0.2} width="100%">
             <div className="border-t border-b border-border py-12 space-y-8">
               <h2 className="text-2xl font-serif uppercase tracking-widest">Events</h2>
@@ -163,37 +189,6 @@ export default function Tour() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal delay={0.4} width="100%">
-            <div className="overflow-hidden w-full mt-4" style={{ maskImage: "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)" }}>
-              <style>{`
-                @keyframes scroll-gallery {
-                  0% { transform: translateX(0); }
-                  100% { transform: translateX(-50%); }
-                }
-                .gallery-track {
-                  display: flex;
-                  gap: 12px;
-                  width: max-content;
-                  animation: scroll-gallery 40s linear infinite;
-                }
-                .gallery-track:hover {
-                  animation-play-state: paused;
-                }
-              `}</style>
-              <div className="gallery-track">
-                {[gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery10, gallery11, gallery12, gallery13, gallery14, gallery15, gallery16, gallery17,
-                  gallery1, gallery2, gallery3, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery10, gallery11, gallery12, gallery13, gallery14, gallery15, gallery16, gallery17].map((src, i) => (
-                  <div key={i} className="flex-shrink-0 h-64 w-44 overflow-hidden">
-                    <img
-                      src={src}
-                      alt="SALTY Tour"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </ScrollReveal>
           
         </div>
       </main>
