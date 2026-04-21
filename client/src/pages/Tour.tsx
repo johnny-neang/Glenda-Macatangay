@@ -40,6 +40,7 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 18, city: "San Francisco", state: "CA", date: "March 30", time: "5-7pm", venue: "SFSU", rsvpLink: "soldout", description: null },
   { id: 7, city: "San Francisco", state: "CA", date: "April 24", time: "6-10pm", venue: "201 Jackson St. San Francisco, CA", rsvpLink: "https://www.eventbrite.com/e/official-bay-area-book-launch-birthday-celebration-tickets-1984482847618?aff=oddtdtcreator", description: "book launch" },
   { id: 8, city: "Los Angeles", state: "CA", date: "April 28-30", time: null, venue: "AAPI Pre-Convening EdLoc", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
+  { id: 21, city: "Los Angeles", state: "CA", date: "May 28", time: "TBA", venue: "TBA", rsvpLink: "gathering", description: null },
   { id: 6, city: "Honolulu", state: "HI", date: "May 22-23", time: "9am-6pm", venue: "Shangri-la Museum of Islamic Art, Culture and Design", rsvpLink: "https://www.eventbrite.com/e/1984515233485?aff=oddtdtcreator", description: null },
   { id: 10, city: "Vancouver", state: "CAN", date: "June 4-7", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 11, city: "Montreal", state: "CAN", date: "June 14-17", time: null, venue: "Concordia University", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
@@ -142,6 +143,10 @@ export default function Tour() {
                         ) : event.rsvpLink === "soldout" ? (
                           <span className="inline-block bg-red-600 text-white px-6 py-2 text-xs font-bold tracking-widest uppercase">
                             Sold Out
+                          </span>
+                        ) : event.rsvpLink === "gathering" ? (
+                          <span className="inline-block border border-muted-foreground/30 text-muted-foreground px-6 py-2 text-xs font-bold tracking-widest uppercase">
+                            Private Gathering
                           </span>
                         ) : event.rsvpLink ? (
                           <a 
