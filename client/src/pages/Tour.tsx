@@ -38,6 +38,7 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 3, city: "Sacramento", state: "CA", date: "March 1", time: "7am HST, 9am PST, 11am CST, 12pm EST", venue: "Zoom", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 4, city: "Sacramento", state: "CA", date: "March 21, 2026", time: "5pm-8pm", venue: null, rsvpLink: "soldout", description: "book release" },
   { id: 18, city: "San Francisco", state: "CA", date: "March 30", time: "5-7pm", venue: "SFSU", rsvpLink: "soldout", description: null },
+  { id: 22, city: "Las Vegas", state: "NV", date: "April 16-19", time: "TBD", venue: "TBD", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 7, city: "San Francisco", state: "CA", date: "April 24", time: "6-10pm", venue: "201 Jackson St. San Francisco, CA", rsvpLink: "https://www.eventbrite.com/e/official-bay-area-book-launch-birthday-celebration-tickets-1984482847618?aff=oddtdtcreator", description: "book launch" },
   { id: 8, city: "Los Angeles", state: "CA", date: "April 28-30", time: null, venue: "AAPI Pre-Convening EdLoc", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 21, city: "Los Angeles", state: "CA", date: "May 28", time: "TBA", venue: "TBA", rsvpLink: "gathering", description: null },
