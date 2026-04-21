@@ -37,7 +37,7 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 2, city: "Denver", state: "CO", date: "February 8-11", time: null, venue: null, rsvpLink: "private", description: null },
   { id: 3, city: "Sacramento", state: "CA", date: "March 1", time: "7am HST, 9am PST, 11am CST, 12pm EST", venue: "Zoom", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 4, city: "Sacramento", state: "CA", date: "March 21, 2026", time: "5pm-8pm", venue: null, rsvpLink: "https://www.eventbrite.com/e/1981866840069?aff=oddtdtcreator", description: "book release" },
-  { id: 18, city: "San Francisco", state: "CA", date: "March 30", time: "5-7pm", venue: "SFSU", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
+  { id: 18, city: "San Francisco", state: "CA", date: "March 30", time: "5-7pm", venue: "SFSU", rsvpLink: "soldout", description: null },
   { id: 7, city: "San Francisco", state: "CA", date: "April 24", time: "6-10pm", venue: "201 Jackson St. San Francisco, CA", rsvpLink: "https://www.eventbrite.com/e/official-bay-area-book-launch-birthday-celebration-tickets-1984482847618?aff=oddtdtcreator", description: "book launch" },
   { id: 8, city: "Los Angeles", state: "CA", date: "April 28-30", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 16, city: "Honolulu", state: "HI", date: "May 16-17", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
@@ -140,6 +140,10 @@ export default function Tour() {
                         {event.rsvpLink === "private" ? (
                           <span className="inline-block border border-muted-foreground/30 text-muted-foreground px-6 py-2 text-xs font-bold tracking-widest uppercase">
                             Private Convening
+                          </span>
+                        ) : event.rsvpLink === "soldout" ? (
+                          <span className="inline-block bg-red-600 text-white px-6 py-2 text-xs font-bold tracking-widest uppercase">
+                            Sold Out
                           </span>
                         ) : event.rsvpLink ? (
                           <a 
