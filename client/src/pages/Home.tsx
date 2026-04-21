@@ -102,7 +102,7 @@ export default function Home() {
                   className="bg-primary text-white px-8 py-3 text-center text-sm font-bold uppercase tracking-widest hover:bg-black transition-colors w-full disabled:opacity-50"
                   data-testid="button-preorder-book"
                 >
-                  {isLoading ? "Adding..." : "Pre-Order Your Copy Today"}
+                  {isLoading ? "Adding..." : "Order Your Copy Today"}
                 </button>
                 <button 
                   onClick={() => openCalendlyPopup()}

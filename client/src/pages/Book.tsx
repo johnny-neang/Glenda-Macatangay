@@ -108,7 +108,7 @@ export default function Book() {
 
           <ScrollReveal className="border-t border-border pt-12" width="100%">
             <div className="bg-secondary text-secondary-foreground p-8 md:p-12">
-              <h2 className="text-2xl font-serif mb-4">Pre-Order: Limited Signed Edition</h2>
+              <h2 className="text-2xl font-serif mb-4">Order: Limited Signed Edition</h2>
               <div className="space-y-4 mb-6">
                 {bookPreorder.split('\n\n').map((paragraph: string, i: number) => {
                   if (paragraph.startsWith('•') || paragraph.includes('\n•')) {

@@ -65,7 +65,7 @@ export function Navbar() {
             className="bg-primary text-white px-6 py-2 text-xs font-bold tracking-widest uppercase hover:bg-black transition-colors disabled:opacity-50"
             data-testid="button-navbar-add-to-cart"
           >
-            {isLoading ? "Adding..." : "Pre-Order Now"}
+            {isLoading ? "Adding..." : "Order Now"}
           </button>
           {cart && cart.totalQuantity > 0 && (
             <button
@@ -123,7 +123,7 @@ export function Navbar() {
             disabled={isLoading}
             className="bg-black text-white text-center py-3 text-sm font-bold tracking-widest uppercase disabled:opacity-50"
           >
-            {isLoading ? "Adding..." : "Pre-Order Now"}
+            {isLoading ? "Adding..." : "Order Now"}
           </button>
         </div>
       )}
