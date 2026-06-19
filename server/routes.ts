@@ -1,42 +1,57 @@
-import type { Express, Request, Response, NextFunction } from "express";
-import { createServer, type Server } from "http";
-import { storage } from "./storage";
-import { insertContactSchema } from "@shared/schema";
+import type { Express } from "express";
+import { storage } from "./storage.js";
+import { insertContactSchema } from "../shared/schema.js";
 import Mailjet from "node-mailjet";
 import mailchimp from "@mailchimp/mailchimp_marketing";
 import { createStorefrontApiClient } from "@shopify/storefront-api-client";
 
-const mailjet = new Mailjet({
-  apiKey: process.env.MAILJET_API_KEY || "",
-  apiSecret: process.env.MAILJET_SECRET_KEY || ""
-});
+// External API clients are constructed lazily so that missing credentials don't
+// crash the serverless function at module load (the Mailjet constructor throws
+// when its API key is empty). Only the route that actually needs a client fails,
+// and that failure is handled by the route's own try/catch.
+let mailjetClient: Mailjet | null = null;
+function getMailjet(): Mailjet {
+  if (!mailjetClient) {
+    mailjetClient = new Mailjet({
+      apiKey: process.env.MAILJET_API_KEY || "",
+      apiSecret: process.env.MAILJET_SECRET_KEY || "",
+    });
+  }
+  return mailjetClient;
+}
 
-// Mailchimp configuration
-const mailchimpApiKey = process.env.MAILCHIMP_API_KEY || "";
-const mailchimpServer = mailchimpApiKey.split("-")[1] || "us14";
+let mailchimpConfigured = false;
+function getMailchimp() {
+  if (!mailchimpConfigured) {
+    const apiKey = process.env.MAILCHIMP_API_KEY || "";
+    mailchimp.setConfig({
+      apiKey,
+      server: apiKey.split("-")[1] || "us14",
+    });
+    mailchimpConfigured = true;
+  }
+  return mailchimp;
+}
 
-mailchimp.setConfig({
-  apiKey: mailchimpApiKey,
-  server: mailchimpServer,
-});
+let shopifyClientInstance: ReturnType<typeof createStorefrontApiClient> | null = null;
+function getShopify() {
+  if (!shopifyClientInstance) {
+    shopifyClientInstance = createStorefrontApiClient({
+      storeDomain: process.env.SHOPIFY_STORE_DOMAIN || "my-healing-language.myshopify.com",
+      apiVersion: "2025-04",
+      publicAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN || "",
+    });
+  }
+  return shopifyClientInstance;
+}
 
-// Shopify Storefront API client
-const shopifyClient = createStorefrontApiClient({
-  storeDomain: process.env.SHOPIFY_STORE_DOMAIN || "my-healing-language.myshopify.com",
-  apiVersion: "2025-04",
-  publicAccessToken: process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN || "",
-});
-
-export async function registerRoutes(
-  httpServer: Server,
-  app: Express
-): Promise<Server> {
+export async function registerRoutes(app: Express): Promise<void> {
   // Contact routes - forward to email only, no database storage
   app.post("/api/contacts", async (req, res) => {
     try {
       const contactData = insertContactSchema.parse(req.body);
 
-      await mailjet.post("send", { version: "v3.1" }).request({
+      await getMailjet().post("send", { version: "v3.1" }).request({
         Messages: [
           {
             From: {
@@ -91,7 +106,7 @@ export async function registerRoutes(
       if (lastName) mergeFields.LNAME = lastName;
       if (birthday) mergeFields.BIRTHDAY = birthday;
 
-      await mailchimp.lists.addListMember(listId, {
+      await getMailchimp().lists.addListMember(listId, {
         email_address: email,
         status: "subscribed",
         merge_fields: mergeFields,
@@ -115,6 +130,18 @@ export async function registerRoutes(
       }
 
       res.status(500).json({ error: "Failed to subscribe. Please try again later." });
+    }
+  });
+
+  // Tour dates route - returns DB rows when a database is configured,
+  // otherwise an empty array so the client falls back to its built-in list.
+  app.get("/api/tour-dates", async (_req, res) => {
+    try {
+      const dates = await storage.getTourDates();
+      res.json(dates);
+    } catch (error) {
+      console.error("Tour dates error:", error);
+      res.status(500).json({ error: "Failed to fetch tour dates" });
     }
   });
 
@@ -197,7 +224,7 @@ export async function registerRoutes(
         }
       `;
 
-      const { data, errors } = await shopifyClient.request(mutation, {
+      const { data, errors } = await getShopify().request(mutation, {
         variables: {
           input: {
             lines: [{ merchandiseId: variantId, quantity }]
@@ -276,7 +303,7 @@ export async function registerRoutes(
         }
       `;
 
-      const { data, errors } = await shopifyClient.request(mutation, {
+      const { data, errors } = await getShopify().request(mutation, {
         variables: {
           cartId,
           lines: [{ merchandiseId: variantId, quantity }]
@@ -343,7 +370,7 @@ export async function registerRoutes(
         }
       `;
 
-      const { data, errors } = await shopifyClient.request(query, {
+      const { data, errors } = await getShopify().request(query, {
         variables: { cartId }
       });
 
@@ -414,7 +441,7 @@ export async function registerRoutes(
         }
       `;
 
-      const { data, errors } = await shopifyClient.request(mutation, {
+      const { data, errors } = await getShopify().request(mutation, {
         variables: {
           cartId,
           lines: [{ id: lineId, quantity }]
@@ -492,7 +519,7 @@ export async function registerRoutes(
         }
       `;
 
-      const { data, errors } = await shopifyClient.request(mutation, {
+      const { data, errors } = await getShopify().request(mutation, {
         variables: { cartId, lineIds }
       });
 
@@ -511,6 +538,4 @@ export async function registerRoutes(
       res.status(500).json({ error: "Failed to remove from cart" });
     }
   });
-
-  return httpServer;
 }

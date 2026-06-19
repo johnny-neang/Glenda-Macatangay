@@ -1,20 +1,40 @@
 import { drizzle } from "drizzle-orm/node-postgres";
 import pg from "pg";
-import * as schema from "@shared/schema";
+import * as schema from "../shared/schema.js";
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL must be set. Ensure the database is provisioned.");
+// The database is optional. The public site renders entirely from hardcoded
+// fallback content in the React pages, so the API must not crash when
+// DATABASE_URL is unset (e.g. on Vercel without a provisioned database).
+// Connections are created lazily on first use.
+
+let _pool: pg.Pool | null = null;
+let _db: ReturnType<typeof drizzle<typeof schema>> | null = null;
+
+export function isDbConfigured(): boolean {
+  return Boolean(process.env.DATABASE_URL);
 }
 
-export const pool = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
-  max: 10,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 10000,
-});
+export function getPool(): pg.Pool | null {
+  if (!process.env.DATABASE_URL) return null;
+  if (!_pool) {
+    _pool = new pg.Pool({
+      connectionString: process.env.DATABASE_URL,
+      max: 10,
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 10000,
+    });
+    _pool.on("error", (err) => {
+      console.error("Unexpected database pool error:", err);
+    });
+  }
+  return _pool;
+}
 
-pool.on('error', (err) => {
-  console.error('Unexpected database pool error:', err);
-});
-
-export const db = drizzle(pool, { schema });
+export function getDb() {
+  const pool = getPool();
+  if (!pool) return null;
+  if (!_db) {
+    _db = drizzle(pool, { schema });
+  }
+  return _db;
+}
