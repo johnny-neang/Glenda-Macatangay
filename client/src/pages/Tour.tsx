@@ -41,7 +41,7 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 22, city: "Las Vegas", state: "NV", date: "April 16-19", time: "TBD", venue: "TBD", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 7, city: "San Francisco", state: "CA", date: "April 24", time: "6-10pm", venue: "201 Jackson St. San Francisco, CA", rsvpLink: "soldout", description: "book launch" },
   { id: 8, city: "Los Angeles", state: "CA", date: "April 28-30", time: null, venue: "AAPI Pre-Convening EdLoc", rsvpLink: "soldout", description: null },
-  { id: 23, city: "San Francisco", state: "CA", date: "May 13", time: "10am-8pm", venue: "Human+ AI Conference", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
+  { id: 23, city: "San Francisco", state: "CA", date: "May 13", time: "10am-8pm", venue: "Human+ AI Conference", rsvpLink: "soldout", description: null },
   { id: 6, city: "Honolulu", state: "HI", date: "May 22-23", time: "9am-6pm", venue: "Shangri-la Museum of Islamic Art, Culture and Design", rsvpLink: "soldout", description: "Registration Now Open" },
   { id: 21, city: "Los Angeles", state: "CA", date: "May 28", time: "TBA", venue: "TBA", rsvpLink: "gathering", description: null },
   { id: 10, city: "Vancouver", state: "CAN", date: "June 4-7", time: null, venue: "Vancouver International Publishing Conference, The Wallace Venue", rsvpLink: "soldout", description: null },
