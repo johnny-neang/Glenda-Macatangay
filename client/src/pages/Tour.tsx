@@ -55,6 +55,7 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 17, city: "San Diego", state: "CA", date: "September 24-26", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 27, city: "Sacramento", state: "CA", date: "October (TBD)", time: "TBD", venue: "TBD", rsvpLink: null, description: null },
   { id: 28, city: "Joshua Tree", state: "CA", date: "October (TBD)", time: "TBD", venue: "TBD", rsvpLink: null, description: null },
+  { id: 32, city: "Los Angeles", state: "CA", date: "October (TBD)", time: "TBD", venue: "TBD", rsvpLink: null, description: null },
   { id: 29, city: "Lihue", state: "Kaua'i", date: "November (TBD)", time: "TBD", venue: "TBD", rsvpLink: null, description: null },
   { id: 30, city: "Kona", state: "Big Island", date: "November (TBD)", time: "TBD", venue: "TBD", rsvpLink: null, description: null },
   { id: 31, city: "Sacramento", state: "CA", date: "December (TBD)", time: "TBD", venue: "TBD", rsvpLink: null, description: null },
