@@ -47,7 +47,6 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 10, city: "Vancouver", state: "CAN", date: "June 4-7", time: null, venue: "Vancouver International Publishing Conference, The Wallace Venue", rsvpLink: "soldout", description: null },
   { id: 11, city: "Montreal", state: "CAN", date: "June 14-17", time: null, venue: "Concordia University", rsvpLink: "soldout", description: null },
   { id: 12, city: "New Orleans", state: "LA", date: "June 18", time: "10:15am-11:45am", venue: "APSAC 33rd Annual Colloquium", rsvpLink: "soldout", description: null },
-  { id: 15, city: "Long Beach", state: "CA", date: "July 11", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 13, city: "Arlington", state: "VA", date: "July 22-25", time: "TBA", venue: "FAHNS DMV", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 14, city: "O'ahu", state: "Hawai'i", date: "August 1-8", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 19, city: "Kailua-Kona", state: "Big Island", date: "August 11", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
