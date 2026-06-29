@@ -53,6 +53,11 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 26, city: "Nosara", state: "Costa Rica", date: "August 16-23", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 20, city: "Anchorage", state: "AK", date: "September 3-5", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 17, city: "San Diego", state: "CA", date: "September 24-26", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
+  { id: 27, city: "TBD", state: "", date: "October (TBD)", time: "TBD", venue: "TBD", rsvpLink: null, description: null },
+  { id: 28, city: "Joshua Tree", state: "CA", date: "October (TBD)", time: "TBD", venue: "TBD", rsvpLink: null, description: null },
+  { id: 29, city: "Lihue", state: "Kaua'i", date: "November (TBD)", time: "TBD", venue: "TBD", rsvpLink: null, description: null },
+  { id: 30, city: "Kona", state: "Big Island", date: "November (TBD)", time: "TBD", venue: "TBD", rsvpLink: null, description: null },
+  { id: 31, city: "Sacramento", state: "CA", date: "December (TBD)", time: "TBD", venue: "TBD", rsvpLink: null, description: null },
 ];
 
 export default function Tour() {
