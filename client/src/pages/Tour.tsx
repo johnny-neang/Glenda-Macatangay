@@ -49,6 +49,7 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 12, city: "New Orleans", state: "LA", date: "June 18", time: "10:15am-11:45am", venue: "APSAC 33rd Annual Colloquium", rsvpLink: "soldout", description: null },
   { id: 13, city: "Arlington", state: "VA", date: "July 23", time: "2-4pm", venue: "FAHNS DMV", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 24, city: "Little Haiti, Brooklyn", state: "NY", date: "July 25", time: "6:30pm-9:00pm", venue: "Little Haiti, Brooklyn, NY", rsvpLink: "https://www.eventbrite.com/e/1993398605891?aff=oddtdtcreator", description: null },
+  { id: 33, city: "SoHo, New York", state: "NY", date: "July 26", time: "2pm-5pm", venue: "113 Spring", rsvpLink: "https://113spring.com/products/the-salt-tour", description: null },
   { id: 25, city: "Mt. Shasta", state: "CA", date: "August 7-9", time: "TBD", venue: "TBD", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 26, city: "Nosara", state: "Costa Rica", date: "August 16-23", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 20, city: "Anchorage", state: "AK", date: "September 3-5", time: null, venue: null, rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
