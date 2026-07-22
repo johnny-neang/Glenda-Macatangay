@@ -58,7 +58,7 @@ const FALLBACK_TOUR_DATES: TourDate[] = [
   { id: 32, city: "San Francisco", state: "CA", date: "October 9-10", time: "TBD", venue: "TBD", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 28, city: "Denver", state: "CO", date: "October 15-17", time: "TBD", venue: "TBD", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
   { id: 29, city: "Lihue", state: "Kaua'i", date: "November (TBD)", time: "TBD", venue: "TBD", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
-  { id: 30, city: "Kona", state: "Big Island", date: "November 12-15", time: "4pm-4pm", venue: "Ohana Farms", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
+  { id: 30, city: "Kona", state: "Big Island", date: "November 12-15", time: "4pm-4pm", venue: "Ohana Farms", rsvpLink: "https://www.eventbrite.com/e/1993222568358?aff=oddtdtcreator", description: null },
   { id: 31, city: "Batangas", state: "Philippines", date: "December (TBD)", time: "TBD", venue: "TBD", rsvpLink: "https://myhealinglanguage.us14.list-manage.com/subscribe?u=797dcb18d0b3bd1a465515271&id=0488831fc9", description: null },
 ];
 
