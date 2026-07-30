@@ -23,7 +23,13 @@
     <meta name="twitter:description" content="" />
     <meta name="twitter:image" content="https://www.glendamacatangay.com/opengraph.jpg" />
 
-    <link rel="icon" type="image/webp" href="/attached_assets/favicon.webp" />
+    <!-- Icons are square, opaque PNG/ICO served from the site root. A real
+         favicon.ico matters because browsers request /favicon.ico directly,
+         and the SPA catch-all rewrite would otherwise answer it with HTML. -->
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
