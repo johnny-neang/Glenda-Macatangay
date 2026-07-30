@@ -4,15 +4,24 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
 
+    <!-- Social/link previews. og:image must be an ABSOLUTE https URL to a
+         JPEG/PNG: scrapers (iMessage, Facebook, X) don't resolve relative
+         paths and handle WebP poorly. The og:image:* properties attach to the
+         og:image directly above them, so keep them in this order. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.glendamacatangay.com/" />
+    <meta property="og:site_name" content="Glenda Macatangay" />
     <meta property="og:title" content="Glenda Macatangay" />
     <meta property="og:description" content="" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="/attached_assets/logo.webp" />
+    <meta property="og:image" content="https://www.glendamacatangay.com/opengraph.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="720" />
+    <meta property="og:image:alt" content="Glenda Macatangay" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:site" content="@replit" />
     <meta name="twitter:title" content="Glenda Macatangay" />
     <meta name="twitter:description" content="" />
-    <meta name="twitter:image" content="/attached_assets/logo.webp" />
+    <meta name="twitter:image" content="https://www.glendamacatangay.com/opengraph.jpg" />
 
     <link rel="icon" type="image/webp" href="/attached_assets/favicon.webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
